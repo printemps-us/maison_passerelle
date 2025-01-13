@@ -207,23 +207,34 @@ export default function Homepage() {
               className="moderat-bold"
               style={{fontSize: '14px', color: 'black', marginRight: '8px'}}
             >
-              Sign up for our newsletter
+              {state.isSubmitted ? 'Merci!' : 'Sign up for our newsletter'}
             </p>
-            <div className="_form_3">
+            {state.isSubmitted ? (
+              <p
+                className="moderat-bold"
+                style={{fontSize: '14px', color: 'black', marginRight: '8px'}}
+              >
+                Check your email for updates
+              </p>
+            ) : (
               <input
                 {...inputProps}
                 className="moderat-bold footer-input"
                 style={{fontSize: '12px'}}
               ></input>
-            </div>
-            <button className="footer-button">
-              <p
-                className="moderat-bold"
-                style={{fontSize: '12px', color: 'white'}}
-              >
-                Submit
-              </p>
-            </button>
+            )}
+            {state.isSubmitted ? (
+              <p></p>
+            ) : (
+              <button className="footer-button">
+                <p
+                  className="moderat-bold"
+                  style={{fontSize: '12px', color: 'white'}}
+                >
+                  Submit
+                </p>
+              </button>
+            )}
           </div>
         </form>
       </div>
