@@ -63,9 +63,61 @@ export default function Homepage() {
   /** @type {LoaderReturnData} */
   const data = useLoaderData();
   return (
-    <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
-      <RecommendedProducts products={data.recommendedProducts} />
+    <div className="background">
+      <div className="main-area">
+        <Image
+          className="logo"
+          src={
+            'https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasserelle_Wordmark.png?v=1736790168'
+          }
+          width={'60%'}
+          sizes="(min-width: 35em) 60vw, 70vw"
+          alt="Maison Passerelle Logo"
+        ></Image>
+        <p
+          className="moderat-bold"
+          style={{fontSize: '1.5rem', color: '#e8d09b'}}
+        >
+          Opening March 2025
+        </p>
+        <p className="moderat-bold" style={{color: '#e8d09b'}}>
+          One Wall street, NY
+        </p>
+      </div>
+      <div className="footer-container">
+        <div className="above-footer">
+          <Image
+            src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/IG_LOGO.png?v=1736792345"
+            alt="Instagram Logo"
+            width={42}
+          ></Image>
+          <p className="moderat-bold sign-up-text" style={{color: '#e8d09b'}}>
+            Maison Passerelle is part of Printemps new york, For more
+            information sign up for our newsletter
+          </p>
+        </div>
+        <div className="footer-area">
+          <p
+            className="moderat-bold"
+            style={{fontSize: '14px', color: 'black', marginRight: '8px'}}
+          >
+            Sign up for our newsletter
+          </p>
+          <input
+            placeholder="Enter email address"
+            className="moderat-bold footer-input"
+            style={{fontSize: '12px'}}
+          ></input>
+          <button className="footer-button">
+            <p
+              className="moderat-bold"
+              style={{fontSize: '12px', color: 'white'}}
+            >
+              Submit
+            </p>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
