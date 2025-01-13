@@ -86,11 +86,17 @@ export default function Homepage() {
       </div>
       <div className="footer-container">
         <div className="above-footer">
-          <Image
-            src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/IG_LOGO.png?v=1736792345"
-            alt="Instagram Logo"
-            width={42}
-          ></Image>
+          <a
+            href="https://www.instagram.com/maisonpasserelle/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/IG_LOGO.png?v=1736792345"
+              alt="Instagram Logo"
+              width={42}
+            />
+          </a>
           <p className="moderat-bold sign-up-text" style={{color: '#e8d09b'}}>
             Maison Passerelle is part of Printemps new york, For more
             information sign up for our newsletter

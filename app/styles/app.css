@@ -78,7 +78,7 @@ img {
 .sign-up-text{
   font-size: 14px;
 }
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .logo {
     width: 95% !important;
   }
@@ -94,6 +94,9 @@ img {
   .sign-up-text{
     font-size: 8px;
     text-align: center;
+  }
+  .above-footer{
+    padding: 0 12px;
   }
 }
 
