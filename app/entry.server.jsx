@@ -22,6 +22,7 @@ export default async function handleRequest(
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
+    connectSrc: ["'self'", 'https://printempsnewyork.activehosted.com'],
   });
 
   const body = await renderToReadableStream(

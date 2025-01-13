@@ -1,6 +1,6 @@
 import {defer} from '@shopify/remix-oxygen';
 import {Await, useLoaderData, Link} from '@remix-run/react';
-import {Suspense} from 'react';
+import {Suspense, useState} from 'react';
 import {Image, Money} from '@shopify/hydrogen';
 
 /**
@@ -60,6 +60,97 @@ function loadDeferredData({context}) {
 }
 
 export default function Homepage() {
+  const [form, setForm] = useState({email: ''});
+  const [state, setState] = useState({
+    isWaiting: false,
+    isSubmitted: false,
+    isError: false,
+  });
+  const url = 'https://printempsnewyork.activehosted.com/proc.php?jsonp=true';
+
+  // NOTE • Valid Email checker
+  const validEmail = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+  );
+
+  // NOTE • Clear Input
+  const clearInput = () => {
+    setForm({email: ''});
+  };
+
+  console.log(state);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const email = formData.get('email'); // Correct way to get the email field value
+
+    console.log(formData);
+
+    setState({
+      isWaiting: true,
+    });
+
+    // Validate email before submitting
+    if (validEmail.test(email)) {
+      fetch(url, {
+        headers: {Accept: 'application/json'},
+        method: 'POST',
+        body: formData,
+        // Remove mode: 'no-cors' as it disables response access
+      })
+        .then((response) => {
+          // Check response status
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+
+          setState({
+            isWaiting: false,
+            isSubmitted: true,
+          });
+
+          // Clear form and reset state after a delay
+          setTimeout(() => {
+            clearInput();
+            setState({
+              isWaiting: false,
+              isSubmitted: false,
+            });
+          }, 5000);
+        })
+        .catch((err) => {
+          setState({
+            error: err,
+            isError: true,
+          });
+          console.error('Submission error:', err); // Optionally log the error for debugging
+        });
+    } else {
+      // If the email is not valid, handle the error
+      setState({
+        error: 'Invalid email address',
+        isError: true,
+      });
+    }
+  };
+
+  const handleChange = (e) => {
+    setForm({...form, [e.target.name]: e.target.value});
+  };
+
+  const inputProps = {
+    onChange: handleChange,
+    value: form.email,
+    name: 'email',
+    id: 'email',
+    type: 'email',
+    required: true,
+    placeholder: 'Enter email address',
+    'data-name': 'email',
+  };
+
   /** @type {LoaderReturnData} */
   const data = useLoaderData();
   return (
@@ -102,27 +193,39 @@ export default function Homepage() {
             information sign up for our newsletter
           </p>
         </div>
-        <div className="footer-area">
-          <p
-            className="moderat-bold"
-            style={{fontSize: '14px', color: 'black', marginRight: '8px'}}
-          >
-            Sign up for our newsletter
-          </p>
-          <input
-            placeholder="Enter email address"
-            className="moderat-bold footer-input"
-            style={{fontSize: '12px'}}
-          ></input>
-          <button className="footer-button">
+        <form onSubmit={handleSubmit} style={{width: '100%'}}>
+          {/* Hidden Fields */}
+          <input type="hidden" name="u" value="1" data-name="u" />
+          <input type="hidden" name="f" value="1" data-name="f" />
+          <input type="hidden" name="s" data-name="s" />
+          <input type="hidden" name="c" value="0" data-name="c" />
+          <input type="hidden" name="m" value="0" data-name="m" />
+          <input type="hidden" name="act" value="sub" data-name="act" />
+          <input type="hidden" name="v" value="2" data-name="v" />
+          <div className="footer-area">
             <p
               className="moderat-bold"
-              style={{fontSize: '12px', color: 'white'}}
+              style={{fontSize: '14px', color: 'black', marginRight: '8px'}}
             >
-              Submit
+              Sign up for our newsletter
             </p>
-          </button>
-        </div>
+            <div className="_form_3">
+              <input
+                {...inputProps}
+                className="moderat-bold footer-input"
+                style={{fontSize: '12px'}}
+              ></input>
+            </div>
+            <button className="footer-button">
+              <p
+                className="moderat-bold"
+                style={{fontSize: '12px', color: 'white'}}
+              >
+                Submit
+              </p>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
