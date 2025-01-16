@@ -178,7 +178,7 @@ export default function Homepage() {
       <div className="footer-container">
         <div className="above-footer">
           <a
-            href="https://www.instagram.com/maisonpasserelle/"
+            href="https://urlgeni.us/instagram/maisonpasserellenyc"
             target="_blank"
             rel="noopener noreferrer"
           >
