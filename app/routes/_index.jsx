@@ -159,7 +159,7 @@ export default function Homepage() {
         <Image
           className="logo"
           src={
-            'https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasserelle_Wordmark.png?v=1736790168'
+            'https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasser.svg?v=1737053887'
           }
           width={'60%'}
           sizes="(min-width: 35em) 60vw, 70vw"
