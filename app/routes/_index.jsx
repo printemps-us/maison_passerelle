@@ -1,13 +1,13 @@
 import {defer} from '@shopify/remix-oxygen';
 import {Await, useLoaderData, Link} from '@remix-run/react';
-import {Suspense} from 'react';
+import {Suspense, useState} from 'react';
 import {Image, Money} from '@shopify/hydrogen';
 
 /**
  * @type {MetaFunction}
  */
 export const meta = () => {
-  return [{title: 'Hydrogen | Home'}];
+  return [{title: 'Maison Passerelle'}];
 };
 
 /**
@@ -60,12 +60,184 @@ function loadDeferredData({context}) {
 }
 
 export default function Homepage() {
+  const [form, setForm] = useState({email: ''});
+  const [state, setState] = useState({
+    isWaiting: false,
+    isSubmitted: false,
+    isError: false,
+  });
+  const url = 'https://printempsnewyork.activehosted.com/proc.php?jsonp=true';
+
+  // NOTE • Valid Email checker
+  const validEmail = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+  );
+
+  // NOTE • Clear Input
+  const clearInput = () => {
+    setForm({email: ''});
+  };
+
+  console.log(state);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const email = formData.get('email'); // Correct way to get the email field value
+
+    console.log(formData);
+
+    setState({
+      isWaiting: true,
+    });
+
+    // Validate email before submitting
+    if (validEmail.test(email)) {
+      fetch(url, {
+        headers: {Accept: 'application/json'},
+        method: 'POST',
+        body: formData,
+        // Remove mode: 'no-cors' as it disables response access
+      })
+        .then((response) => {
+          // Check response status
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+
+          setState({
+            isWaiting: false,
+            isSubmitted: true,
+          });
+
+          // Clear form and reset state after a delay
+          setTimeout(() => {
+            clearInput();
+            setState({
+              isWaiting: false,
+              isSubmitted: false,
+            });
+          }, 5000);
+        })
+        .catch((err) => {
+          setState({
+            error: err,
+            isError: true,
+          });
+          console.error('Submission error:', err); // Optionally log the error for debugging
+        });
+    } else {
+      // If the email is not valid, handle the error
+      setState({
+        error: 'Invalid email address',
+        isError: true,
+      });
+    }
+  };
+
+  const handleChange = (e) => {
+    setForm({...form, [e.target.name]: e.target.value});
+  };
+
+  const inputProps = {
+    onChange: handleChange,
+    value: form.email,
+    name: 'email',
+    id: 'email',
+    type: 'email',
+    required: true,
+    placeholder: 'Enter email address',
+    'data-name': 'email',
+  };
+
   /** @type {LoaderReturnData} */
   const data = useLoaderData();
   return (
-    <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
-      <RecommendedProducts products={data.recommendedProducts} />
+    <div className="background">
+      <div className="main-area">
+        <Image
+          className="logo"
+          src={
+            'https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasserelle_Wordmark.png?v=1736790168'
+          }
+          width={'60%'}
+          sizes="(min-width: 35em) 60vw, 70vw"
+          alt="Maison Passerelle Logo"
+        ></Image>
+        <p
+          className="moderat-bold"
+          style={{fontSize: '1.5rem', color: '#e8d09b'}}
+        >
+          Opening March 2025
+        </p>
+        <p className="moderat-bold" style={{color: '#e8d09b'}}>
+          One Wall street, NY
+        </p>
+      </div>
+      <div className="footer-container">
+        <div className="above-footer">
+          <a
+            href="https://www.instagram.com/maisonpasserelle/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/IG_LOGO.png?v=1736792345"
+              alt="Instagram Logo"
+              width={42}
+            />
+          </a>
+          <p className="moderat-bold sign-up-text" style={{color: '#e8d09b'}}>
+            Maison Passerelle is part of Printemps new york, For more
+            information sign up for our newsletter
+          </p>
+        </div>
+        <form onSubmit={handleSubmit} style={{width: '100%'}}>
+          {/* Hidden Fields */}
+          <input type="hidden" name="u" value="1" data-name="u" />
+          <input type="hidden" name="f" value="1" data-name="f" />
+          <input type="hidden" name="s" data-name="s" />
+          <input type="hidden" name="c" value="0" data-name="c" />
+          <input type="hidden" name="m" value="0" data-name="m" />
+          <input type="hidden" name="act" value="sub" data-name="act" />
+          <input type="hidden" name="v" value="2" data-name="v" />
+          <div className="footer-area">
+            <p
+              className="moderat-bold"
+              style={{fontSize: '14px', color: 'black', marginRight: '8px'}}
+            >
+              {state.isSubmitted ? 'Merci!' : 'Sign up for our newsletter'}
+            </p>
+            {state.isSubmitted ? (
+              <p
+                className="moderat-bold"
+                style={{fontSize: '14px', color: 'black', marginRight: '8px'}}
+              >
+                Check your email for updates
+              </p>
+            ) : (
+              <input
+                {...inputProps}
+                className="moderat-bold footer-input"
+                style={{fontSize: '12px'}}
+              ></input>
+            )}
+            {state.isSubmitted ? (
+              <p></p>
+            ) : (
+              <button className="footer-button">
+                <p
+                  className="moderat-bold"
+                  style={{fontSize: '12px', color: 'white'}}
+                >
+                  Submit
+                </p>
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
