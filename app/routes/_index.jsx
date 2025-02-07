@@ -169,7 +169,7 @@ export default function Homepage() {
           className="moderat-bold"
           style={{fontSize: '1.5rem', color: '#e8d09b'}}
         >
-          Opening March 2025
+          Coming Soon
         </p>
         <p className="moderat-bold" style={{color: '#e8d09b'}}>
           One Wall street, NY
