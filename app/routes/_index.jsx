@@ -2,7 +2,8 @@ import {defer} from '@shopify/remix-oxygen';
 import {Await, useLoaderData, Link} from '@remix-run/react';
 import {Suspense, useState} from 'react';
 import {Image, Money} from '@shopify/hydrogen';
-
+import AnimatedButton from '~/components/AnimatedButton';
+import RestaurantModal from '~/components/RestaurantModal';
 /**
  * @type {MetaFunction}
  */
@@ -61,6 +62,7 @@ function loadDeferredData({context}) {
 
 export default function Homepage() {
   const [email, setEmail] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
   const [state, setState] = useState({
     isWaiting: false,
     isSubmitted: false,
@@ -99,25 +101,43 @@ export default function Homepage() {
   const data = useLoaderData();
   return (
     <div className="background">
+      <RestaurantModal
+        setOpenModal={setModalOpen}
+        openModal={modalOpen}
+        venue_id={'87094'}
+        link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
+        api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
+      ></RestaurantModal>
       <div className="main-area">
         <Image
           className="logo"
           src={
             'https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasser.svg?v=1737053887'
           }
-          width={'60%'}
+          width={'450px'}
           sizes="(min-width: 35em) 60vw, 70vw"
           alt="Maison Passerelle Logo"
         ></Image>
-        <p
-          className="moderat-bold"
-          style={{fontSize: '1.5rem', color: '#e8d09b'}}
-        >
-          Opening Soon
-        </p>
         <p className="moderat-bold" style={{color: '#e8d09b'}}>
           One Wall street, NY
         </p>
+        <p className="moderat-bold" style={{color: '#e8d09b'}}>
+          OPENING APRIL 2025
+        </p>
+
+        {/* <div className="mt-16">
+          <AnimatedButton
+            text={'Book with Resy'}
+            bgColor={'#e8d09b'}
+            hoverColor={'#e8d09b'}
+            textColor={'#c46314'}
+            border="#e8d09b"
+            hoverBorder={'#e8d09b'}
+            onClick={() => setModalOpen(true)}
+            h="42px"
+            w="339px"
+          />
+        </div> */}
       </div>
       <div className="footer-container">
         <div className="above-footer">
@@ -156,7 +176,7 @@ export default function Homepage() {
               value={email}
               placeholder="Enter email address"
               onChange={(e) => setEmail(e.target.value)}
-              className="moderat-bold footer-input"
+              className="moderat-bold footer-input bg-white"
               style={{fontSize: '12px'}}
             ></input>
           )}

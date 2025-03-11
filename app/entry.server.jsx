@@ -22,7 +22,6 @@ export default async function handleRequest(
       checkoutDomain: context.env.PUBLIC_CHECKOUT_DOMAIN,
       storeDomain: context.env.PUBLIC_STORE_DOMAIN,
     },
-    connectSrc: ["'self'", 'https://printempsnewyork.activehosted.com'],
     scriptSrc: [
       "'self'",
       'https://cdn.shopify.com',
@@ -32,7 +31,14 @@ export default async function handleRequest(
       'https://widgets.resy.com', // Add this line to allow the Resy script
       // Include other allowed domains for script loading
     ],
-    connectSrc: ["'self'", 'https://eu2-api.eng.bloomreach.com'],
+    frameSrc: [
+      "'self'",
+      'https://cdn.shopify.com',
+      "'unsafe-eval'",
+      'https://widgets.resy.com', // Allow framing from Resy
+      // Add any other domains you need to allow framing from
+    ],
+    connectSrc: ['https://eu2-api.eng.bloomreach.com'],
   });
 
   const body = await renderToReadableStream(

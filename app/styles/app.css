@@ -25,6 +25,14 @@ img {
   border-radius: 4px;
 }
 
+.h3-desktop {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 30px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
 .background {
   background-color: #c46314;
   height: 100vh;
@@ -76,12 +84,12 @@ img {
 }
 
 .sign-up-text {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 @media (max-width: 820px) {
   .logo {
-    width: 95% !important;
+    width: 350px !important;
   }
 
   .footer-area {
@@ -344,6 +352,14 @@ button.reset:hover:not(:has(> *)) {
 
 .cart-summary-page {
   position: relative;
+}
+
+.a-button {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .cart-summary-aside {
