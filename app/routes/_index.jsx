@@ -84,7 +84,7 @@ export default function Homepage() {
       },
     );
     exponea.track('consent', {
-      category: 'email',
+      category: 'mp_email',
       valid_until: 'unlimited',
       action: 'accept',
       data_source: 'maison passerelle',
