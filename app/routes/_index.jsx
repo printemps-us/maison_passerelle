@@ -125,7 +125,7 @@ export default function Homepage() {
           OPENING APRIL 2025
         </p>
 
-        {/* <div className="mt-16">
+        <div className="mt-16">
           <AnimatedButton
             text={'Book with Resy'}
             bgColor={'#e8d09b'}
@@ -137,7 +137,7 @@ export default function Homepage() {
             h="42px"
             w="339px"
           />
-        </div> */}
+        </div>
       </div>
       <div className="footer-container">
         <div className="above-footer">
