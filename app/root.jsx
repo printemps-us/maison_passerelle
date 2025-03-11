@@ -1,4 +1,4 @@
-import {useNonce, getShopAnalytics, Analytics} from '@shopify/hydrogen';
+import {useNonce, getShopAnalytics, Analytics, Script} from '@shopify/hydrogen';
 import {defer} from '@shopify/remix-oxygen';
 import {
   Links,
@@ -159,6 +159,7 @@ export function Layout({children}) {
           children
         )}
         <ScrollRestoration nonce={nonce} />
+        <Script src="/bloomreach.js" />
         <Scripts nonce={nonce} />
       </body>
     </html>
