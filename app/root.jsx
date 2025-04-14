@@ -162,6 +162,7 @@ export function Layout({children}) {
         )}
         <ScrollRestoration nonce={nonce} />
         <Script src="/bloomreach.js" />
+        <Script src="/googleAnalytics.js" />
         <Script
           src="https://widgets.resy.com/embed.js"
           referrerPolicy="no-referrer"
