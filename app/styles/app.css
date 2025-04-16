@@ -48,7 +48,23 @@ img {
   align-items: center;
   gap: 12px;
 }
+.hide-scrollbar {
+  /* For Firefox */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
+  /* For IE and Edge */
+}
+
+.underline-important {
+  text-decoration: underline !important;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  -webkit-appearance: none;
+  /* For Chrome, Safari, and Opera */
+}
 .above-footer {
   display: flex;
   flex-direction: column;
