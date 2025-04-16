@@ -160,9 +160,9 @@ function menu() {
       // Header border animation
       gsap.fromTo(
         roomsHeaderRef.current,
-        {borderBottom: '1px solid #FFFAE1'},
+        {borderBottom: '1px solid #e8d09b'},
         {
-          borderBottom: '1px solid #DCB243',
+          borderBottom: '1px solid #AF4145',
           scrollTrigger: {
             trigger: roomsHeaderRef.current,
             start: '15% 20%',
@@ -223,7 +223,7 @@ function menu() {
     <SmoothScroll>
       <div
         className="p-14 flex justify-center w-full"
-        style={{backgroundColor: '#c46314'}}
+        style={{backgroundColor: '#AF4145'}}
       >
         <Link to={'/'} className="responsive-logo">
           <Image
@@ -256,7 +256,7 @@ function menu() {
                 <div
                   className={`${
                     currentSection == item?.link?.value ? 'border-2' : ''
-                  } border-[#ffffff] h-[100px] w-[100px] p-0.5 rounded-full room`}
+                  } border-[#000000] h-[100px] w-[100px] p-0.5 rounded-full room`}
                 >
                   <div className=" rounded-full w-full h-full overflow-hidden ">
                     <Image

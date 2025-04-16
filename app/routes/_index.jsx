@@ -130,7 +130,7 @@ export default function Homepage() {
             text={'Book with Resy'}
             bgColor={'#e8d09b'}
             hoverColor={'#e8d09b'}
-            textColor={'#c46314'}
+            textColor={'black'}
             border="#e8d09b"
             hoverBorder={'#e8d09b'}
             onClick={() => setModalOpen(true)}
@@ -141,7 +141,7 @@ export default function Homepage() {
             text={'View Menu'}
             bgColor={'#e8d09b'}
             hoverColor={'#e8d09b'}
-            textColor={'#c46314'}
+            textColor={'black'}
             border="#e8d09b"
             hoverBorder={'#e8d09b'}
             clickURL={'/menu'}
