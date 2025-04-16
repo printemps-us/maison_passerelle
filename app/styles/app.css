@@ -34,7 +34,7 @@ img {
 }
 
 .background {
-  background-color: #c46314;
+  background-color: #AF4145;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -48,7 +48,23 @@ img {
   align-items: center;
   gap: 12px;
 }
+.hide-scrollbar {
+  /* For Firefox */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
+  /* For IE and Edge */
+}
+
+.underline-important {
+  text-decoration: underline !important;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  -webkit-appearance: none;
+  /* For Chrome, Safari, and Opera */
+}
 .above-footer {
   display: flex;
   flex-direction: column;
@@ -70,7 +86,7 @@ img {
 }
 
 .footer-button {
-  background-color: #c46314;
+  background-color: #AF4145;
   border-radius: 4px;
   padding: 4px 24px;
   border: 0;

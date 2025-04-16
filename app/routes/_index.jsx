@@ -122,18 +122,29 @@ export default function Homepage() {
           One Wall street, NY
         </p>
         <p className="moderat-bold" style={{color: '#e8d09b'}}>
-          OPENING APRIL 2025
+          TUESDAY - SATURDAY, 5:30PM - 10:30PM
         </p>
 
-        <div className="mt-16">
+        <div className="mt-16  h-auto w-full flex max-[835px]:flex-col gap-3 justify-center items-center">
           <AnimatedButton
             text={'Book with Resy'}
             bgColor={'#e8d09b'}
             hoverColor={'#e8d09b'}
-            textColor={'#c46314'}
+            textColor={'black'}
             border="#e8d09b"
             hoverBorder={'#e8d09b'}
             onClick={() => setModalOpen(true)}
+            h="42px"
+            w="339px"
+          />
+          <AnimatedButton
+            text={'View Menu'}
+            bgColor={'#e8d09b'}
+            hoverColor={'#e8d09b'}
+            textColor={'black'}
+            border="#e8d09b"
+            hoverBorder={'#e8d09b'}
+            clickURL={'/menu'}
             h="42px"
             w="339px"
           />
