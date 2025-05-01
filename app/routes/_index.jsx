@@ -135,7 +135,7 @@ export default function Homepage() {
             hoverBorder={'#e8d09b'}
             onClick={() => setModalOpen(true)}
             h="42px"
-            w="100%"
+            w="90%"
           />
           <AnimatedButton
             text={'View Menu'}
@@ -146,7 +146,7 @@ export default function Homepage() {
             hoverBorder={'#e8d09b'}
             clickURL={'/menu'}
             h="42px"
-            w="100%"
+            w="90%"
           />
         </div>
       </div>
