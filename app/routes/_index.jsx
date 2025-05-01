@@ -118,10 +118,10 @@ export default function Homepage() {
           sizes="(min-width: 35em) 60vw, 70vw"
           alt="Maison Passerelle Logo"
         ></Image>
-        <p className="moderat-bold" style={{color: '#e8d09b'}}>
+        <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
           One Wall street, NY
         </p>
-        <p className="moderat-bold" style={{color: '#e8d09b'}}>
+        <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
           TUESDAY - SATURDAY, 5:00PM - 10:30PM
         </p>
 
@@ -135,7 +135,7 @@ export default function Homepage() {
             hoverBorder={'#e8d09b'}
             onClick={() => setModalOpen(true)}
             h="42px"
-            w="339px"
+            w="100%"
           />
           <AnimatedButton
             text={'View Menu'}
@@ -146,7 +146,7 @@ export default function Homepage() {
             hoverBorder={'#e8d09b'}
             clickURL={'/menu'}
             h="42px"
-            w="339px"
+            w="100%"
           />
         </div>
       </div>
