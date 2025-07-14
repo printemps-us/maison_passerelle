@@ -39,7 +39,6 @@ async function loadStaticData({context}) {
 }
 function menu() {
   const data = useLoaderData();
-  console.log(data);
   const navigate = useNavigate();
   const isInitialRender = useRef(true);
 
