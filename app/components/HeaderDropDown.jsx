@@ -37,7 +37,7 @@ function HeaderDropDown({
   }, [isHover]);
   return (
     <div
-      className="absolute w-full top-[106px]"
+      className="absolute w-full top-[100px]"
       ref={dropdownRef}
       onMouseEnter={handleMouseEnter}
     >

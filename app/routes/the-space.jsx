@@ -25,14 +25,14 @@ function TheSpace() {
         mainImg={staticData.architect_image_1.reference.image}
         section={staticData.architect_sub.value}
       ></PersonSection>
-      <div className="flex px-6 py-12">
+      <div className="flex flex-col px-[25%] py-14">
         <div className="flex-1">
           <h2 className="h2-desktop">
             {staticData.meet_architect_header.value}
           </h2>
           <div className=" bg-[#AF4145] h-2 w-[250px]"></div>
         </div>
-        <div className="flex-1 p-standard-medium-desktop pt-[80px]">
+        <div className="flex-1 p-standard-medium-desktop pt-[40px]">
           <FormattedText
             text={staticData.meet_architect_content.value}
           ></FormattedText>
@@ -44,24 +44,24 @@ function TheSpace() {
           className="w-full h-full object-cover"
         ></Image>
       </div>
-      <div className="flex px-6 py-12">
-        <div className="flex-1 p-standard-medium-desktop pt-[80px]">
+      <div className="flex flex-col px-[25%] py-14">
+        <div className="flex-1 flex flex-col">
+          <h2 className="h2-desktop">{staticData.early_life_header.value}</h2>
+          <div className=" bg-[#AF4145] h-2 w-[250px]"></div>
+        </div>
+        <div className="flex-1 p-standard-medium-desktop pt-[40px]">
           <FormattedText
             text={staticData.early_life_content.value}
           ></FormattedText>
         </div>
-        <div className="flex-1 items-end flex flex-col">
-          <h2 className="h2-desktop">{staticData.early_life_header.value}</h2>
-          <div className=" bg-[#AF4145] h-2 w-[250px]"></div>
-        </div>
       </div>
       <QuoteBlock data={staticData.quote_block.reference}></QuoteBlock>
-      <div className="flex px-6 py-12">
+      <div className="flex flex-col px-[25%] py-14">
         <div className="flex-1">
           <h2 className="h2-desktop">{staticData.awards_header?.value}</h2>
           <div className=" bg-[#AF4145] h-2 w-[250px]"></div>
         </div>
-        <div className="flex-1 p-standard-medium-desktop pt-[80px]">
+        <div className="flex-1 p-standard-medium-desktop pt-[40px]">
           <FormattedText
             text={staticData.awards_content?.value}
           ></FormattedText>

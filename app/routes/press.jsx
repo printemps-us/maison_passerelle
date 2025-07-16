@@ -44,7 +44,7 @@ function Press() {
   //   }, []);
   return (
     <div>
-      <div className="py-24 border-y-1 border-white-4 bg-white-2">
+      {/* <div className="py-24">
         <p className="h2-desktop text-center">
           {staticData.press_header?.value}
         </p>
@@ -58,22 +58,22 @@ function Press() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
       <div className="flex flex-col py-15 rounded-b-2xl bg-white">
-        <div className="flex flex-col justify-center items-center gap-6">
+        <div className="flex flex-col justify-center items-center gap-6 py-12">
           <h2
             ref={frenchApartmentRef}
-            className="h2-desktop  text-center w-[775px]"
+            className="h1-desktop  text-center w-[775px]"
           >
-            {staticData.rooms_header.value}
+            {staticData.press_header?.value}
           </h2>
-          <AnimatedButton
+          {/* <AnimatedButton
             text={staticData.rooms_button.reference.button_text.value}
             h={'42px'}
             w={'339px'}
             clickURL={staticData.rooms_button.reference.link.value}
             hoverColor={staticData.rooms_button.reference.hover_color.value}
-          />
+          /> */}
         </div>
         <div className="flex gap-2 w-full overflow-y-hidden hide-scrollbar py-15 h-[550px] no-overscroll px-8">
           {staticData.rooms_list_1.references.nodes.map((item, index) => (

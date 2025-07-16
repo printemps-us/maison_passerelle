@@ -8,6 +8,18 @@ export const FAQ_QUERY = `query StaticPageContent {
       section: field(key: "section") {
         value
       }
+      quote: field(key: "quote") {
+        reference {
+          ... on Metaobject {
+            author: field(key: "author") {
+              value
+            }
+            quote: field(key: "quote") {
+              value
+            }
+          }
+        }
+      }
       seo: field(key: "seo") {
         reference {
           ... on Metaobject {

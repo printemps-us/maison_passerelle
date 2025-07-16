@@ -15,21 +15,21 @@ function ImageSection({
   image,
   sticky = false,
 }) {
-//   const [refContent, inView] = useInView({
-//     triggerOnce: false, // Tracks when it enters/leaves the viewport
-//     threshold: 0.5, // How much of the element should be visible before triggering
-//   });
-//   const springStyles = useSpring({
-//     opacity: inView ? 1 : 0,
-//     transform: inView ? 'translateY(0px)' : 'translateY(50px)',
-//     config: {duration: 750, tension: 120, friction: 14},
-//   });
+  //   const [refContent, inView] = useInView({
+  //     triggerOnce: false, // Tracks when it enters/leaves the viewport
+  //     threshold: 0.5, // How much of the element should be visible before triggering
+  //   });
+  //   const springStyles = useSpring({
+  //     opacity: inView ? 1 : 0,
+  //     transform: inView ? 'translateY(0px)' : 'translateY(50px)',
+  //     config: {duration: 750, tension: 120, friction: 14},
+  //   });
   return (
     <div
       className={`bg-white-2 h-[500px] flex border-t-white-4 border-t-1 overflow-hidden top-0 ${
         sticky ? 'sticky top-20 z-[1]' : 'z-[2] relative'
       }`}
-    //   ref={refContent}
+      //   ref={refContent}
     >
       <div className="flex-4 h-full">
         <Image
@@ -61,14 +61,16 @@ function ImageSection({
               </span>
             )}
           </div>
-          <AnimatedButton
-            h={'42px'}
-            w={'339px'}
-            text={buttonText}
-            bgColor={'white'}
-            hoverColor={'#00D072'}
-            clickURL={link}
-          ></AnimatedButton>
+          {buttonText && (
+            <AnimatedButton
+              h={'42px'}
+              w={'339px'}
+              text={buttonText}
+              bgColor={'white'}
+              hoverColor={'#00D072'}
+              clickURL={link}
+            ></AnimatedButton>
+          )}
         </div>
       </div>
     </div>

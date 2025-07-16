@@ -26,7 +26,6 @@ export default function Homepage() {
 
   /** @type {LoaderReturnData} */
   const {staticData} = useLoaderData();
-  console.log(staticData);
   return (
     <div>
       <RestaurantModal
@@ -120,8 +119,8 @@ export default function Homepage() {
           />
         </div>
       </div>
-      <StoreInfo data={staticData.icons} bgColor={'#AF4145'}></StoreInfo>
-      <div className='py-10 border-y-1 border-white-4 my-10 mx-20'>
+      {/* <StoreInfo data={staticData.icons} bgColor={'#AF4145'}></StoreInfo> */}
+      <div className='py-10 border-y-1 border-white-4 my-14 mx-20'>
         <p className="h2-desktop text-center">
           {staticData.as_seen_header?.value}
         </p>

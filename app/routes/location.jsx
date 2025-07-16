@@ -57,8 +57,6 @@ function Location() {
         h1={staticData.location_info_header.value}
         sub={staticData.location_info_text.value}
         hours={staticData.location_info_hours.value}
-        buttonText={staticData.location_info_button_text.value}
-        link={'/plan-your-visit#directions'}
         image={staticData.location_info_image.reference.image}
       ></ImageSection>
       <div className="bg-white">

@@ -8,14 +8,12 @@ import HeaderDropDown from './HeaderDropDown';
 import Carrot from '~/assets/Carrot';
 
 function HeaderComponent({data}) {
-  console.log(data);
   const [modalOpen, setModalOpen] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const hoverRef = useRef(null);
   const dropdownRef = useRef(null);
   let leaveTimeout = null;
   const handleMouseLeave = (e) => {
-    console.log(e.relatedTarget);
     if (e.relatedTarget instanceof Window) {
       setIsHover(false);
       // Add your hover close logic here
@@ -47,7 +45,7 @@ function HeaderComponent({data}) {
       ></RestaurantModal>
       <div className="w-full bg-[#AF4145] flex justify-between sticky top-0 h-[100px] z-100">
         <div className="p-4">
-          <Link to='/'>
+          <Link to="/">
             <Image
               src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasser.svg?v=1737053887"
               width={250} // ✅ number, not '50px'
@@ -97,15 +95,15 @@ function HeaderComponent({data}) {
             w="200px"
           />
         </div>
+        <HeaderDropDown
+          isHover={isHover}
+          dropdownRef={dropdownRef}
+          hoverRef={hoverRef}
+          headerData={data}
+          handleMouseLeave={handleMouseLeave}
+          handleMouseEnter={handleMouseEnter}
+        ></HeaderDropDown>
       </div>
-      <HeaderDropDown
-        isHover={isHover}
-        dropdownRef={dropdownRef}
-        hoverRef={hoverRef}
-        headerData={data}
-        handleMouseLeave={handleMouseLeave}
-        handleMouseEnter={handleMouseEnter}
-      ></HeaderDropDown>
     </>
   );
 }
