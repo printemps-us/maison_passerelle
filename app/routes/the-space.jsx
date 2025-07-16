@@ -3,7 +3,7 @@ import {data, useLoaderData, defer} from '@remix-run/react';
 import {Image} from '@shopify/hydrogen';
 import FooterComponent from '~/components/FooterComponent';
 import {createStaticDataLoader} from '~/components/functions/loadStaticData';
-import { SPACE_QUERY } from '~/components/query/theSpaceQuote';
+import {SPACE_QUERY} from '~/components/query/theSpaceQuote';
 import {FormattedText} from '~/components/functions/formatText';
 import PersonSection from '~/components/PersonSection';
 import QuoteBlock from '~/components/QuoteBlock';
@@ -14,9 +14,7 @@ function TheSpace() {
   return (
     <div>
       <div className="w-full flex flex-col items-center justify-center h-[260px] text-center">
-        <h2 className="h2-desktop w-[220px]">
-          {staticData.title_header.value}
-        </h2>
+        <h2 className="h2-desktop">{staticData.title_header.value}</h2>
         <p className="w-[450px] p-standard-medium-desktop text-black-2">
           {staticData.title_sub.value}
         </p>
@@ -27,12 +25,14 @@ function TheSpace() {
         mainImg={staticData.architect_image_1.reference.image}
         section={staticData.architect_sub.value}
       ></PersonSection>
-      <div className="flex px-6 py-10">
+      <div className="flex px-6 py-12">
         <div className="flex-1">
-          <h2 className="h2-desktop">{staticData.meet_architect_header.value}</h2>
+          <h2 className="h2-desktop">
+            {staticData.meet_architect_header.value}
+          </h2>
           <div className=" bg-[#AF4145] h-2 w-[250px]"></div>
         </div>
-        <div className="flex-1 p-standard-medium-desktop">
+        <div className="flex-1 p-standard-medium-desktop pt-[80px]">
           <FormattedText
             text={staticData.meet_architect_content.value}
           ></FormattedText>
@@ -44,8 +44,8 @@ function TheSpace() {
           className="w-full h-full object-cover"
         ></Image>
       </div>
-      <div className="flex px-6 py-10">
-        <div className="flex-1 p-standard-medium-desktop">
+      <div className="flex px-6 py-12">
+        <div className="flex-1 p-standard-medium-desktop pt-[80px]">
           <FormattedText
             text={staticData.early_life_content.value}
           ></FormattedText>
@@ -56,12 +56,12 @@ function TheSpace() {
         </div>
       </div>
       <QuoteBlock data={staticData.quote_block.reference}></QuoteBlock>
-      <div className="flex px-6 py-10">
+      <div className="flex px-6 py-12">
         <div className="flex-1">
           <h2 className="h2-desktop">{staticData.awards_header?.value}</h2>
           <div className=" bg-[#AF4145] h-2 w-[250px]"></div>
         </div>
-        <div className="flex-1 p-standard-medium-desktop">
+        <div className="flex-1 p-standard-medium-desktop pt-[80px]">
           <FormattedText
             text={staticData.awards_content?.value}
           ></FormattedText>

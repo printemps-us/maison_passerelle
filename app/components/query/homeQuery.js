@@ -126,7 +126,7 @@ query StaticPageContent {
               button_text: field(key: "button_text") {
                 value
               }
-              header: field(key: "header") {
+              link: field(key: "link") {
                 value
               }
               image: field(key: "image") {

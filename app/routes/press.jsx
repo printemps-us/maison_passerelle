@@ -44,7 +44,7 @@ function Press() {
   //   }, []);
   return (
     <div>
-      <div className="py-24">
+      <div className="py-24 border-y-1 border-white-4 bg-white-2">
         <p className="h2-desktop text-center">
           {staticData.press_header?.value}
         </p>

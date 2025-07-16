@@ -27,12 +27,12 @@ function TheChef() {
         mainImg={staticData.chef_image_1.reference.image}
         section={staticData.chef_sub.value}
       ></PersonSection>
-      <div className="flex px-6 py-10">
+      <div className="flex px-6 py-12">
         <div className="flex-1">
           <h2 className="h2-desktop">{staticData.meet_chef_header.value}</h2>
           <div className=" bg-[#AF4145] h-2 w-[250px]"></div>
         </div>
-        <div className="flex-1 p-standard-medium-desktop">
+        <div className="flex-1 p-standard-medium-desktop pt-[80px]">
           <FormattedText
             text={staticData.meet_chef_content.value}
           ></FormattedText>
@@ -44,8 +44,8 @@ function TheChef() {
           className="w-full h-full object-cover"
         ></Image>
       </div>
-      <div className="flex px-6 py-10">
-        <div className="flex-1 p-standard-medium-desktop">
+      <div className="flex px-6 py-12">
+        <div className="flex-1 p-standard-medium-desktop pt-[80px]">
           <FormattedText
             text={staticData.early_life_content.value}
           ></FormattedText>
@@ -56,12 +56,12 @@ function TheChef() {
         </div>
       </div>
       <QuoteBlock data={staticData.quote_block.reference}></QuoteBlock>
-      <div className="flex px-6 py-10">
+      <div className="flex px-6 py-12">
         <div className="flex-1">
           <h2 className="h2-desktop">{staticData.awards_header?.value}</h2>
           <div className=" bg-[#AF4145] h-2 w-[250px]"></div>
         </div>
-        <div className="flex-1 p-standard-medium-desktop">
+        <div className="flex-1 p-standard-medium-desktop pt-[80px]">
           <FormattedText
             text={staticData.awards_content?.value}
           ></FormattedText>

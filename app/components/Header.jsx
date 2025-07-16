@@ -47,12 +47,14 @@ function HeaderComponent({data}) {
       ></RestaurantModal>
       <div className="w-full bg-[#AF4145] flex justify-between sticky top-0 h-[100px] z-100">
         <div className="p-4">
-          <Image
-            src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasser.svg?v=1737053887"
-            width={250} // ✅ number, not '50px'
-            sizes="(min-width: 35em) 250px, 500px"
-            alt="Maison Passerelle Logo"
-          />
+          <Link to='/'>
+            <Image
+              src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasser.svg?v=1737053887"
+              width={250} // ✅ number, not '50px'
+              sizes="(min-width: 35em) 250px, 500px"
+              alt="Maison Passerelle Logo"
+            />
+          </Link>
 
           <div className="mt-1">
             <p className="moderat-bold text-xs " style={{color: '#e8d09b'}}>
@@ -73,7 +75,7 @@ function HeaderComponent({data}) {
             onMouseLeave={handleMouseLeave}
           >
             <p>ABOUT</p>
-            <div className='mb-[2px]'>
+            <div className="mb-[2px]">
               <Carrot rotated={!isHover}></Carrot>
             </div>
           </div>

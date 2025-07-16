@@ -50,9 +50,12 @@ function AnimatedButton({
     }
   }, [isHover]);
   const handleClick = (e) => {
-    if (clickURL) {
-      e.preventDefault();
+    if (clickURL.startsWith('/')) {
+      // Internal navigation
       navigate(clickURL);
+    } else {
+      // External navigation
+      window.open(clickURL, '_blank');
     }
     if (onClick) {
       e.preventDefault();
