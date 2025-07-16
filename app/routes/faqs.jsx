@@ -53,7 +53,7 @@ function Faqs() {
         ))}
       </div>
       <QuoteBlock data={staticData.quote.reference}></QuoteBlock>
-      <div className="flex gap-4 px-6 pt-20">
+      <div className="flex gap-4 px-6 py-20">
         {staticData.images.references.nodes.map((item, index) => (
           <div key={index} className="overflow-hidden rounded-xl h-[450px]">
             <Image data={item.image} className="w-full h-full object-cover">

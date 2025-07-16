@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {Image} from '@shopify/hydrogen';
 import RestaurantModal from './RestaurantModal';
 import {Link} from '@remix-run/react';
@@ -6,13 +6,37 @@ import {data, useLoaderData, defer} from '@remix-run/react';
 import AnimatedButton from './AnimatedButton';
 import HeaderDropDown from './HeaderDropDown';
 import Carrot from '~/assets/Carrot';
+import {useLocation} from '@remix-run/react';
+import Homepage from '~/routes/_index';
 
 function HeaderComponent({data}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [isHover, setIsHover] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  const [showDetails, setShowDetails] = useState(() => {
+    // On homepage, show only if already scrolled
+    if (typeof window !== 'undefined' && isHomePage) {
+      return window.scrollY > 200;
+    }
+    // On any other page, always show
+    return true;
+  });
+
   const hoverRef = useRef(null);
   const dropdownRef = useRef(null);
   let leaveTimeout = null;
+  useEffect(() => {
+    if (!isHomePage) return;
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setShowDetails(scrollTop > 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHomePage]);
   const handleMouseLeave = (e) => {
     if (e.relatedTarget instanceof Window) {
       setIsHover(false);
@@ -44,7 +68,11 @@ function HeaderComponent({data}) {
         api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
       ></RestaurantModal>
       <div className="w-full bg-[#AF4145] flex justify-between sticky top-0 h-[100px] z-100">
-        <div className="p-4">
+        <div
+          className={`p-4 transition-all duration-500 ease-in-out  ${
+            showDetails ? 'opacity-100 max-h-[60px]' : 'opacity-0 max-h-0'
+          }`}
+        >
           <Link to="/">
             <Image
               src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasser.svg?v=1737053887"
