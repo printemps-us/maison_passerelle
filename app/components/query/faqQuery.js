@@ -1,0 +1,76 @@
+export const FAQ_QUERY = `query StaticPageContent {
+  metaobjects(type: "faq_page", first: 10) {
+    nodes {
+      handle
+      header: field(key: "header") {
+        value
+      }
+      section: field(key: "section") {
+        value
+      }
+      seo: field(key: "seo") {
+        reference {
+          ... on Metaobject {
+            title: field(key: "title") {
+              value
+            }
+            description: field(key: "description") {
+              value
+            }
+            image: field(key: "image") {
+              reference {
+                ... on MediaImage {
+                  image {
+                    url
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      images: field(key:"images") {
+        references(first: 4) {
+          nodes {
+          ... on MediaImage {
+                  image {
+                    url
+                    altText
+                  }
+                }
+          }}}
+      faqs: field(key: "faqs") {
+        references(first: 20) {
+          nodes {
+            ... on Metaobject {
+              section_id: field(key: "section_id") {
+                value
+              }
+              header: field(key: "header") {
+                value
+              }
+              options: field(key: "options") {
+                references(first: 20) {
+                  nodes {
+                    ... on Metaobject {
+                      faq_id: field(key: "faq_id") {
+                        value
+                      }
+                      header: field(key: "header") {
+                        value
+                      }
+                      content: field(key: "content") {
+                        value
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`;

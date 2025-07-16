@@ -4,6 +4,11 @@ import {Suspense, useState} from 'react';
 import {Image, Money} from '@shopify/hydrogen';
 import AnimatedButton from '~/components/AnimatedButton';
 import RestaurantModal from '~/components/RestaurantModal';
+import FooterComponent from '~/components/FooterComponent';
+import {createStaticDataLoader} from '~/components/functions/loadStaticData';
+import {HOME_QUERY} from '~/components/query/homeQuery';
+import StoreInfo from '~/components/StoreInfo';
+import RoomCard from '~/components/RoomCard';
 /**
  * @type {MetaFunction}
  */
@@ -14,93 +19,16 @@ export const meta = () => {
 /**
  * @param {LoaderFunctionArgs} args
  */
-export async function loader(args) {
-  // Start fetching non-critical data without blocking time to first byte
-  const deferredData = loadDeferredData(args);
-
-  // Await the critical data required to render initial state of the page
-  const criticalData = await loadCriticalData(args);
-
-  return defer({...deferredData, ...criticalData});
-}
-
-/**
- * Load data necessary for rendering content above the fold. This is the critical data
- * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
- * @param {LoaderFunctionArgs}
- */
-async function loadCriticalData({context}) {
-  const [{collections}] = await Promise.all([
-    context.storefront.query(FEATURED_COLLECTION_QUERY),
-    // Add other queries here, so that they are loaded in parallel
-  ]);
-
-  return {
-    featuredCollection: collections.nodes[0],
-  };
-}
-
-/**
- * Load data for rendering content below the fold. This data is deferred and will be
- * fetched after the initial page load. If it's unavailable, the page should still 200.
- * Make sure to not throw any errors here, as it will cause the page to 500.
- * @param {LoaderFunctionArgs}
- */
-function loadDeferredData({context}) {
-  const recommendedProducts = context.storefront
-    .query(RECOMMENDED_PRODUCTS_QUERY)
-    .catch((error) => {
-      // Log query errors, but don't throw them so the page can still render
-      console.error(error);
-      return null;
-    });
-
-  return {
-    recommendedProducts,
-  };
-}
+export const loader = createStaticDataLoader(HOME_QUERY);
 
 export default function Homepage() {
-  const [email, setEmail] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
-  const [state, setState] = useState({
-    isWaiting: false,
-    isSubmitted: false,
-    isError: false,
-  });
-  const url = 'https://printempsnewyork.activehosted.com/proc.php?jsonp=true';
-
-  // NOTE • Valid Email checker
-  const validEmail = RegExp(
-    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-  );
-
-  console.log(state);
-
-  function handleSubmit() {
-    exponea.identify(
-      {email_id: email.toLowerCase()},
-      {
-        email: email.toLowerCase(),
-        data_source: 'maison passerelle',
-      },
-    );
-    exponea.track('consent', {
-      category: 'mp_email',
-      valid_until: 'unlimited',
-      action: 'accept',
-      data_source: 'maison passerelle',
-    });
-    setState({
-      isWaiting: false,
-      isSubmitted: true,
-    });
-  }
 
   /** @type {LoaderReturnData} */
-  const data = useLoaderData();
+  const {staticData} = useLoaderData();
+  console.log(staticData);
   return (
-    <div className="background">
+    <div>
       <RestaurantModal
         setOpenModal={setModalOpen}
         openModal={modalOpen}
@@ -108,7 +36,7 @@ export default function Homepage() {
         link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
         api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
       ></RestaurantModal>
-      <div className="main-area">
+      <div className="bg-[#AF4145] flex flex-col items-center gap-2 py-[100px]">
         <Image
           className="logo"
           src={
@@ -150,187 +78,93 @@ export default function Homepage() {
           />
         </div>
       </div>
-      <div className="footer-container">
-        <div className="above-footer">
-          <a
-            href="https://urlgeni.us/instagram/maisonpasserellenyc"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/IG_LOGO.png?v=1736792345"
-              alt="Instagram Logo"
-              width={42}
-            />
-          </a>
-          <p className="moderat-bold sign-up-text" style={{color: '#e8d09b'}}>
-            Maison Passerelle is part of Printemps new york, For more
-            information sign up for our newsletter
+      <div className="w-full flex flex-col items-center justify-center h-[120px] text-center my-12">
+        <h2 className="h2-desktop">{staticData.title_header.value}</h2>
+        <p className="w-[450px] p-standard-medium-desktop text-black-2">
+          {staticData.title_sub.value}
+        </p>
+      </div>
+      <div className="flex gap-4 px-6 mb-10">
+        {staticData.title_images.references.nodes.map((item, index) => (
+          <div key={index} className="overflow-hidden rounded-xl h-[400px]">
+            <Image data={item.image} className="w-full h-full object-cover">
+              {/* your content here */}
+            </Image>
+          </div>
+        ))}
+      </div>
+      <div className="h-[500px] bg-white-2 border-y-1 border-y-white-4 flex">
+        <div
+          className="flex-1 rounded-br-[300px]"
+          style={{
+            backgroundSize: 'cover', // Ensures the image covers the entire container
+            backgroundPosition: 'center', // Centers the image within the container
+            backgroundRepeat: 'no-repeat', // Prevents the image from repeating
+            backgroundImage: `url(${staticData.find_us_image.reference.image.url})`,
+          }}
+        ></div>
+        <div className="flex-1 flex-col flex justify-center items-center gap-6 text-center">
+          <h2 className="h2-desktop w-[220px]">
+            {staticData.find_us_title.value}
+          </h2>
+          <p className="w-[450px] p-standard-medium-desktop text-black-2">
+            {staticData.find_us_sub.value}
           </p>
-        </div>
-        <div className="footer-area">
-          <p
-            className="moderat-bold"
-            style={{fontSize: '14px', color: 'black', marginRight: '8px'}}
-          >
-            {state.isSubmitted ? 'Merci!' : 'Sign up for our newsletter'}
-          </p>
-          {state.isSubmitted ? (
-            <p
-              className="moderat-bold"
-              style={{fontSize: '14px', color: 'black', marginRight: '8px'}}
-            >
-              Check your email for updates
-            </p>
-          ) : (
-            <input
-              value={email}
-              placeholder="Enter email address"
-              onChange={(e) => setEmail(e.target.value)}
-              className="moderat-bold footer-input bg-white"
-              style={{fontSize: '12px'}}
-            ></input>
-          )}
-          {state.isSubmitted ? (
-            <p></p>
-          ) : (
-            <button
-              className="footer-button"
-              onClick={handleSubmit}
-              disabled={!validEmail.test(email)}
-              style={{cursor: !validEmail.test(email) ? 'auto' : 'pointer'}}
-            >
-              <p
-                className="moderat-bold"
-                style={{fontSize: '12px', color: 'white'}}
-              >
-                Submit
-              </p>
-            </button>
-          )}
+          <AnimatedButton
+            h={'42px'}
+            w={'339px'}
+            text={staticData.find_us_button.reference.button_text.value}
+            bgColor={staticData.find_us_button.reference.color.value}
+            hoverColor={staticData.find_us_button.reference.hover_color.value}
+            clickURL={staticData.find_us_button.reference?.link.value}
+          />
         </div>
       </div>
-    </div>
-  );
-}
-
-/**
- * @param {{
- *   collection: FeaturedCollectionFragment;
- * }}
- */
-function FeaturedCollection({collection}) {
-  if (!collection) return null;
-  const image = collection?.image;
-  return (
-    <Link
-      className="featured-collection"
-      to={`/collections/${collection.handle}`}
-    >
-      {image && (
-        <div className="featured-collection-image">
-          <Image data={image} sizes="100vw" />
-        </div>
-      )}
-      <h1>{collection.title}</h1>
-    </Link>
-  );
-}
-
-/**
- * @param {{
- *   products: Promise<RecommendedProductsQuery | null>;
- * }}
- */
-function RecommendedProducts({products}) {
-  return (
-    <div className="recommended-products">
-      <h2>Recommended Products</h2>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Await resolve={products}>
-          {(response) => (
-            <div className="recommended-products-grid">
-              {response
-                ? response.products.nodes.map((product) => (
-                    <Link
-                      key={product.id}
-                      className="recommended-product"
-                      to={`/products/${product.handle}`}
-                    >
-                      <Image
-                        data={product.images.nodes[0]}
-                        aspectRatio="1/1"
-                        sizes="(min-width: 45em) 20vw, 50vw"
-                      />
-                      <h4>{product.title}</h4>
-                      <small>
-                        <Money data={product.priceRange.minVariantPrice} />
-                      </small>
-                    </Link>
-                  ))
-                : null}
+      <StoreInfo data={staticData.icons} bgColor={'#AF4145'}></StoreInfo>
+      <div className='py-10 border-y-1 border-white-4 my-10 mx-20'>
+        <p className="h2-desktop text-center">
+          {staticData.as_seen_header?.value}
+        </p>
+        <div className="pt-12 flex gap-6 items-center overflow-x-auto py-4 justify-center">
+          {staticData.as_seen_images?.references.nodes.map((item, index) => (
+            <div key={index} className="h-10 flex-shrink-0">
+              <Image
+                data={item.image}
+                className="h-full w-auto object-contain"
+              />
             </div>
-          )}
-        </Await>
-      </Suspense>
-      <br />
+          ))}
+        </div>
+      </div>
+      <div className="overflow-hidden w-full h-[300px]">
+        <Image
+          data={staticData.filler_image?.reference.image}
+          className="w-full h-full object-cover"
+        ></Image>
+      </div>
+      <div className="w-full flex flex-col items-center justify-center h-[200px] text-center my-6">
+        <h2 className="h2-desktop">{staticData.about_header.value}</h2>
+        <p className="w-[450px] p-standard-medium-desktop text-black-2">
+          {staticData.about_sub.value}
+        </p>
+      </div>
+      <div className="flex gap-2 w-full overflow-y-hidden hide-scrollbar h-[550px] no-overscroll px-8">
+        {staticData.about_options.references.nodes.map((item, index) => (
+          <div key={item.id} id={item.header.value} className="flex-1">
+            <RoomCard
+              header={item.header.value}
+              sub={item.sub?.value}
+              button_text={item.button_text.value}
+              image={item.image.reference.image}
+              link={item.link?.value}
+            />
+          </div>
+        ))}
+      </div>
+      <FooterComponent></FooterComponent>
     </div>
   );
 }
-
-const FEATURED_COLLECTION_QUERY = `#graphql
-  fragment FeaturedCollection on Collection {
-    id
-    title
-    image {
-      id
-      url
-      altText
-      width
-      height
-    }
-    handle
-  }
-  query FeaturedCollection($country: CountryCode, $language: LanguageCode)
-    @inContext(country: $country, language: $language) {
-    collections(first: 1, sortKey: UPDATED_AT, reverse: true) {
-      nodes {
-        ...FeaturedCollection
-      }
-    }
-  }
-`;
-
-const RECOMMENDED_PRODUCTS_QUERY = `#graphql
-  fragment RecommendedProduct on Product {
-    id
-    title
-    handle
-    priceRange {
-      minVariantPrice {
-        amount
-        currencyCode
-      }
-    }
-    images(first: 1) {
-      nodes {
-        id
-        url
-        altText
-        width
-        height
-      }
-    }
-  }
-  query RecommendedProducts ($country: CountryCode, $language: LanguageCode)
-    @inContext(country: $country, language: $language) {
-    products(first: 4, sortKey: UPDATED_AT, reverse: true) {
-      nodes {
-        ...RecommendedProduct
-      }
-    }
-  }
-`;
 
 /** @typedef {import('@shopify/remix-oxygen').LoaderFunctionArgs} LoaderFunctionArgs */
 /** @template T @typedef {import('@remix-run/react').MetaFunction<T>} MetaFunction */

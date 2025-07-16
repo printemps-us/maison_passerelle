@@ -16,6 +16,7 @@ import appStyles from '~/styles/app.css?url';
 import tailwindCss from './styles/tailwind.css?url';
 import {PageLayout} from '~/components/PageLayout';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
+import { HEADER_DATA_QUERY } from './components/query/headerQuery';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -42,6 +43,11 @@ export function links() {
     {rel: 'stylesheet', href: appStyles},
     {rel: 'stylesheet', href: tailwindCss},
     {
+      rel: 'preload',
+      href: 'https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap',
+      as: 'style',
+    },
+    {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
     },
@@ -59,7 +65,6 @@ export function links() {
 export async function loader(args) {
   // Start fetching non-critical data without blocking time to first byte
   const deferredData = loadDeferredData(args);
-
   // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
 
@@ -89,7 +94,7 @@ async function loadCriticalData({context}) {
   const {storefront} = context;
 
   const [header] = await Promise.all([
-    storefront.query(HEADER_QUERY, {
+    storefront.query(HEADER_DATA_QUERY, {
       cache: storefront.CacheLong(),
       variables: {
         headerMenuHandle: 'main-menu', // Adjust to your header menu handle
@@ -147,6 +152,10 @@ export function Layout({children}) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         {data ? (
