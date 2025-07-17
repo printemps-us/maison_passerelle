@@ -58,6 +58,7 @@ export default async function handleRequest(
     connectSrc: [
       'https://eu2-api.eng.bloomreach.com',
       'https://www.googletagmanager.com',
+      'https://formspree.io/',
       'https://www.google-analytics.com',
     ],
   });
