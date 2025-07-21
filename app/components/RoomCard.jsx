@@ -57,7 +57,7 @@ function RoomCard({header, sub, image, button_text, link}) {
           <span ref={headerRef} className="p-small-bold-desktop uppercase ">
             {header}
           </span>
-          {/* <p className="text-white p-small-regular-desktop">{sub}</p> */}
+          <p className="text-white p-small-regular-desktop">{sub}</p>
         </div>
         <Link to={`${link}`}>
           <AnimatedButton

@@ -14,7 +14,6 @@ function HeaderDropDown({
 }) {
   const megaRef = useRef(null);
   useEffect(() => {
-    console.log(isHover);
     gsap.killTweensOf(hoverRef.current, {height: true});
     if (isHover) {
       gsap.to(hoverRef.current, {opacity: 1, duration: 0.5});

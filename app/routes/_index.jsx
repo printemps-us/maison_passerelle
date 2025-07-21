@@ -77,21 +77,26 @@ export default function Homepage() {
           />
         </div>
       </div>
-      <div className="w-full flex flex-col items-center justify-center h-[120px] text-center my-12">
-        <h2 className="h2-desktop">{staticData.title_header.value}</h2>
+      <div className="w-full flex flex-col items-center justify-center h-[200px] text-center my-6">
+        <h2 className="h2-desktop">{staticData.about_header.value}</h2>
         <p className="w-[450px] p-standard-medium-desktop text-black-2">
-          {staticData.title_sub.value}
+          {staticData.about_sub.value}
         </p>
       </div>
-      <div className="flex gap-4 px-6 mb-10">
-        {staticData.title_images.references.nodes.map((item, index) => (
-          <div key={index} className="overflow-hidden rounded-xl h-[450px]">
-            <Image data={item.image} className="w-full h-full object-cover">
-              {/* your content here */}
-            </Image>
+      <div className="flex gap-2 w-full overflow-y-hidden hide-scrollbar h-[550px] no-overscroll px-8">
+        {staticData.about_options.references.nodes.map((item, index) => (
+          <div key={item.id} id={item.header.value} className="flex-1">
+            <RoomCard
+              header={item.header.value}
+              sub={item.sub?.value}
+              button_text={item.button_text.value}
+              image={item.image.reference.image}
+              link={item.link?.value}
+            />
           </div>
         ))}
       </div>
+
       <div className="h-[500px] bg-white-2 border-y-1 border-y-white-4 flex">
         <div
           className="flex-1 rounded-br-[300px]"
@@ -119,12 +124,35 @@ export default function Homepage() {
           />
         </div>
       </div>
+
+      <div className="w-full flex flex-col items-center justify-center h-[120px] text-center my-12">
+        <h2 className="h2-desktop">{staticData.title_header.value}</h2>
+        <p className="w-[450px] p-standard-medium-desktop text-black-2">
+          {staticData.title_sub.value}
+        </p>
+      </div>
+      <div className="flex gap-4 px-6 mb-10">
+        {staticData.title_images.references.nodes.map((item, index) => (
+          <div key={index} className="overflow-hidden rounded-xl h-[450px]">
+            <Image data={item.image} className="w-full h-full object-cover">
+              {/* your content here */}
+            </Image>
+          </div>
+        ))}
+      </div>
       {/* <StoreInfo data={staticData.icons} bgColor={'#AF4145'}></StoreInfo> */}
-      <div className='py-10 border-y-1 border-white-4 my-14 mx-20'>
+
+      <div className="overflow-hidden w-full h-[300px]">
+        <Image
+          data={staticData.filler_image?.reference.image}
+          className="w-full h-full object-cover"
+        ></Image>
+      </div>
+      <div className="py-10 border-y-1 border-white-4 my-14 bg-white-2">
         <p className="h2-desktop text-center">
           {staticData.as_seen_header?.value}
         </p>
-        <div className="pt-12 flex gap-6 items-center overflow-x-auto py-4 justify-center">
+        <div className="pt-12 flex gap-10 items-center overflow-x-auto py-4 justify-center">
           {staticData.as_seen_images?.references.nodes.map((item, index) => (
             <div key={index} className="h-10 flex-shrink-0">
               <Image
@@ -135,31 +163,7 @@ export default function Homepage() {
           ))}
         </div>
       </div>
-      <div className="overflow-hidden w-full h-[300px]">
-        <Image
-          data={staticData.filler_image?.reference.image}
-          className="w-full h-full object-cover"
-        ></Image>
-      </div>
-      <div className="w-full flex flex-col items-center justify-center h-[200px] text-center my-6">
-        <h2 className="h2-desktop">{staticData.about_header.value}</h2>
-        <p className="w-[450px] p-standard-medium-desktop text-black-2">
-          {staticData.about_sub.value}
-        </p>
-      </div>
-      <div className="flex gap-2 w-full overflow-y-hidden hide-scrollbar h-[550px] no-overscroll px-8">
-        {staticData.about_options.references.nodes.map((item, index) => (
-          <div key={item.id} id={item.header.value} className="flex-1">
-            <RoomCard
-              header={item.header.value}
-              sub={item.sub?.value}
-              button_text={item.button_text.value}
-              image={item.image.reference.image}
-              link={item.link?.value}
-            />
-          </div>
-        ))}
-      </div>
+
       <FooterComponent></FooterComponent>
     </div>
   );

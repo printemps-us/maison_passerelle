@@ -11,6 +11,7 @@ import AnimatedButton from '~/components/AnimatedButton';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {ScrollToPlugin} from 'gsap/ScrollToPlugin';
+import FriendTile from '~/components/FriendTile';
 import RoomCard from '~/components/RoomCard';
 export const loader = createStaticDataLoader(PRESS_QUERY);
 
@@ -80,7 +81,7 @@ function Press() {
             <div key={item.id} id={item.header.value} className="flex-1">
               <RoomCard
                 header={item.header.value}
-                sub={item.sub.value}
+                sub={'date and stuff can go here?'}
                 button_text={item.button_text.value}
                 image={item.image.reference.image}
                 link={item.link?.value}
@@ -89,39 +90,34 @@ function Press() {
           ))}
         </div>
       </div>
-      <QuoteBlock data={staticData.quote_block_1.reference}></QuoteBlock>
-      <div className="flex gap-2 w-full overflow-y-hidden hide-scrollbar py-15 h-[550px] no-overscroll px-8">
-        {staticData.rooms_list_2.references.nodes.map((item, index) => (
-          <div key={item.id} id={item.header.value} className="flex-1">
-            <RoomCard
-              header={item.header.value}
-              sub={item.sub.value}
-              button_text={item.button_text.value}
-              image={item.image.reference.image}
-              link={item.link?.value}
-            />
-          </div>
-        ))}
-      </div>
-      <QuoteBlock data={staticData.quote_block_2.reference}></QuoteBlock>
-      <div className="flex gap-2 w-full overflow-y-hidden hide-scrollbar py-15 h-[550px] no-overscroll px-8">
-        {staticData.rooms_list_3.references.nodes.map((item, index) => (
-          <div key={item.id} id={item.header.value} className="flex-1">
-            <RoomCard
-              header={item.header.value}
-              sub={item.sub.value}
-              button_text={item.button_text.value}
-              image={item.image.reference.image}
-              link={item.link?.value}
-            />
-          </div>
-        ))}
-      </div>
       <div className="overflow-hidden w-full h-[300px]">
         <Image
           data={staticData.filler_image?.reference.image}
           className="w-full h-full object-cover"
         ></Image>
+      </div>
+      <div className="bg-white-2 border-t-white-4 border-t-1 py-15 h-[385px]">
+        <div
+          // ref={unwindContainer}
+          className="pb-16 flex items-center w-full justify-center flex-col"
+        >
+          <h2 className="h2-desktop w-[800px] text-center">
+            {staticData.guest_header.value}
+          </h2>
+          
+        </div>
+        <div className="flex w-full gap-6 px-6 h-[106px]">
+          {staticData.guest_options.references.nodes.map((item, index) => (
+            <FriendTile
+              key={index}
+              gradient={index % 2 ? false : true}
+              header={item.header.value}
+              sub={item.sub.value}
+              content_sub={item.content_sub.value}
+              content_header={item.content_header.value}
+            />
+          ))}
+        </div>
       </div>
       <FooterComponent></FooterComponent>
     </div>

@@ -20,7 +20,7 @@ function Faqs() {
   return (
     <div>
       <div className=" w-full pt-[80px] pb-[30px] flex-col flex items-center gap-10">
-        <p className="h5-desktop">{staticData.section?.value}</p>
+        {/* <p className="h5-desktop">{staticData.section?.value}</p> */}
         <h4 className="h2-desktop">{staticData.header?.value}</h4>
         {/* <div className="mt-[-4px]">
           <Underline4Up size={'sm'} reflection={true} />
@@ -52,7 +52,7 @@ function Faqs() {
           </div>
         ))}
       </div>
-      <QuoteBlock data={staticData.quote.reference}></QuoteBlock>
+      {/* <QuoteBlock data={staticData.quote.reference}></QuoteBlock> */}
       <div className="flex gap-4 px-6 py-20">
         {staticData.images.references.nodes.map((item, index) => (
           <div key={index} className="overflow-hidden rounded-xl h-[450px]">

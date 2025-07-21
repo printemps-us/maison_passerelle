@@ -13,6 +13,12 @@ function TheChef() {
   const {staticData} = useLoaderData();
   return (
     <div>
+      <div className="overflow-hidden w-full h-[360px]">
+        <Image
+          data={staticData.filler_image_1.reference.image}
+          className="w-full h-full object-cover"
+        ></Image>
+      </div>
       <div className="w-full flex flex-col items-center justify-center h-[260px] text-center">
         <h2 className="h2-desktop w-[220px]">
           {staticData.title_header.value}

@@ -61,6 +61,19 @@ query StaticPageContent {
           }
         }
       }
+      guest_header: field(key: "guest_header") { value }
+      guest_options: field(key: "guest_options") {
+        references(first: 10) {
+          nodes {
+          ... on Metaobject {
+            	content_header: field(key: "content_header") { value }
+              header: field(key: "header") { value }
+              sub: field(key: "sub") { value }
+              content_sub: field(key: "content_sub") { value }
+          }
+        }
+        }
+      }
       quote_block_2: field(key: "quote_block_2") {
         reference {
           ... on Metaobject {

@@ -1,4 +1,5 @@
 import React, {useRef, useEffect} from 'react';
+import InfoSlide from '~/components/InfoSlide';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import {Image} from '@shopify/hydrogen';
@@ -109,9 +110,9 @@ function PersonSection({section, name, filler1, filler2, mainImg, content}) {
             // sizes="(min-width: 45em) 50vw, 100vw"
           ></Image>
         </div>
-        {/* <div>
+        <div>
           <InfoSlide content={content}></InfoSlide>
-        </div> */}
+        </div>
       </div>
     </div>
   );

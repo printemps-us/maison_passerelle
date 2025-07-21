@@ -269,6 +269,9 @@ query StaticPageContent {
       publication_content: field(key: "publication_content") {
         value
       }
+      other_dining_header: field(key: "other_dining_header") {
+        value
+      }
       publication_sources: field(key: "publication_sources") {
         references(first: 5) {
           nodes {
@@ -291,6 +294,51 @@ query StaticPageContent {
           }
         }
       }
+      other_dining: field(key: "other_dining") {
+              references(first: 3) {
+                nodes {
+                  ... on Metaobject {
+                    button: field(key: "button") {
+                      reference {
+                        ... on Metaobject {
+                          key: field(key: "key") {
+                            value
+                          }
+                          button_text: field(key: "button_text") {
+                            value
+                          }
+                          link: field(key: "link") {
+                            value
+                          }
+                          color: field(key: "color") {
+                            value
+                          }
+                          hover_color: field(key: "hover_color") {
+                            value
+                          }
+                        }
+                      }
+                    }
+                    header: field(key: "header") {
+                      value
+                    }
+                    content: field(key: "content") {
+                      value
+                    }
+                    image: field(key: "image") {
+                      reference {
+                        ... on MediaImage {
+                          image {
+                            url
+                            altText
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
       all_header: field(key: "all_header") {
         value
       }
