@@ -12,7 +12,6 @@ export const loader = createStaticDataLoader(ABOUT_QUERY);
 function About() {
   const {staticData} = useLoaderData();
   const location = useLocation();
-  console.log(location)
   useEffect(() => {
     if (location.hash) {
       const scrollToTarget = () => {
