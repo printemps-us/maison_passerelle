@@ -81,7 +81,7 @@ function Press() {
             <div key={item.id} id={item.header.value} className="flex-1">
               <RoomCard
                 header={item.header.value}
-                sub={'date and stuff can go here?'}
+                sub={item.sub.value}
                 button_text={item.button_text.value}
                 image={item.image.reference.image}
                 link={item.link?.value}

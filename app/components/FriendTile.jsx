@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-
+import MP from '~/assets/mp_logo.png'
 import gsap from 'gsap';
 function FriendTile({
   gradient = false,
@@ -34,7 +34,7 @@ function FriendTile({
       >
         <div>
           <img
-            src={'public/favicon.png'}
+            src={MP}
             alt="P logo"
             className={`${is_mobile ? 'w-10 h-10' : 'w-14 h-14'}`}
           ></img>

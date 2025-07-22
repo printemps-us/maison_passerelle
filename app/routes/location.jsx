@@ -76,7 +76,7 @@ function Location() {
         hours={staticData.location_info_hours.value}
         image={staticData.location_info_image.reference.image}
         buttonText={staticData.location_info_button_text.value}
-        link={'https://maps.app.goo.gl/f5FR4qVevsxiLSNF8'}
+        link={'https://us.printemps.com/wayfinding?location=maison-passerelle'}
       ></ImageSection>
       <div className="bg-white">
         {staticData.inside_sections.references.nodes.map((item, index) => (

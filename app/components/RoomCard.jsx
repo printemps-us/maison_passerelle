@@ -2,6 +2,7 @@ import React, {useRef, useState, useEffect} from 'react';
 import AnimatedButton from './AnimatedButton';
 import gsap from 'gsap';
 import {Link} from '@remix-run/react';
+import {FormattedText} from './functions/formatText';
 function RoomCard({header, sub, image, button_text, link}) {
   const containerRef = useRef();
   const backgroundRef = useRef();
@@ -57,7 +58,9 @@ function RoomCard({header, sub, image, button_text, link}) {
           <span ref={headerRef} className="p-small-bold-desktop uppercase ">
             {header}
           </span>
-          <p className="text-white p-small-regular-desktop">{sub}</p>
+          <p className="text-white p-small-regular-desktop">
+            <FormattedText text={sub}></FormattedText>
+          </p>
         </div>
         <Link to={`${link}`}>
           <AnimatedButton

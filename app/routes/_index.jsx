@@ -78,7 +78,6 @@ export default function Homepage() {
         </div>
       </div>
       <div className="w-full flex flex-col items-center justify-center h-[200px] text-center my-6">
-        <h2 className="h2-desktop">{staticData.about_header.value}</h2>
         <p className="w-[450px] p-standard-medium-desktop text-black-2">
           {staticData.about_sub.value}
         </p>

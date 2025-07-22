@@ -1,15 +1,38 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createStaticDataLoader} from '~/components/functions/loadStaticData';
 import {ABOUT_QUERY} from '~/components/query/aboutQuery';
-import {data, useLoaderData, defer} from '@remix-run/react';
+import {data, useLoaderData, defer, useLocation} from '@remix-run/react';
 import {Image} from '@shopify/hydrogen';
 import PersonSection from '~/components/PersonSection';
 import QuoteBlock from '~/components/QuoteBlock';
 import FooterComponent from '~/components/FooterComponent';
+
 export const loader = createStaticDataLoader(ABOUT_QUERY);
 
 function About() {
   const {staticData} = useLoaderData();
+  const location = useLocation();
+  console.log(location)
+  useEffect(() => {
+    if (location.hash) {
+      const scrollToTarget = () => {
+        const target = document.querySelector(location.hash);
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 200,
+            behavior: 'smooth',
+          });
+        }
+      };
+
+      // Ensure the element is available in the DOM
+      const timeout = setTimeout(() => {
+        requestAnimationFrame(scrollToTarget);
+      }, 0); // Minimal delay for hydration timing
+
+      return () => clearTimeout(timeout); // Cleanup
+    }
+  }, [location]);
   return (
     <div>
       <div className="overflow-hidden w-full h-[360px]">
@@ -38,7 +61,7 @@ function About() {
           ></Image>
         </div>
       </div>
-      <div>
+      <div id='the-chef'>
         <PersonSection
           name={staticData.chef_section.reference.header.value}
           section={staticData.chef_section.reference.section.value}
@@ -76,7 +99,7 @@ function About() {
           </p>
         </div>
       </div>
-      <div>
+      <div id='the-architect'>
         <PersonSection
           name={staticData.architect_section.reference.header.value}
           section={staticData.architect_section.reference.section.value}
@@ -94,12 +117,7 @@ function About() {
         />
       </div>
       <QuoteBlock data={staticData.chef_quote.reference}></QuoteBlock>
-      <div className="overflow-hidden w-full h-[360px]">
-        <Image
-          data={staticData.filler_image.reference.image}
-          className="w-full h-full object-cover"
-        ></Image>
-      </div>
+      <div className='h-12'></div>
       <FooterComponent></FooterComponent>
     </div>
   );
