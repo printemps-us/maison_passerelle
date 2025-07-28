@@ -84,7 +84,7 @@ function HeaderComponent({data}) {
 
           <div className="mt-1 ml-1">
             <p className="moderat-bold text-xs " style={{color: '#e8d09b'}}>
-              One Wall street, NY
+              ONE WALL STREET, NEW YORK, NEW YORK
             </p>
           </div>
         </div>

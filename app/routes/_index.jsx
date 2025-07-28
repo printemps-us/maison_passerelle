@@ -46,7 +46,7 @@ export default function Homepage() {
           alt="Maison Passerelle Logo"
         ></Image>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
-          One Wall street, NY
+          ONE WALL STREET, NEW YORK, NEW YORK
         </p>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
           SUNDAY - MONDAY, 5:00PM - 9:00PM
