@@ -49,7 +49,10 @@ export default function Homepage() {
           One Wall street, NY
         </p>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
-          MONDAY - SATURDAY, 5:00PM - 10:30PM
+          SUNDAY - MONDAY, 5:00PM - 9:00PM
+        </p>
+        <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
+          TUESDAY - SATURDAY, 5:00PM - 10:00PM
         </p>
 
         <div className="mt-16  h-auto w-full flex max-[835px]:flex-col gap-3 justify-center items-center">

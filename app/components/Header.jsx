@@ -69,8 +69,8 @@ function HeaderComponent({data}) {
       ></RestaurantModal>
       <div className="w-full bg-[#AF4145] flex justify-between sticky top-0 h-[100px] z-100">
         <div
-          className={`p-4 transition-all duration-500 ease-in-out  ${
-            showDetails ? 'opacity-100 max-h-[60px]' : 'opacity-0 max-h-0'
+          className={`p-4 transition-all duration-500 ease-in-out flex flex-col justify-center  ${
+            showDetails ? 'opacity-100 h-full' : 'opacity-0 max-h-0'
           }`}
         >
           <Link to="/">
@@ -82,9 +82,9 @@ function HeaderComponent({data}) {
             />
           </Link>
 
-          <div className="mt-1">
+          <div className="mt-1 ml-1">
             <p className="moderat-bold text-xs " style={{color: '#e8d09b'}}>
-              One Wall street, NY &#8226; MONDAY - SATURDAY, 5:00PM - 10:30PM
+              One Wall street, NY
             </p>
           </div>
         </div>

@@ -102,8 +102,7 @@ function Location() {
           </div>
         ))}
       </div>
-      {/* Two Column Layout */}
-      <div className="bg-white mt-[-20px] border-t-1 border-t-white-4 rounded-t-xl pt-[120px] relative z-10">
+      <div className="bg-white mt-[-20px] border-t-1 border-t-white-4 rounded-t-xl pt-[70px] relative z-10">
         <h2 className="h2-desktop text-center">{staticData.other_dining_header?.value}</h2>
         <div className="flex flex-1 px-6 pt-[60px] max-w-full gap-12 box-border relative h-[555px]">
           {staticData.other_dining.references.nodes.map((item, index) => (
