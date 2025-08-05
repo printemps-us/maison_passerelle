@@ -13,11 +13,19 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {ScrollToPlugin} from 'gsap/ScrollToPlugin';
 import FriendTile from '~/components/FriendTile';
 import RoomCard from '~/components/RoomCard';
+import useIsMobile from '~/components/functions/isMobile';
+import CommunityMobile from '~/components/mobile/CommunityMobile';
 export const loader = createStaticDataLoader(PRESS_QUERY);
 
 function Press() {
   const {staticData} = useLoaderData();
   const frenchApartmentRef = useRef();
+  const isMobileActive = useIsMobile();
+
+  // If mobile, render the mobile version
+  if (isMobileActive) {
+    return <CommunityMobile staticData={staticData} />;
+  }
 
   //   useEffect(() => {
   //     gsap.registerPlugin(ScrollTrigger);
