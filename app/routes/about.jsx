@@ -6,12 +6,23 @@ import {Image} from '@shopify/hydrogen';
 import PersonSection from '~/components/PersonSection';
 import QuoteBlock from '~/components/QuoteBlock';
 import FooterComponent from '~/components/FooterComponent';
+import useIsMobile from '~/components/functions/isMobile';
+import AboutMobile from '~/components/mobile/AboutMobile';
 
 export const loader = createStaticDataLoader(ABOUT_QUERY);
 
 function About() {
   const {staticData} = useLoaderData();
   const location = useLocation();
+  const isMobileActive = useIsMobile();
+
+  console.log('ismobileactive', isMobileActive)
+  // If mobile, render the mobile version
+  if (isMobileActive) {
+    return <AboutMobile staticData={staticData} />;
+  }
+
+  // Desktop version
   useEffect(() => {
     if (location.hash) {
       const scrollToTarget = () => {
