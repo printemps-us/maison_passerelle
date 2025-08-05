@@ -7,9 +7,18 @@ import DropDownInfo from '~/components/DropDownInfo';
 import {Image} from '@shopify/hydrogen';
 import FooterComponent from '~/components/FooterComponent';
 import QuoteBlock from '~/components/QuoteBlock';
+import useIsMobile from '~/components/functions/isMobile';
+import FaqsMobile from '~/components/mobile/FaqsMobile';
 export const loader = createStaticDataLoader(FAQ_QUERY);
 function Faqs() {
   const {staticData} = useLoaderData();
+  const isMobileActive = useIsMobile();
+
+  // If mobile, render the mobile version
+  if (isMobileActive) {
+    return <FaqsMobile staticData={staticData} />;
+  }
+
   const faqData = staticData.faqs.references.nodes.reduce((acc, item) => {
     const key = item.section_id?.value;
     const value = item.options.references.nodes;

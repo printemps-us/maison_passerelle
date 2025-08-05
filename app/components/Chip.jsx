@@ -21,7 +21,7 @@ function Chip({
     <button
       className={`rounded-3xl px-3 w-auto h-9  text-center border-white-4 flex items-center justify-center ${
         disabled ? 'bg-white-4' : ''
-      } ${selected === id ? 'bg-[#00D072]' : 'hover:bg-white-4'} ${
+      } ${selected === id ? 'bg-[#af4145]' : 'hover:bg-white-4'} ${
         border ? 'border-1' : 'border-0'
       } ${isMobile ? 'p-small-regular-mobile' : 'p-standard-medium-desktop'}`}
       onClick={handleClick}
@@ -32,6 +32,7 @@ function Chip({
         className={`${
           isMobile ? 'text-xs font-bold uppercase' : 'label-desktop'
         } ${disabled ? 'line-through' : ''} leading-none`}
+        style={selected === id ? { color: '#e8d09b' } : {}}
       >
         {text}
       </span>

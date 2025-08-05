@@ -14,11 +14,11 @@ function PlusComponent({open}) {
     <div>
       <div className="w-6 h-6 flex items-center justify-center relative">
         {/* Horizontal line (always visible) */}
-        <div className="absolute w-[14px] h-[1px] bg-[#00D072]" />
+        <div className="absolute w-[14px] h-[1px] bg-[#af4145]" />
         {/* Vertical line (rotates) */}
         <div
           ref={plusRef}
-          className="vertical-line absolute w-[14px] h-[1px] bg-[#00D072] rotate-90"
+          className="vertical-line absolute w-[14px] h-[1px] bg-[#af4145] rotate-90"
           style={{
             transformOrigin: 'center',
           }}
