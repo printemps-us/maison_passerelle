@@ -1,22 +1,38 @@
-import {useNonce, getShopAnalytics, Analytics, Script} from '@shopify/hydrogen';
-import {defer} from '@shopify/remix-oxygen';
+import {defer, json, redirect} from '@shopify/remix-oxygen';
 import {
   Links,
+  LiveReload,
   Meta,
   Outlet,
   Scripts,
-  useRouteError,
-  useRouteLoaderData,
   ScrollRestoration,
+  useLoaderData,
+  useRouteLoaderData,
+  useLocation,
+  useRouteError,
   isRouteErrorResponse,
 } from '@remix-run/react';
+import {Suspense, useEffect} from 'react';
+import {ShopifyProvider, CartProvider} from '@shopify/hydrogen-react';
+import {getShopAnalytics, Analytics, Script, useNonce} from '@shopify/hydrogen';
+import {FOOTER_QUERY} from '~/lib/fragments';
+import {HEADER_DATA_QUERY} from '~/components/query/headerQuery';
+import {checkIfMobile} from '~/components/functions/isMobile';
+import {PageLayout} from '~/components/PageLayout';
 import favicon from '~/assets/maison.png';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import tailwindCss from './styles/tailwind.css?url';
-import {PageLayout} from '~/components/PageLayout';
-import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
-import { HEADER_DATA_QUERY } from './components/query/headerQuery';
+
+/**
+ * @type {MetaFunction}
+ */
+export const meta = () => {
+  return [
+    {title: 'Maison Passerelle'},
+    {name: 'viewport', content: 'width=device-width,initial-scale=1'},
+  ];
+};
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -69,10 +85,13 @@ export async function loader(args) {
   const criticalData = await loadCriticalData(args);
 
   const {storefront, env} = args.context;
+  const userAgent = args.request.headers.get('user-agent');
+  const isMobile = checkIfMobile(userAgent);
 
   return defer({
     ...deferredData,
     ...criticalData,
+    isMobile,
     publicStoreDomain: env.PUBLIC_STORE_DOMAIN,
     shop: getShopAnalytics({
       storefront,

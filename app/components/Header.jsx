@@ -8,8 +8,10 @@ import HeaderDropDown from './HeaderDropDown';
 import Carrot from '~/assets/Carrot';
 import {useLocation} from '@remix-run/react';
 import Homepage from '~/routes/_index';
+import useIsMobile from './functions/isMobile';
+import HeaderMobile from './mobile/HeaderMobile';
 
-function HeaderComponent({data}) {
+function HeaderComponent({data, isMobile}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const location = useLocation();
@@ -26,6 +28,12 @@ function HeaderComponent({data}) {
   const hoverRef = useRef(null);
   const dropdownRef = useRef(null);
   let leaveTimeout = null;
+  
+  // Use the server-side mobile detection
+  const isMobileActive = useIsMobile(isMobile);
+
+  console.log('isMobileActive', isMobileActive);
+  
   useEffect(() => {
     if (!isHomePage) return;
 
@@ -37,6 +45,7 @@ function HeaderComponent({data}) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHomePage]);
+  
   const handleMouseLeave = (e) => {
     if (e.relatedTarget instanceof Window) {
       setIsHover(false);
@@ -54,10 +63,29 @@ function HeaderComponent({data}) {
       setIsHover(false);
     }, 200);
   };
+  
   const handleMouseEnter = () => {
     clearTimeout(leaveTimeout);
     setIsHover(true);
   };
+
+  // If mobile, render the mobile header
+  if (isMobileActive) {
+    return (
+      <>
+        <RestaurantModal
+          setOpenModal={setModalOpen}
+          openModal={modalOpen}
+          venue_id={'87094'}
+          link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
+          api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
+        />
+        <HeaderMobile data={data} />
+      </>
+    );
+  }
+
+  // Desktop header
   return (
     <>
       <RestaurantModal
@@ -99,38 +127,62 @@ function HeaderComponent({data}) {
             className="text-[#e8d09b] moderat-bold cursor-pointer h-full flex items-center gap-1"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            ref={hoverRef}
           >
-            <p>ABOUT</p>
-            <div className="mb-[2px]">
-              <Carrot rotated={!isHover}></Carrot>
-            </div>
+            <span>MENU</span>
+            <Carrot rotated={isHover} />
           </div>
           <Link
-            to="/menu"
+            to="/about"
             className="text-[#e8d09b] moderat-bold cursor-pointer"
           >
-            MENU
+            ABOUT
+          </Link>
+          <Link
+            to="/the-chef"
+            className="text-[#e8d09b] moderat-bold cursor-pointer"
+          >
+            THE CHEF
+          </Link>
+          <Link
+            to="/the-space"
+            className="text-[#e8d09b] moderat-bold cursor-pointer"
+          >
+            THE SPACE
+          </Link>
+          <Link
+            to="/faqs"
+            className="text-[#e8d09b] moderat-bold cursor-pointer"
+          >
+            FAQS
+          </Link>
+          <Link
+            to="/community-and-press"
+            className="text-[#e8d09b] moderat-bold cursor-pointer"
+          >
+            COMMUNITY & PRESS
           </Link>
           <AnimatedButton
-            text={'Reservations'}
-            bgColor={'#e8d09b'}
-            hoverColor={'#e8d09b'}
-            textColor={'black'}
-            border="#e8d09b"
-            hoverBorder={'#e8d09b'}
+            text="RESERVE A TABLE"
+            clickURL="https://resy.com/cities/new-york-ny/venues/maison-passerelle"
             onClick={() => setModalOpen(true)}
-            h="36px"
-            w="200px"
+            bgColor="#e8d09b"
+            textColor="#AF4145"
+            hoverColor="#d4b87a"
+            w="180px"
+            h="40px"
+            borderRadius="8px"
           />
         </div>
         <HeaderDropDown
           isHover={isHover}
+          handleMouseLeave={handleMouseLeave}
           dropdownRef={dropdownRef}
           hoverRef={hoverRef}
+          hoverValue="menu"
           headerData={data}
-          handleMouseLeave={handleMouseLeave}
           handleMouseEnter={handleMouseEnter}
-        ></HeaderDropDown>
+        />
       </div>
     </>
   );

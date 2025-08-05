@@ -9,6 +9,9 @@ import {createStaticDataLoader} from '~/components/functions/loadStaticData';
 import {HOME_QUERY} from '~/components/query/homeQuery';
 import StoreInfo from '~/components/StoreInfo';
 import RoomCard from '~/components/RoomCard';
+import useIsMobile from '~/components/functions/isMobile';
+import HomePageMobile from '~/components/mobile/HomePageMobile';
+
 /**
  * @type {MetaFunction}
  */
@@ -26,6 +29,14 @@ export default function Homepage() {
 
   /** @type {LoaderReturnData} */
   const {staticData} = useLoaderData();
+  const isMobileActive = useIsMobile();
+
+  // If mobile, render the mobile version
+  if (isMobileActive) {
+    return <HomePageMobile staticData={staticData} />;
+  }
+
+  // Desktop version
   return (
     <div>
       <RestaurantModal

@@ -216,7 +216,7 @@ function menu() {
     <SmoothScroll>
       <div
         ref={roomsHeaderRef}
-        className="flex gap-8 w-full px-8 sticky hide-scrollbar top-[0px]  py-[18px] z-20 overflow-x-scroll"
+        className="flex gap-8 w-full px-8 sticky hide-scrollbar top-[100px]  py-[18px] z-20 overflow-x-scroll"
         style={{
           paddingLeft: `max((100vw - ${nodesWithLinks * 132}px) / 2, 20px)`,
           backgroundColor: '#e8d09b',
