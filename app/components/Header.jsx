@@ -129,38 +129,15 @@ function HeaderComponent({data, isMobile}) {
             onMouseLeave={handleMouseLeave}
             ref={hoverRef}
           >
-            <span>MENU</span>
+            <span>ABOUT</span>
             <Carrot rotated={isHover} />
           </div>
+
           <Link
-            to="/about"
+            to="/menu"
             className="text-[#e8d09b] moderat-bold cursor-pointer"
           >
-            ABOUT
-          </Link>
-          <Link
-            to="/the-chef"
-            className="text-[#e8d09b] moderat-bold cursor-pointer"
-          >
-            THE CHEF
-          </Link>
-          <Link
-            to="/the-space"
-            className="text-[#e8d09b] moderat-bold cursor-pointer"
-          >
-            THE SPACE
-          </Link>
-          <Link
-            to="/faqs"
-            className="text-[#e8d09b] moderat-bold cursor-pointer"
-          >
-            FAQS
-          </Link>
-          <Link
-            to="/community-and-press"
-            className="text-[#e8d09b] moderat-bold cursor-pointer"
-          >
-            COMMUNITY & PRESS
+            MENU
           </Link>
           <AnimatedButton
             text="RESERVE A TABLE"
