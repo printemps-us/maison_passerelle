@@ -13,10 +13,20 @@ import {LOCATION_PAGE_QUERY} from '~/components/query/locationPageQuery';
 import ContactForm from '~/components/ContactForm';
 import {FormattedText} from '~/components/functions/formatText';
 import CurvedTile from '~/components/CurvedTile';
+import useIsMobile from '~/components/functions/isMobile';
+import LocationMobile from '~/components/mobile/LocationMobile';
 export const loader = createStaticDataLoader(LOCATION_PAGE_QUERY);
 
 function Location() {
   const {staticData} = useLoaderData();
+  const isMobileActive = useIsMobile();
+
+  // If mobile, render the mobile version
+  if (isMobileActive) {
+    return <LocationMobile staticData={staticData} />;
+  }
+
+  // Desktop version
   return (
     <SmoothScroll>
       <div

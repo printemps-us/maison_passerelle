@@ -3,7 +3,7 @@ import {Image} from '@shopify/hydrogen';
 import AnimatedButton from '../AnimatedButton';
 import RestaurantModal from '../RestaurantModal';
 import RoomCard from '../RoomCard';
-import FooterComponent from '../FooterComponent';
+import FooterMobile from './FooterMobile';
 
 function HomePageMobile({staticData}) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -124,31 +124,23 @@ function HomePageMobile({staticData}) {
         </p>
       </div>
 
-      {/* Title Images - Mobile Grid */}
-      <div className="flex flex-col gap-4 px-4 mb-10">
+      {/* Title Images - Mobile Carousel */}
+      <div className="flex gap-4 w-full overflow-x-auto hide-scrollbar px-4 pb-8 mb-10">
         {staticData.title_images.references.nodes.map((item, index) => (
-          <div key={index} className="overflow-hidden rounded-xl h-[300px]">
+          <div key={index} className="flex-shrink-0 w-[280px] overflow-hidden rounded-xl h-[300px]">
             <Image data={item.image} className="w-full h-full object-cover" />
           </div>
         ))}
       </div>
 
-      {/* Filler Image */}
-      <div className="overflow-hidden w-full h-[200px]">
-        <Image
-          data={staticData.filler_image?.reference.image}
-          className="w-full h-full object-cover"
-        />
-      </div>
-
       {/* As Seen Section */}
       <div className="py-8 border-y-1 border-white-4 my-8 bg-white-2">
-        <p className="h2-mobile text-center mb-8">
+        <p className="h2-mobile text-center mb-12">
           {staticData.as_seen_header?.value}
         </p>
-        <div className="flex gap-6 items-center overflow-x-auto py-4 justify-start px-4">
+        <div className="flex flex-col gap-6 items-center py-4 px-4">
           {staticData.as_seen_images?.references.nodes.map((item, index) => (
-            <div key={index} className="h-8 flex-shrink-0">
+            <div key={index} className="h-8 w-full flex justify-center">
               <Image
                 data={item.image}
                 className="h-full w-auto object-contain"
@@ -159,7 +151,7 @@ function HomePageMobile({staticData}) {
       </div>
 
       {/* Footer */}
-      <FooterComponent />
+      <FooterMobile />
     </div>
   );
 }
