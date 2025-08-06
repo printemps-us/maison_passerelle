@@ -18,7 +18,7 @@ function TraditionSectionMobile({header, content, image, imageFirst = false}) {
               <h2 className="h2-mobile">
                 {header}
               </h2>
-              <p className="p-standard-medium-mobile text-black-2">
+              <p className="p-small-regular-mobile text-black-2">
                 {content}
               </p>
             </div>
@@ -29,7 +29,7 @@ function TraditionSectionMobile({header, content, image, imageFirst = false}) {
               <h2 className="h2-mobile">
                 {header}
               </h2>
-              <p className="p-standard-medium-mobile text-black-2">
+              <p className="p-small-regular-mobile text-black-2">
                 {content}
               </p>
             </div>

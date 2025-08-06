@@ -75,6 +75,7 @@ function ImageCardMobile({
             bgColor={button.color.value}
             hoverColor={button.hover_color.value}
             clickURL={button?.link.value}
+            noMaxWidth
           />
         )}
       </div>

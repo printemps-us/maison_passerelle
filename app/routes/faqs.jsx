@@ -11,8 +11,8 @@ import useIsMobile from '~/components/functions/isMobile';
 import FaqsMobile from '~/components/mobile/FaqsMobile';
 export const loader = createStaticDataLoader(FAQ_QUERY);
 function Faqs() {
-  const {staticData} = useLoaderData();
-  const isMobileActive = useIsMobile();
+  const {staticData, isMobile} = useLoaderData();
+  const isMobileActive = useIsMobile(isMobile);
 
   // If mobile, render the mobile version
   if (isMobileActive) {

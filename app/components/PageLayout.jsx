@@ -19,13 +19,13 @@ export function PageLayout({
   children = null,
   footer,
   header,
+  pathname,
   isLoggedIn,
   publicStoreDomain,
 }) {
   // Get the root data which includes isMobile
   const rootData = useRouteLoaderData('root');
   const isMobile = rootData?.isMobile;
-
   return (
     <Aside.Provider>
       {/* <CartAside cart={cart} />
@@ -39,7 +39,11 @@ export function PageLayout({
           publicStoreDomain={publicStoreDomain}
         />
       )} */}
-      <HeaderComponent data={header.metaobjects.nodes[0]} isMobile={isMobile}></HeaderComponent>
+      <HeaderComponent
+        data={header.metaobjects.nodes[0]}
+        isMobile={isMobile}
+        pathname={pathname}
+      ></HeaderComponent>
       <main>{children}</main>
       {/* <Footer
         footer={footer}

@@ -17,9 +17,6 @@ function CurvedTileMobile({
             data={image}
             className="w-full h-full object-cover"
           />
-          <div className="absolute top-4 left-4 bg-white rounded-full w-8 h-8 flex items-center justify-center">
-            <span className="text-sm font-bold">{num}</span>
-          </div>
         </div>
         <div className="p-4 flex-1 flex flex-col">
           <h3 className="h4-mobile mb-2">{header}</h3>

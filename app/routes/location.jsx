@@ -18,8 +18,8 @@ import LocationMobile from '~/components/mobile/LocationMobile';
 export const loader = createStaticDataLoader(LOCATION_PAGE_QUERY);
 
 function Location() {
-  const {staticData} = useLoaderData();
-  const isMobileActive = useIsMobile();
+  const {staticData, isMobile} = useLoaderData();
+  const isMobileActive = useIsMobile(isMobile);
 
   // If mobile, render the mobile version
   if (isMobileActive) {

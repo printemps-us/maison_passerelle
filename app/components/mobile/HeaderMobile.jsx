@@ -7,22 +7,14 @@ import Carrot from '~/assets/Carrot';
 import Plus from '~/assets/Plus.svg';
 import Minus from '~/assets/Minus.svg';
 import CloseIcon from '~/assets/CloseIcon.svg';
+import gsap from 'gsap';
 
-function HeaderMobile({data}) {
+function HeaderMobile({data, pathname}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState(null);
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
-  const [showDetails, setShowDetails] = useState(() => {
-    // On homepage, show only if already scrolled
-    if (typeof window !== 'undefined' && isHomePage) {
-      return window.scrollY > 200;
-    }
-    // On any other page, always show
-    return true;
-  });
-
+  const [showDetails, setShowDetails] = useState(pathname !== '/');
   const menuRef = useRef(null);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
@@ -31,7 +23,12 @@ function HeaderMobile({data}) {
   const minSwipeDistance = 50;
 
   useEffect(() => {
-    if (!isHomePage) return;
+    if (location.pathname !== '/') {
+      setShowDetails(true);
+      return;
+    } else {
+      setShowDetails(false);
+    }
 
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -40,7 +37,7 @@ function HeaderMobile({data}) {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHomePage]);
+  }, [location.pathname]);
 
   // Close menu when route changes
   useEffect(() => {
@@ -50,10 +47,28 @@ function HeaderMobile({data}) {
 
   // Prevent body scroll when menu is open
   useEffect(() => {
+    const menu = menuRef.current;
+    if (!menu) return;
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
+    }
+
+    if (isMenuOpen) {
+      gsap.to(menu, {
+        x: 0,
+        duration: 0.3,
+        ease: 'power2.out',
+        pointerEvents: 'auto',
+      });
+    } else {
+      gsap.to(menu, {
+        x: '100%',
+        duration: 0.3,
+        ease: 'power2.in',
+        pointerEvents: 'none',
+      });
     }
 
     return () => {
@@ -88,10 +103,10 @@ function HeaderMobile({data}) {
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
-    
+
     if (isLeftSwipe && isMenuOpen) {
       setIsMenuOpen(false);
       setActiveAccordion(null);
@@ -135,7 +150,9 @@ function HeaderMobile({data}) {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className={`mobile-menu-button flex flex-col justify-center items-center w-12 h-12 z-50 ${isMenuOpen ? 'open' : ''}`}
+          className={`mobile-menu-button flex flex-col justify-center items-center w-12 h-12 z-50 ${
+            isMenuOpen ? 'open' : ''
+          }`}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu-panel"
@@ -147,17 +164,22 @@ function HeaderMobile({data}) {
 
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={toggleMenu}></div>
+          <div
+            className="fixed inset-0 bg-black/50 z-40"
+            onClick={toggleMenu}
+          ></div>
         )}
 
         {/* Mobile Menu Panel */}
         <div
           id="mobile-menu-panel"
           ref={menuRef}
-          className={`fixed top-0 right-0 h-full w-[85%] max-w-[350px] bg-[#AF4145] z-50 transform transition-transform duration-300 ease-in-out ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          className={`fixed top-0 right-0 h-full w-[85%] max-w-[350px] bg-[#AF4145] z-50`}
           role="dialog"
+          style={{
+            transform: 'translateX(100%)',
+            pointerEvents: 'none',
+          }}
           aria-modal="true"
           aria-label="Mobile navigation menu"
           onTouchStart={onTouchStart}
@@ -167,13 +189,18 @@ function HeaderMobile({data}) {
           {/* Menu Header */}
           <div className="flex justify-between items-center p-6 border-b border-[#e8d09b] border-opacity-20">
             <div className="flex flex-col">
-              <Image
-                src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasser.svg?v=1737053887"
-                width={180}
-                sizes="180px"
-                alt="Maison Passerelle Logo"
-              />
-              <p className="moderat-bold text-[10px] mt-1" style={{color: '#e8d09b'}}>
+              <Link to="/">
+                <Image
+                  src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasser.svg?v=1737053887"
+                  width={180}
+                  sizes="180px"
+                  alt="Maison Passerelle Logo"
+                />
+              </Link>
+              <p
+                className="moderat-bold text-[10px] mt-1"
+                style={{color: '#e8d09b'}}
+              >
                 ONE WALL STREET, NEW YORK, NEW YORK
               </p>
             </div>
@@ -182,7 +209,15 @@ function HeaderMobile({data}) {
               className="w-8 h-8 flex items-center justify-center touch-manipulation"
               aria-label="Close menu"
             >
-              <img src={CloseIcon} alt="Close" className="w-5 h-5" style={{ filter: 'brightness(0) saturate(100%) invert(91%) sepia(13%) saturate(638%) hue-rotate(7deg) brightness(96%) contrast(92%)' }} />
+              <img
+                src={CloseIcon}
+                alt="Close"
+                className="w-5 h-5"
+                style={{
+                  filter:
+                    'brightness(0) saturate(100%) invert(91%) sepia(13%) saturate(638%) hue-rotate(7deg) brightness(96%) contrast(92%)',
+                }}
+              />
             </button>
           </div>
 
@@ -210,10 +245,13 @@ function HeaderMobile({data}) {
                     src={activeAccordion === 'about' ? Minus : Plus}
                     alt={activeAccordion === 'about' ? 'Collapse' : 'Expand'}
                     className="w-4 h-4"
-                    style={{ filter: 'brightness(0) saturate(100%) invert(91%) sepia(13%) saturate(638%) hue-rotate(7deg) brightness(96%) contrast(92%)' }}
+                    style={{
+                      filter:
+                        'brightness(0) saturate(100%) invert(91%) sepia(13%) saturate(638%) hue-rotate(7deg) brightness(96%) contrast(92%)',
+                    }}
                   />
                 </button>
-                
+
                 {activeAccordion === 'about' && (
                   <div className="pb-4 space-y-3 animate-fadeIn">
                     {data?.links?.references.nodes.map((item, index) => (
@@ -233,13 +271,11 @@ function HeaderMobile({data}) {
               {/* Menu Link */}
               <Link
                 to="/menu"
-                className="block text-[#e8d09b] moderat-bold text-lg py-6 border-b border-[#e8d09b] border-opacity-20 touch-manipulation"
+                className="block text-[#e8d09b] moderat-bold text-lg py-6 mb-1 border-opacity-20 touch-manipulation"
                 onClick={handleMenuLinkClick}
               >
                 MENU
               </Link>
-
-              
             </div>
 
             {/* Reservation Button */}

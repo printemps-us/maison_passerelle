@@ -109,7 +109,7 @@ export async function loader(args) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  * @param {LoaderFunctionArgs}
  */
-async function loadCriticalData({context}) {
+async function loadCriticalData({context, request}) {
   const {storefront} = context;
 
   const [header] = await Promise.all([
@@ -119,11 +119,18 @@ async function loadCriticalData({context}) {
         headerMenuHandle: 'main-menu', // Adjust to your header menu handle
       },
     }),
-    // Add other queries here, so that they are loaded in parallel
+    // Add other queries here
   ]);
+
+  const url = new URL(request.url);
+  const pathname = url.pathname;
+  const userAgent = request.headers.get('user-agent');
+  const isMobile = checkIfMobile(userAgent);
 
   return {
     header,
+    pathname,
+    isMobile,
   };
 }
 

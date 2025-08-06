@@ -28,8 +28,8 @@ export default function Homepage() {
   const [modalOpen, setModalOpen] = useState(false);
 
   /** @type {LoaderReturnData} */
-  const {staticData} = useLoaderData();
-  const isMobileActive = useIsMobile();
+  const {staticData, isMobile} = useLoaderData();
+  const isMobileActive = useIsMobile(isMobile);
 
   // If mobile, render the mobile version
   if (isMobileActive) {

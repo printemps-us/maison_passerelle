@@ -7,8 +7,7 @@ import {FormattedText} from '../functions/formatText';
 function RoomCardMobile({header, sub, image, button_text, link}) {
   return (
     <div className="flex-shrink-0 w-[280px] h-[400px]">
-      <Link
-        to={link}
+      <div
         className="block bg-white rounded-xl overflow-hidden border border-white-4 h-full flex flex-col"
         style={{textDecoration: 'none'}} 
       >
@@ -44,7 +43,7 @@ function RoomCardMobile({header, sub, image, button_text, link}) {
             clickURL={link}
           />
         </div>
-      </Link>
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import React from 'react';
 function LocationHeroMobile({image, header, subHeader}) {
   return (
     <div
-      className="w-full flex relative flex-col items-center justify-center h-[250px] text-center px-4"
+      className="w-full flex relative flex-col items-center justify-center py-8 text-center px-4"
       style={{
         backgroundImage: `url(${image?.url})`,
         backgroundSize: 'cover',

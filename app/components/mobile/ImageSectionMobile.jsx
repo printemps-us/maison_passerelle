@@ -29,17 +29,17 @@ function ImageSectionMobile({
          </h2>
          <div className="flex flex-col gap-4 w-full">
            <div className="flex flex-row justify-between text-black-2">
-             <div className="flex-1 p-standard-medium-mobile">
+             <div className="flex-1 p-small-regular-mobile">
                <FormattedText text={sub} />
              </div>
              {hours && (
-               <div className="flex-1 text-right p-standard-medium-mobile">
+               <div className="flex-1 text-right p-small-regular-mobile">
                  <FormattedText text={hours} />
                </div>
              )}
            </div>
            {sub2 && (
-             <div className="w-full p-standard-medium-mobile text-black-2">
+             <div className="w-full p-small-regular-mobile text-black-2">
                {sub2}
              </div>
            )}

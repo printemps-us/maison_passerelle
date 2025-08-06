@@ -18,10 +18,11 @@ import CommunityMobile from '~/components/mobile/CommunityMobile';
 export const loader = createStaticDataLoader(PRESS_QUERY);
 
 function Press() {
-  const {staticData} = useLoaderData();
-  const frenchApartmentRef = useRef();
-  const isMobileActive = useIsMobile();
+  const {staticData, isMobile} = useLoaderData();
+  const isMobileActive = useIsMobile(isMobile);
 
+  const frenchApartmentRef = useRef();
+  
   // If mobile, render the mobile version
   if (isMobileActive) {
     return <CommunityMobile staticData={staticData} />;
@@ -112,7 +113,6 @@ function Press() {
           <h2 className="h2-desktop w-[800px] text-center">
             {staticData.guest_header.value}
           </h2>
-          
         </div>
         <div className="flex w-full gap-6 px-6 h-[106px]">
           {staticData.guest_options.references.nodes.map((item, index) => (

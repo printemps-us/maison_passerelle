@@ -12,11 +12,10 @@ import AboutMobile from '~/components/mobile/AboutMobile';
 export const loader = createStaticDataLoader(ABOUT_QUERY);
 
 function About() {
-  const {staticData} = useLoaderData();
+  const {staticData, isMobile} = useLoaderData();
+  const isMobileActive = useIsMobile(isMobile);
   const location = useLocation();
-  const isMobileActive = useIsMobile();
 
-  console.log('ismobileactive', isMobileActive)
   // If mobile, render the mobile version
   if (isMobileActive) {
     return <AboutMobile staticData={staticData} />;

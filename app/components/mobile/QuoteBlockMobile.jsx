@@ -23,7 +23,7 @@ function QuoteBlockMobile({data}) {
       
       {/* Content */}
       <div className="relative z-10 flex flex-col gap-4 px-6">
-        <div className="p-standard-medium-mobile text-white italic">
+        <div className="p-small-regular-mobile text-white italic">
           <FormattedText text={data.quote.value} />
         </div>
         <div className="flex flex-col gap-1">

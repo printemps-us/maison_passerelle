@@ -17,7 +17,7 @@ function HomePageMobile({staticData}) {
         link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
         api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
       />
-      
+
       {/* Hero Section */}
       <div className="bg-[#AF4145] flex flex-col items-center gap-2 py-16 px-4">
         <Image
@@ -29,15 +29,40 @@ function HomePageMobile({staticData}) {
           sizes="(min-width: 35em) 60vw, 70vw"
           alt="Maison Passerelle Logo"
         />
-        <p className="moderat-bold text-center text-sm" style={{color: '#e8d09b'}}>
+        <p
+          className="moderat-bold text-center text-sm"
+          style={{color: '#e8d09b'}}
+        >
           ONE WALL STREET, NEW YORK, NEW YORK
         </p>
-        <p className="moderat-bold text-center text-sm" style={{color: '#e8d09b'}}>
-          SUNDAY - MONDAY, 5:00PM - 9:00PM
-        </p>
-        <p className="moderat-bold text-center text-sm" style={{color: '#e8d09b'}}>
-          TUESDAY - SATURDAY, 5:00PM - 10:00PM
-        </p>
+        <div>
+          <p
+            className="moderat-bold text-center text-sm"
+            style={{color: '#e8d09b'}}
+          >
+            SUNDAY - MONDAY
+          </p>
+          <p
+            className="moderat-bold text-center text-sm"
+            style={{color: '#e8d09b'}}
+          >
+            5:00PM - 9:00PM
+          </p>
+        </div>
+        <div>
+          <p
+            className="moderat-bold text-center text-sm"
+            style={{color: '#e8d09b'}}
+          >
+            TUESDAY - SATURDAY
+          </p>
+          <p
+            className="moderat-bold text-center text-sm"
+            style={{color: '#e8d09b'}}
+          >
+            5:00PM - 10:00PM
+          </p>
+        </div>
 
         <div className="mt-12 w-full flex flex-col gap-3 justify-center items-center">
           <AnimatedButton
@@ -67,7 +92,7 @@ function HomePageMobile({staticData}) {
 
       {/* About Section */}
       <div className="w-full flex flex-col items-center justify-center py-8 px-4 text-center">
-        <p className="w-full p-standard-medium-mobile text-black-2">
+        <p className="w-full p-small-regular-mobile text-black-2">
           {staticData.about_sub.value}
         </p>
       </div>
@@ -75,13 +100,18 @@ function HomePageMobile({staticData}) {
       {/* Room Cards Section - Mobile Scroll */}
       <div className="flex gap-4 w-full overflow-x-auto hide-scrollbar px-4 pb-8">
         {staticData.about_options.references.nodes.map((item, index) => (
-          <div key={item.id} id={item.header.value} className="flex-shrink-0 w-[280px]">
+          <div
+            key={item.id}
+            id={item.header.value}
+            className="flex-shrink-0 w-[280px]"
+          >
             <RoomCard
               header={item.header.value}
               sub={item.sub?.value}
               button_text={item.button_text.value}
               image={item.image.reference.image}
               link={item.link?.value}
+              isMobile={true}
             />
           </div>
         ))}
@@ -99,10 +129,8 @@ function HomePageMobile({staticData}) {
           }}
         />
         <div className="flex flex-col justify-center items-center gap-6 text-center p-6">
-          <h2 className="h2-mobile w-full">
-            {staticData.find_us_title.value}
-          </h2>
-          <p className="w-full p-standard-medium-mobile text-black-2">
+          <h2 className="h2-mobile w-full">{staticData.find_us_title.value}</h2>
+          <p className="w-full p-small-regular-mobile text-black-2">
             {staticData.find_us_sub.value}
           </p>
           <AnimatedButton
@@ -119,7 +147,7 @@ function HomePageMobile({staticData}) {
       {/* Title Section */}
       <div className="w-full flex flex-col items-center justify-center py-8 px-4 text-center">
         <h2 className="h2-mobile mb-4">{staticData.title_header.value}</h2>
-        <p className="w-full p-standard-medium-mobile text-black-2">
+        <p className="w-full p-small-regular-mobile text-black-2">
           {staticData.title_sub.value}
         </p>
       </div>
@@ -127,7 +155,10 @@ function HomePageMobile({staticData}) {
       {/* Title Images - Mobile Carousel */}
       <div className="flex gap-4 w-full overflow-x-auto hide-scrollbar px-4 pb-8 mb-10">
         {staticData.title_images.references.nodes.map((item, index) => (
-          <div key={index} className="flex-shrink-0 w-[280px] overflow-hidden rounded-xl h-[300px]">
+          <div
+            key={index}
+            className="flex-shrink-0 w-[280px] overflow-hidden rounded-xl h-[300px]"
+          >
             <Image data={item.image} className="w-full h-full object-cover" />
           </div>
         ))}
@@ -156,4 +187,4 @@ function HomePageMobile({staticData}) {
   );
 }
 
-export default HomePageMobile; 
+export default HomePageMobile;

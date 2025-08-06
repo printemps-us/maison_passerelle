@@ -67,16 +67,7 @@ function menu() {
       console.error('Resy widget is not available.');
     }
   };
-  const handleLinkClick = (e, linkValue) => {
-    e.preventDefault(); // Prevent default anchor behavior
-    const target = document.querySelector(linkValue);
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 220, // Adjust offset as needed
-        behavior: 'smooth',
-      });
-    }
-  };
+
   function organizeMenuItems(data) {
     const result = [];
     let currentArray = [];
@@ -109,27 +100,6 @@ function menu() {
       // Kill any existing ScrollTriggers first
       ScrollTrigger.getAll().forEach((st) => st.kill());
 
-      // Room size animations
-      gsap.utils.toArray('.room').forEach((room) => {
-        gsap.fromTo(
-          room,
-          {width: '100px', height: '100px'},
-          {
-            width: '75px',
-            height: '75px',
-            scrollTrigger: {
-              trigger: roomsHeaderRef.current,
-              start: '15% 20%',
-              end: '45% 20%',
-              toggleActions: 'play none none reverse',
-              scrub: true,
-              onEnterBack: () => setCurrentSection(null),
-              immediateRender: false,
-            },
-          },
-        );
-      });
-
       // Section tracking
       gsap.utils.toArray('.section').forEach((section) => {
         const sectionId = section.id;
@@ -151,22 +121,6 @@ function menu() {
           immediateRender: false,
         });
       });
-
-      // Header border animation
-      gsap.fromTo(
-        roomsHeaderRef.current,
-        {borderBottom: '1px solid #e8d09b'},
-        {
-          borderBottom: '1px solid #AF4145',
-          scrollTrigger: {
-            trigger: roomsHeaderRef.current,
-            start: '15% 20%',
-            end: '15% 20%',
-            toggleActions: 'play none none reverse',
-            immediateRender: false,
-          },
-        },
-      );
 
       // Force a refresh after initialization
       ScrollTrigger.refresh();
@@ -194,7 +148,7 @@ function menu() {
         const target = document.querySelector(location.hash);
         if (target) {
           window.scrollTo({
-            top: target.offsetTop - 200,
+            top: target.offsetTop -300,
             behavior: 'smooth',
           });
         }
@@ -216,7 +170,7 @@ function menu() {
     <SmoothScroll>
       <div
         ref={roomsHeaderRef}
-        className="flex gap-8 w-full px-8 sticky hide-scrollbar top-[100px]  py-[18px] z-20 overflow-x-scroll"
+        className="flex gap-8 w-full px-8 sticky hide-scrollbar top-[100px]  py-[18px] z-20 overflow-x-scroll border-b-1 border-b-[#AF4145]"
         style={{
           paddingLeft: `max((100vw - ${nodesWithLinks * 132}px) / 2, 20px)`,
           backgroundColor: '#e8d09b',
@@ -233,7 +187,7 @@ function menu() {
                 <div
                   className={`${
                     currentSection == item?.link?.value ? 'border-2' : ''
-                  } border-[#000000] h-[100px] w-[100px] p-0.5 rounded-full room`}
+                  } border-[#000000] h-[75px] w-[75px] p-0.5 rounded-full room`}
                 >
                   <div className=" rounded-full w-full h-full overflow-hidden ">
                     <Image
