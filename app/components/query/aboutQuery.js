@@ -19,6 +19,22 @@ query StaticPageContent {
           }
         }
       }
+        content_block_2_header: field(key: "content_block_2_header") {
+        value
+      }
+      content_block_2_content: field(key: "content_block_2_content") {
+        value
+      }
+      content_block_2_image: field(key: "content_block_2_image") {
+        reference {
+          ... on MediaImage {
+            image {
+              url
+              altText
+            }
+          }
+        }
+      }
       tradition_image: field(key: "tradition_image") {
         reference {
           ... on MediaImage {

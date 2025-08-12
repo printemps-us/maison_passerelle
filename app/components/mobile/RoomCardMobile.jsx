@@ -26,7 +26,7 @@ function RoomCardMobile({header, sub, image, button_text, link}) {
             <h3 className="h4-mobile uppercase">
               {header}
             </h3>
-            <p className="p-small-regular-mobile text-black-2">
+            <p className="p-small-regular-mobile text-black-2 line-clamp-5">
               <FormattedText text={sub} />
             </p>
           </div>

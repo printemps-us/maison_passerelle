@@ -42,6 +42,7 @@ export default async function handleRequest(
       'https://cdn.shopify.com',
       'https://formspree.io/',
       "'unsafe-eval'",
+      'https://formspree.io/',
       'https://www.googletagmanager.com',
       'https://www.google-analytics.com',
       'https://eu2-api.eng.bloomreach.com',
@@ -60,6 +61,7 @@ export default async function handleRequest(
       'https://www.googletagmanager.com',
       'https://formspree.io/',
       'https://www.google-analytics.com',
+      'https://formspree.io/',
     ],
   });
 

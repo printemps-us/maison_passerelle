@@ -87,24 +87,24 @@ function About() {
           }
         />
       </div>
-      <QuoteBlock data={staticData.chef_quote.reference}></QuoteBlock>
+      <QuoteBlock small data={staticData.chef_quote.reference}></QuoteBlock>
       <div
         className="flex px-6 py-[60px] gap-12 rounded-b-xl bg-white z-20 relative rounded-t-xl mt-[-20px]"
         id="printemp-ny"
       >
         <div className="flex-1 h-full w-full">
           <Image
-            data={staticData.tradition_image.reference.image}
+            data={staticData.content_block_2_image.reference.image}
             sizes="(min-width: 45em) 50vw, 100vw"
             className="w-full h-full object-cover"
           ></Image>
         </div>
         <div className="flex-1 flex flex-col gap-8 pr-6">
           <h2 className="h2-desktop mb-2">
-            {staticData.tradition_header.value}
+            {staticData.content_block_2_header.value}
           </h2>
           <p className="text-black-2 p-standard-medium-desktop w-[450px]">
-            {staticData.tradition_content.value}
+            {staticData.content_block_2_content.value}
           </p>
         </div>
       </div>
@@ -125,7 +125,7 @@ function About() {
           }
         />
       </div>
-      <QuoteBlock data={staticData.chef_quote.reference}></QuoteBlock>
+      <QuoteBlock small data={staticData.chef_quote.reference}></QuoteBlock>
       <div className='h-12'></div>
       <FooterComponent></FooterComponent>
     </div>

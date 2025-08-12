@@ -26,7 +26,7 @@ function ImageSection({
   //   });
   return (
     <div
-      className={`bg-white-2 h-[500px] flex border-t-white-4 border-t-1 overflow-hidden top-0 ${
+      className={`bg-white-2 h-[600px] flex border-t-white-4 border-t-1 overflow-hidden top-0 ${
         sticky ? 'sticky top-20 z-[1]' : 'z-[2] relative'
       }`}
       //   ref={refContent}

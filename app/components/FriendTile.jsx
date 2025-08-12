@@ -2,7 +2,6 @@ import React, {useRef} from 'react';
 import MP from '~/assets/mp_logo.png';
 import gsap from 'gsap';
 function FriendTile({
-  gradient = false,
   header,
   sub,
   content_header,
@@ -65,7 +64,7 @@ function FriendTile({
             <p
               className={`${
                 is_mobile ? 'p-small-regular-mobile' : 'p-small-regular-desktop'
-              } ${gradient ? 'text-white' : 'text-black'}`}
+              } text-black`}
             >
               {content_sub}
             </p>

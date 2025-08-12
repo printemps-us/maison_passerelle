@@ -1,5 +1,5 @@
-export const STATIC_PAGE_CONTENT_QUERY = `query StaticPageContent {
-  metaobjects(type: "contact_us_page", first: 10) {
+export const CONTACT_QUERY = `query StaticPageContent {
+  metaobjects(type: "contact", first: 10) {
     nodes{
       handle
       header: field(key: "header") { value }

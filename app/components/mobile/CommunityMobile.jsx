@@ -48,7 +48,6 @@ function CommunityMobile({staticData}) {
           {staticData.guest_options.references.nodes.map((item, index) => (
             <FriendTileMobile
               key={index}
-              gradient={index % 2 ? false : true}
               header={item.header.value}
               sub={item.sub.value}
               content_sub={item.content_sub.value}

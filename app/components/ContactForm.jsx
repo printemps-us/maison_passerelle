@@ -4,7 +4,7 @@ import AnimatedButton from './AnimatedButton';
 function ContactForm() {
   const handleSubmit = async () => {
     if (!isFormValid) return;
-    const response = await fetch('https://formspree.io/f/mgvoblon', {
+    const response = await fetch('https://formspree.io/f/xdkdbkoy', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
