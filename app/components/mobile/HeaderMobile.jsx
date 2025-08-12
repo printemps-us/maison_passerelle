@@ -276,6 +276,13 @@ function HeaderMobile({data, pathname}) {
               >
                 MENU
               </Link>
+              <Link
+                to="/contact-us"
+                className="block text-[#e8d09b] moderat-bold text-lg py-6 mb-1 border-opacity-20 touch-manipulation"
+                onClick={handleMenuLinkClick}
+              >
+                CONTACT US
+              </Link>
             </div>
 
             {/* Reservation Button */}

@@ -139,6 +139,12 @@ function HeaderComponent({data, isMobile, pathname}) {
           >
             MENU
           </Link>
+          <Link
+            to="/contact-us"
+            className="text-[#e8d09b] moderat-bold cursor-pointer"
+          >
+            CONTACT US
+          </Link>
           <AnimatedButton
             text="RESERVE A TABLE"
             clickURL="https://resy.com/cities/new-york-ny/venues/maison-passerelle"
