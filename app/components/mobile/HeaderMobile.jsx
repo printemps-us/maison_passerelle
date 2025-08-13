@@ -271,7 +271,7 @@ function HeaderMobile({data, pathname}) {
               {/* Menu Link */}
               <Link
                 to="/menu"
-                className="block text-[#e8d09b] moderat-bold text-lg py-6 mb-1 border-opacity-20 touch-manipulation"
+                className="block border-b border-[#e8d09b] border-opacity-20 text-[#e8d09b] moderat-bold text-lg py-6 mb-1 border-opacity-20 touch-manipulation"
                 onClick={handleMenuLinkClick}
               >
                 MENU
