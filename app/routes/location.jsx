@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {data, useLoaderData, defer} from '@remix-run/react';
 import {json} from '@shopify/remix-oxygen';
 import AnimatedButton from '~/components/AnimatedButton';
-import {Image} from '@shopify/hydrogen';
+import {Image, getSeoMeta} from '@shopify/hydrogen';
 import StoreInfo from '~/components/StoreInfo';
 import ImageSection from '~/components/ImageSection';
 import ImageCard from '~/components/ImageCard';
@@ -16,6 +16,14 @@ import CurvedTile from '~/components/CurvedTile';
 import useIsMobile from '~/components/functions/isMobile';
 import LocationMobile from '~/components/mobile/LocationMobile';
 export const loader = createStaticDataLoader(LOCATION_PAGE_QUERY);
+
+export const meta = ({data}) => {
+  return getSeoMeta({
+    title: data?.staticData?.seo?.reference?.title?.value,
+    description: data?.staticData?.seo?.reference?.description?.value,
+    image: data?.staticData?.seo?.reference?.image?.reference?.image?.url,
+  });
+};
 
 function Location() {
   const {staticData, isMobile} = useLoaderData();
@@ -88,6 +96,26 @@ function Location() {
         buttonText={staticData.location_info_button_text.value}
         link={'https://us.printemps.com/wayfinding?location=maison-passerelle'}
       ></ImageSection>
+      <div className="bg-white mt-[-20px] border-t-1 border-t-white-4 rounded-t-xl pt-[70px] relative z-10">
+        <h2 className="h2-desktop text-center">
+          {staticData.other_dining_header?.value}
+        </h2>
+        <div className="flex flex-1 px-6 pt-[60px] max-w-full gap-12 box-border relative h-[555px]">
+          {staticData.other_dining.references.nodes.map((item, index) => (
+            <CurvedTile
+              key={index}
+              num={index + 1}
+              h={'90%'}
+              arrows={false}
+              button={item.button?.reference}
+              header={item.header?.value}
+              content={item.content?.value}
+              image={item.image.reference?.image}
+              animate={false}
+            />
+          ))}
+        </div>
+      </div>
       <div className="bg-white">
         {staticData.inside_sections.references.nodes.map((item, index) => (
           <div
@@ -112,24 +140,7 @@ function Location() {
           </div>
         ))}
       </div>
-      <div className="bg-white mt-[-20px] border-t-1 border-t-white-4 rounded-t-xl pt-[70px] relative z-10">
-        <h2 className="h2-desktop text-center">{staticData.other_dining_header?.value}</h2>
-        <div className="flex flex-1 px-6 pt-[60px] max-w-full gap-12 box-border relative h-[555px]">
-          {staticData.other_dining.references.nodes.map((item, index) => (
-            <CurvedTile
-              key={index}
-              num={index + 1}
-              h={'90%'}
-              arrows={false}
-              button={item.button?.reference}
-              header={item.header?.value}
-              content={item.content?.value}
-              image={item.image.reference?.image}
-              animate={false}
-            />
-          ))}
-        </div>
-      </div>
+
       <FooterComponent></FooterComponent>
     </SmoothScroll>
   );

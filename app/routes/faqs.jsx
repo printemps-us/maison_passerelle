@@ -4,12 +4,20 @@ import {createStaticDataLoader} from '~/components/functions/loadStaticData';
 import {data, useLoaderData, defer} from '@remix-run/react';
 import Chip from '~/components/Chip';
 import DropDownInfo from '~/components/DropDownInfo';
-import {Image} from '@shopify/hydrogen';
+import {Image, getSeoMeta} from '@shopify/hydrogen';
 import FooterComponent from '~/components/FooterComponent';
 import QuoteBlock from '~/components/QuoteBlock';
 import useIsMobile from '~/components/functions/isMobile';
 import FaqsMobile from '~/components/mobile/FaqsMobile';
 export const loader = createStaticDataLoader(FAQ_QUERY);
+
+export const meta = ({data}) => {
+  return getSeoMeta({
+    title: data?.staticData?.seo?.reference?.title?.value,
+    description: data?.staticData?.seo?.reference?.description?.value,
+    image: data?.staticData?.seo?.reference?.image?.reference?.image?.url,
+  });
+};
 function Faqs() {
   const {staticData, isMobile} = useLoaderData();
   const isMobileActive = useIsMobile(isMobile);

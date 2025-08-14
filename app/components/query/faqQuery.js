@@ -2,6 +2,28 @@ export const FAQ_QUERY = `query StaticPageContent {
   metaobjects(type: "faq_page", first: 10) {
     nodes {
       handle
+      seo: field(key: "seo") {
+        reference {
+          ... on Metaobject {
+            title: field(key: "title") {
+              value
+            }
+            description: field(key: "description") {
+              value
+            }
+            image: field(key: "image") {
+              reference {
+                ... on MediaImage {
+                  image {
+                    url
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       header: field(key: "header") {
         value
       }

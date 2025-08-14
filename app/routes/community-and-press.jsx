@@ -1,6 +1,6 @@
 import React, {useRef, useEffect} from 'react';
 import {data, useLoaderData, defer} from '@remix-run/react';
-import {Image} from '@shopify/hydrogen';
+import {Image, getSeoMeta} from '@shopify/hydrogen';
 import FooterComponent from '~/components/FooterComponent';
 import {createStaticDataLoader} from '~/components/functions/loadStaticData';
 import {PRESS_QUERY} from '~/components/query/pressQuery';
@@ -16,6 +16,14 @@ import RoomCard from '~/components/RoomCard';
 import useIsMobile from '~/components/functions/isMobile';
 import CommunityMobile from '~/components/mobile/CommunityMobile';
 export const loader = createStaticDataLoader(PRESS_QUERY);
+
+export const meta = ({data}) => {
+  return getSeoMeta({
+    title: data?.staticData?.seo?.reference?.title?.value,
+    description: data?.staticData?.seo?.reference?.description?.value,
+    image: data?.staticData?.seo?.reference?.image?.reference?.image?.url,
+  });
+};
 
 function Press() {
   const {staticData, isMobile} = useLoaderData();

@@ -1,7 +1,7 @@
 import {defer} from '@shopify/remix-oxygen';
 import {Await, useLoaderData, Link} from '@remix-run/react';
 import {Suspense, useState} from 'react';
-import {Image, Money} from '@shopify/hydrogen';
+import {Image, Money, getSeoMeta} from '@shopify/hydrogen';
 import AnimatedButton from '~/components/AnimatedButton';
 import RestaurantModal from '~/components/RestaurantModal';
 import FooterComponent from '~/components/FooterComponent';
@@ -13,16 +13,17 @@ import useIsMobile from '~/components/functions/isMobile';
 import HomePageMobile from '~/components/mobile/HomePageMobile';
 
 /**
- * @type {MetaFunction}
- */
-export const meta = () => {
-  return [{title: 'Maison Passerelle'}];
-};
-
-/**
  * @param {LoaderFunctionArgs} args
  */
 export const loader = createStaticDataLoader(HOME_QUERY);
+
+export const meta = ({data}) => {
+  return getSeoMeta({
+    title: data?.staticData?.seo?.reference?.title?.value,
+    description: data?.staticData?.seo?.reference?.description?.value,
+    image: data?.staticData?.seo?.reference?.image?.reference?.image?.url,
+  });
+};
 
 export default function Homepage() {
   const [modalOpen, setModalOpen] = useState(false);

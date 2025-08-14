@@ -28,29 +28,6 @@ function LocationMobile({staticData}) {
         buttonText={staticData.location_info_button_text.value}
         link={'https://us.printemps.com/wayfinding?location=maison-passerelle'}
       />
-
-      {/* Inside Sections */}
-      <div className="bg-white">
-        {staticData.inside_sections.references.nodes.map((item, index) => (
-          <div
-            className={`relative bg-white border-y-white-4 border-y-1 z-20' ${
-              index === staticData.inside_sections.references.nodes.length - 1
-                ? 'pb-[20px] rounded-xl'
-                : 'mb-[20px]'
-            }`}
-            key={`${item.header.value}_card`}
-          >
-            <ImageCardMobile
-              header={item.header.value}
-              images={item.images.references.nodes}
-              descriptor={item.section.value}
-              lContent={item.sub_content_1.value}
-              button={item.button?.reference}
-            />
-          </div>
-        ))}
-      </div>
-
       {/* Other Dining Section */}
       <div className="bg-white mt-[-20px] border-t-1 border-t-white-4 pt-12">
         <div className="px-4">
@@ -72,6 +49,27 @@ function LocationMobile({staticData}) {
             />
           ))}
         </div>
+      </div>
+      {/* Inside Sections */}
+      <div className="bg-white">
+        {staticData.inside_sections.references.nodes.map((item, index) => (
+          <div
+            className={`relative bg-white border-y-white-4 border-y-1 z-20' ${
+              index === staticData.inside_sections.references.nodes.length - 1
+                ? 'pb-[20px] rounded-xl'
+                : 'mb-[20px]'
+            }`}
+            key={`${item.header.value}_card`}
+          >
+            <ImageCardMobile
+              header={item.header.value}
+              images={item.images.references.nodes}
+              descriptor={item.section.value}
+              lContent={item.sub_content_1.value}
+              button={item.button?.reference}
+            />
+          </div>
+        ))}
       </div>
 
       {/* Footer */}

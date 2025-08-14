@@ -3,6 +3,28 @@ query StaticPageContent {
   metaobjects(type: "home_page", first: 10) {
     nodes {
       handle
+      seo: field(key: "seo") {
+        reference {
+          ... on Metaobject {
+            title: field(key: "title") {
+              value
+            }
+            description: field(key: "description") {
+              value
+            }
+            image: field(key: "image") {
+              reference {
+                ... on MediaImage {
+                  image {
+                    url
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       title_header: field(key: "title_header") {
         value
       }

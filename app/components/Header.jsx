@@ -117,12 +117,6 @@ function HeaderComponent({data, isMobile, pathname}) {
           </div>
         </div>
         <div className="flex gap-12 items-center px-4">
-          <Link
-            to="/location"
-            className="text-[#e8d09b] moderat-bold cursor-pointer"
-          >
-            LOCATION
-          </Link>
           <div
             className="text-[#e8d09b] moderat-bold cursor-pointer h-full flex items-center gap-1"
             onMouseEnter={handleMouseEnter}
@@ -132,7 +126,12 @@ function HeaderComponent({data, isMobile, pathname}) {
             <span>ABOUT</span>
             <Carrot rotated={isHover} />
           </div>
-
+          <Link
+            to="/location"
+            className="text-[#e8d09b] moderat-bold cursor-pointer"
+          >
+            LOCATION
+          </Link>
           <Link
             to="/menu"
             className="text-[#e8d09b] moderat-bold cursor-pointer"

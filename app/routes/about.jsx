@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {createStaticDataLoader} from '~/components/functions/loadStaticData';
 import {ABOUT_QUERY} from '~/components/query/aboutQuery';
 import {data, useLoaderData, defer, useLocation} from '@remix-run/react';
-import {Image} from '@shopify/hydrogen';
+import {Image, getSeoMeta} from '@shopify/hydrogen';
 import PersonSection from '~/components/PersonSection';
 import QuoteBlock from '~/components/QuoteBlock';
 import FooterComponent from '~/components/FooterComponent';
@@ -10,6 +10,14 @@ import useIsMobile from '~/components/functions/isMobile';
 import AboutMobile from '~/components/mobile/AboutMobile';
 
 export const loader = createStaticDataLoader(ABOUT_QUERY);
+
+export const meta = ({data}) => {
+  return getSeoMeta({
+    title: data?.staticData?.seo?.reference?.title?.value,
+    description: data?.staticData?.seo?.reference?.description?.value,
+    image: data?.staticData?.seo?.reference?.image?.reference?.image?.url,
+  });
+};
 
 function About() {
   const {staticData, isMobile} = useLoaderData();

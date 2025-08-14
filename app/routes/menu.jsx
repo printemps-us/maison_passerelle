@@ -12,12 +12,10 @@ export async function loader(args) {
   return defer({...staticData});
 }
 export const meta = ({data}) => {
-  // pass your SEO object to getSeoMeta()
   return getSeoMeta({
-    title: 'Maison Passerelle - Printemps New York - Menu',
-    description:
-      "Explore Maison Passerelle's menu featuring dishes like duck confit with West African-inspired spinach stew or dry-aged NY strip with a Haitian chili rub.",
-    // image: data.staticData.seo?.reference.image?.reference?.image.url,
+    title: data?.staticData?.seo?.reference?.title?.value,
+    description: data?.staticData?.seo?.reference?.description?.value,
+    image: data?.staticData?.seo?.reference?.image?.reference?.image?.url,
   });
 };
 async function loadStaticData({context}) {
@@ -148,7 +146,7 @@ function menu() {
         const target = document.querySelector(location.hash);
         if (target) {
           window.scrollTo({
-            top: target.offsetTop -300,
+            top: target.offsetTop - 300,
             behavior: 'smooth',
           });
         }
@@ -283,6 +281,28 @@ const MENU_QUERY = `query StaticPageContent {
   metaobjects(type: "menu", first: 10) {
     nodes {
       handle
+      seo: field(key: "seo") {
+        reference {
+          ... on Metaobject {
+            title: field(key: "title") {
+              value
+            }
+            description: field(key: "description") {
+              value
+            }
+            image: field(key: "image") {
+              reference {
+                ... on MediaImage {
+                  image {
+                    url
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       content: field(key: "content") {
         references(first: 30) {
           nodes {

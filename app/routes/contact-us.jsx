@@ -3,7 +3,7 @@ import {data, useLoaderData, defer} from '@remix-run/react';
 import {CONTACT_QUERY} from '~/components/query/contactQuery';
 import useIsMobile from '~/components/functions/isMobile';
 import {FormattedText} from '~/components/functions/formatText';
-import {Image} from '@shopify/hydrogen';
+import {Image, getSeoMeta} from '@shopify/hydrogen';
 import ContactForm from '~/components/ContactForm';
 import {createStaticDataLoader} from '~/components/functions/loadStaticData';
 import FooterComponent from '~/components/FooterComponent';
@@ -13,7 +13,6 @@ export const loader = createStaticDataLoader(CONTACT_QUERY);
 function ContactUs() {
   const {staticData, isMobile} = useLoaderData();
   const isMobileActive = useIsMobile(isMobile);
-  console.log(isMobileActive, isMobile);
 
   if (isMobileActive) {
     return <ContactUsMobile data={staticData} />;
@@ -106,6 +105,9 @@ function ContactUs() {
           <div className="w-[50%] pt-[60px]">
             <ContactForm />
           </div>
+        </div>
+        <div className='flex justify-center mb-20'>
+          <FormattedText text={staticData.privacy.value} />
         </div>
         <FooterComponent></FooterComponent>
       </div>

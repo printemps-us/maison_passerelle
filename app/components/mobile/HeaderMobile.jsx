@@ -225,13 +225,6 @@ function HeaderMobile({data, pathname}) {
           <div className="flex flex-col">
             <div className="flex-1 px-4">
               {/* Location Link */}
-              <Link
-                to="/location"
-                className="block text-[#e8d09b] moderat-bold text-lg py-6 border-b border-[#e8d09b] border-opacity-20 touch-manipulation"
-                onClick={handleMenuLinkClick}
-              >
-                LOCATION
-              </Link>
 
               {/* About Accordion */}
               <div className="border-b border-[#e8d09b] border-opacity-20">
@@ -267,7 +260,13 @@ function HeaderMobile({data, pathname}) {
                   </div>
                 )}
               </div>
-
+              <Link
+                to="/location"
+                className="block text-[#e8d09b] moderat-bold text-lg py-6 border-b border-[#e8d09b] border-opacity-20 touch-manipulation"
+                onClick={handleMenuLinkClick}
+              >
+                LOCATION
+              </Link>
               {/* Menu Link */}
               <Link
                 to="/menu"
