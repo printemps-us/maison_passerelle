@@ -10,7 +10,6 @@ import SmoothScroll from '~/components/SmoothScroll';
 import FooterComponent from '~/components/FooterComponent';
 import {createStaticDataLoader} from '~/components/functions/loadStaticData';
 import {LOCATION_PAGE_QUERY} from '~/components/query/locationPageQuery';
-import ContactForm from '~/components/ContactForm';
 import {FormattedText} from '~/components/functions/formatText';
 import CurvedTile from '~/components/CurvedTile';
 import useIsMobile from '~/components/functions/isMobile';
