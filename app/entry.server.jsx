@@ -49,6 +49,10 @@ export default async function handleRequest(
       'https://widgets.resy.com', // Add this line to allow the Resy script
       // Include other allowed domains for script loading
     ],
+    mediaSrc: [
+      "'self'",
+      'https://maisonpasserellenyc.myshopify.com'
+    ], 
     frameSrc: [
       "'self'",
       'https://cdn.shopify.com',

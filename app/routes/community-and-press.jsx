@@ -30,7 +30,7 @@ function Press() {
   const isMobileActive = useIsMobile(isMobile);
 
   const frenchApartmentRef = useRef();
-  
+
   // If mobile, render the mobile version
   if (isMobileActive) {
     return <CommunityMobile staticData={staticData} />;
@@ -112,6 +112,19 @@ function Press() {
           data={staticData.filler_image?.reference.image}
           className="w-full h-full object-cover"
         ></Image>
+      </div>
+      <div className="flex gap-2 w-full overflow-y-hidden hide-scrollbar py-15 h-[550px] no-overscroll px-8">
+        {staticData.rooms_list_2.references.nodes.map((item, index) => (
+          <div key={item.id} id={item.header.value} className="flex-1">
+            <RoomCard
+              header={item.header.value}
+              sub={item.sub.value}
+              button_text={item.button_text.value}
+              image={item.image.reference.image}
+              link={item.link?.value}
+            />
+          </div>
+        ))}
       </div>
       <div className="bg-white-2 border-t-white-4 border-t-1 py-15 h-[385px]">
         <div
