@@ -23,6 +23,8 @@ function About() {
   const {staticData, isMobile} = useLoaderData();
   const isMobileActive = useIsMobile(isMobile);
   const location = useLocation();
+
+  console.log( "staticData", staticData)
   
   // Move ALL hooks to the top, before any conditional returns
   useEffect(() => {
@@ -126,7 +128,7 @@ function About() {
           }
         />
       </div>
-      <QuoteBlock small data={staticData.chef_quote.reference}></QuoteBlock>
+      <QuoteBlock small data={staticData.architect_quote.reference}></QuoteBlock>
       <div className='h-12'></div>
       <FooterComponent></FooterComponent>
     </div>
