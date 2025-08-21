@@ -146,7 +146,6 @@ function HeaderComponent({data, isMobile, pathname}) {
           </Link>
           <AnimatedButton
             text="RESERVE A TABLE"
-            clickURL="https://resy.com/cities/new-york-ny/venues/maison-passerelle"
             onClick={() => setModalOpen(true)}
             bgColor="#e8d09b"
             textColor="#AF4145"
