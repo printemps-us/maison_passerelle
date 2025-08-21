@@ -23,14 +23,8 @@ function About() {
   const {staticData, isMobile} = useLoaderData();
   const isMobileActive = useIsMobile(isMobile);
   const location = useLocation();
-  console.log(staticData.tradition_image.reference)
-
-  // If mobile, render the mobile version
-  if (isMobileActive) {
-    return <AboutMobile staticData={staticData} />;
-  }
-
-  // Desktop version
+  
+  // Move ALL hooks to the top, before any conditional returns
   useEffect(() => {
     if (location.hash) {
       const scrollToTarget = () => {
@@ -43,14 +37,20 @@ function About() {
         }
       };
 
-      // Ensure the element is available in the DOM
       const timeout = setTimeout(() => {
         requestAnimationFrame(scrollToTarget);
-      }, 0); // Minimal delay for hydration timing
+      }, 0);
 
-      return () => clearTimeout(timeout); // Cleanup
+      return () => clearTimeout(timeout);
     }
   }, [location]);
+
+  // Now do the conditional return
+  if (isMobileActive) {
+    return <AboutMobile staticData={staticData} />;
+  }
+
+  // Desktop version continues...
   return (
     <div>
       <div className="overflow-hidden w-full h-[360px]">
