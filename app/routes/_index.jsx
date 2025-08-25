@@ -68,6 +68,7 @@ export default function Homepage() {
           TUESDAY - SATURDAY, 5:00PM - 10:00PM
         </p>
 
+
         <div className="mt-16  h-auto w-full flex max-[835px]:flex-col gap-3 justify-center items-center">
           <AnimatedButton
             text={'Book with Resy'}
