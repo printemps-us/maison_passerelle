@@ -22,6 +22,7 @@ function AnimatedButton({
   textPos = 'center',
   pen = false,
   loading = false,
+  noMaxWidth = false,
 }) {
   const navigate = useNavigate();
   const [isHover, setHover] = useState(false);
@@ -50,8 +51,13 @@ function AnimatedButton({
   }, [isHover]);
   const handleClick = (e) => {
     if (clickURL) {
-      e.preventDefault();
-      navigate(clickURL);
+      if (clickURL.startsWith('/')) {
+        // Internal navigation
+        navigate(clickURL);
+      } else {
+        // External navigation
+        window.open(clickURL, '_blank');
+      }
     }
     if (onClick) {
       e.preventDefault();
@@ -73,9 +79,9 @@ function AnimatedButton({
       style={{
         height: h,
         width: w,
-        maxWidth: '339px',
         borderRadius,
         cursor: disabled ? 'auto' : 'pointer',
+        ...(noMaxWidth ? {} : {maxWidth: '339px'}),
       }}
     >
       <div className="relative h-full">

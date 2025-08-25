@@ -1,21 +1,38 @@
-import {useNonce, getShopAnalytics, Analytics, Script} from '@shopify/hydrogen';
-import {defer} from '@shopify/remix-oxygen';
+import {defer, json, redirect} from '@shopify/remix-oxygen';
 import {
   Links,
+  LiveReload,
   Meta,
   Outlet,
   Scripts,
-  useRouteError,
-  useRouteLoaderData,
   ScrollRestoration,
+  useLoaderData,
+  useRouteLoaderData,
+  useLocation,
+  useRouteError,
   isRouteErrorResponse,
 } from '@remix-run/react';
+import {Suspense, useEffect} from 'react';
+import {ShopifyProvider, CartProvider} from '@shopify/hydrogen-react';
+import {getShopAnalytics, Analytics, Script, useNonce} from '@shopify/hydrogen';
+import {FOOTER_QUERY} from '~/lib/fragments';
+import {HEADER_DATA_QUERY} from '~/components/query/headerQuery';
+import {checkIfMobile} from '~/components/functions/isMobile';
+import {PageLayout} from '~/components/PageLayout';
 import favicon from '~/assets/maison.png';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import tailwindCss from './styles/tailwind.css?url';
-import {PageLayout} from '~/components/PageLayout';
-import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
+
+/**
+ * @type {MetaFunction}
+ */
+export const meta = () => {
+  return [
+    {title: 'Maison Passerelle'},
+    {name: 'viewport', content: 'width=device-width,initial-scale=1'},
+  ];
+};
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -42,6 +59,11 @@ export function links() {
     {rel: 'stylesheet', href: appStyles},
     {rel: 'stylesheet', href: tailwindCss},
     {
+      rel: 'preload',
+      href: 'https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap',
+      as: 'style',
+    },
+    {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
     },
@@ -59,15 +81,17 @@ export function links() {
 export async function loader(args) {
   // Start fetching non-critical data without blocking time to first byte
   const deferredData = loadDeferredData(args);
-
   // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
 
   const {storefront, env} = args.context;
+  const userAgent = args.request.headers.get('user-agent');
+  const isMobile = checkIfMobile(userAgent);
 
   return defer({
     ...deferredData,
     ...criticalData,
+    isMobile,
     publicStoreDomain: env.PUBLIC_STORE_DOMAIN,
     shop: getShopAnalytics({
       storefront,
@@ -85,21 +109,28 @@ export async function loader(args) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  * @param {LoaderFunctionArgs}
  */
-async function loadCriticalData({context}) {
+async function loadCriticalData({context, request}) {
   const {storefront} = context;
 
   const [header] = await Promise.all([
-    storefront.query(HEADER_QUERY, {
-      cache: storefront.CacheLong(),
+    storefront.query(HEADER_DATA_QUERY, {
+      cache: storefront.CacheNone(),
       variables: {
         headerMenuHandle: 'main-menu', // Adjust to your header menu handle
       },
     }),
-    // Add other queries here, so that they are loaded in parallel
+    // Add other queries here
   ]);
+
+  const url = new URL(request.url);
+  const pathname = url.pathname;
+  const userAgent = request.headers.get('user-agent');
+  const isMobile = checkIfMobile(userAgent);
 
   return {
     header,
+    pathname,
+    isMobile,
   };
 }
 
@@ -147,6 +178,10 @@ export function Layout({children}) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         {data ? (

@@ -5,6 +5,9 @@ import {Link, useLocation, useNavigate} from '@remix-run/react';
 import gsap from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import SmoothScroll from '~/components/SmoothScroll';
+import FooterComponent from '~/components/FooterComponent';
+import useIsMobile from '~/components/functions/isMobile';
+import FooterMobile from '~/components/mobile/FooterMobile';
 
 export async function loader(args) {
   const staticData = await loadStaticData(args);
@@ -12,12 +15,10 @@ export async function loader(args) {
   return defer({...staticData});
 }
 export const meta = ({data}) => {
-  // pass your SEO object to getSeoMeta()
   return getSeoMeta({
-    title: 'Maison Passerelle - Printemps New York - Menu',
-    description:
-      "Explore Maison Passerelle's menu featuring dishes like duck confit with West African-inspired spinach stew or dry-aged NY strip with a Haitian chili rub.",
-    // image: data.staticData.seo?.reference.image?.reference?.image.url,
+    title: data?.staticData?.seo?.reference?.title?.value,
+    description: data?.staticData?.seo?.reference?.description?.value,
+    image: data?.staticData?.seo?.reference?.image?.reference?.image?.url,
   });
 };
 async function loadStaticData({context}) {
@@ -27,7 +28,6 @@ async function loadStaticData({context}) {
 
     // Process the result
     const metaobjects = data.metaobjects.nodes[0];
-    console.log('test', metaobjects);
     return {
       staticData: metaobjects,
     };
@@ -39,9 +39,9 @@ async function loadStaticData({context}) {
 }
 function menu() {
   const data = useLoaderData();
-  console.log(data);
   const navigate = useNavigate();
   const isInitialRender = useRef(true);
+  const isMobileActive = useIsMobile(false);
 
   const [width, setWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 0,
@@ -69,16 +69,7 @@ function menu() {
       console.error('Resy widget is not available.');
     }
   };
-  const handleLinkClick = (e, linkValue) => {
-    e.preventDefault(); // Prevent default anchor behavior
-    const target = document.querySelector(linkValue);
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 220, // Adjust offset as needed
-        behavior: 'smooth',
-      });
-    }
-  };
+
   function organizeMenuItems(data) {
     const result = [];
     let currentArray = [];
@@ -104,7 +95,6 @@ function menu() {
     data.staticData.content.references.nodes,
   );
   useEffect(() => {
-    console.log('useeffect first', location);
     gsap.registerPlugin(ScrollTrigger);
     navigate(location.pathname, {replace: true});
     // Wait for content to be ready
@@ -112,36 +102,13 @@ function menu() {
       // Kill any existing ScrollTriggers first
       ScrollTrigger.getAll().forEach((st) => st.kill());
 
-      // Room size animations
-      gsap.utils.toArray('.room').forEach((room) => {
-        gsap.fromTo(
-          room,
-          {width: '100px', height: '100px'},
-          {
-            width: '75px',
-            height: '75px',
-            scrollTrigger: {
-              trigger: roomsHeaderRef.current,
-              start: '15% 20%',
-              end: '45% 20%',
-              toggleActions: 'play none none reverse',
-              scrub: true,
-              onEnterBack: () => setCurrentSection(null),
-              immediateRender: false,
-            },
-          },
-        );
-      });
-
       // Section tracking
       gsap.utils.toArray('.section').forEach((section) => {
-        console.log(section);
         const sectionId = section.id;
         // Find the corresponding node in data
         const node = data?.staticData.content?.references?.nodes.find(
           (n) => n?.link?.value === sectionId,
         );
-        console.log(node);
         if (!node) {
           return;
         }
@@ -156,22 +123,6 @@ function menu() {
           immediateRender: false,
         });
       });
-
-      // Header border animation
-      gsap.fromTo(
-        roomsHeaderRef.current,
-        {borderBottom: '1px solid #e8d09b'},
-        {
-          borderBottom: '1px solid #AF4145',
-          scrollTrigger: {
-            trigger: roomsHeaderRef.current,
-            start: '15% 20%',
-            end: '15% 20%',
-            toggleActions: 'play none none reverse',
-            immediateRender: false,
-          },
-        },
-      );
 
       // Force a refresh after initialization
       ScrollTrigger.refresh();
@@ -191,7 +142,6 @@ function menu() {
   useEffect(() => {
     if (isInitialRender.current) {
       isInitialRender.current = false; // Skip first render
-      console.log('locay', location);
       return;
     }
 
@@ -200,7 +150,7 @@ function menu() {
         const target = document.querySelector(location.hash);
         if (target) {
           window.scrollTo({
-            top: target.offsetTop - 200,
+            top: target.offsetTop - 300,
             behavior: 'smooth',
           });
         }
@@ -218,28 +168,11 @@ function menu() {
     data?.staticData.content?.references?.nodes?.filter(
       (node) => node?.link?.value,
     )?.length || 0;
-  console.log(organizedMenuItems);
   return (
     <SmoothScroll>
       <div
-        className="p-14 flex justify-center w-full"
-        style={{backgroundColor: '#AF4145'}}
-      >
-        <Link to={'/'} className="responsive-logo">
-          <Image
-            className="logo"
-            src={
-              'https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasser.svg?v=1737053887'
-            }
-            width={'450px'}
-            sizes="(min-width: 35em) 60vw, 70vw"
-            alt="Maison Passerelle Logo"
-          ></Image>
-        </Link>
-      </div>
-      <div
         ref={roomsHeaderRef}
-        className="flex gap-8 w-full px-8 sticky hide-scrollbar top-[0px]  py-[18px] z-20 overflow-x-scroll"
+        className="flex gap-8 w-full px-8 sticky hide-scrollbar top-[100px]  py-[18px] z-20 overflow-x-scroll border-b-1 border-b-[#AF4145]"
         style={{
           paddingLeft: `max((100vw - ${nodesWithLinks * 132}px) / 2, 20px)`,
           backgroundColor: '#e8d09b',
@@ -256,7 +189,7 @@ function menu() {
                 <div
                   className={`${
                     currentSection == item?.link?.value ? 'border-2' : ''
-                  } border-[#000000] h-[100px] w-[100px] p-0.5 rounded-full room`}
+                  } border-[#000000] h-[75px] w-[75px] p-0.5 rounded-full room`}
                 >
                   <div className=" rounded-full w-full h-full overflow-hidden ">
                     <Image
@@ -289,7 +222,7 @@ function menu() {
       </div>
 
       <div
-        className="flex flex-col items-center gap-[120px] pt-[120px] pb-[500px]"
+        className="flex flex-col items-center gap-[120px] pt-[120px] pb-[200px]"
         style={{
           color: 'black',
           backgroundColor: '#e8d09b',
@@ -341,6 +274,13 @@ function menu() {
           </div>
         ))}
       </div>
+      {!isMobileActive ? (
+        <FooterComponent></FooterComponent>
+      ) : (
+        <div className="mt-[-2px]">
+          <FooterMobile></FooterMobile>
+        </div>
+      )}
     </SmoothScroll>
   );
 }
@@ -351,6 +291,28 @@ const MENU_QUERY = `query StaticPageContent {
   metaobjects(type: "menu", first: 10) {
     nodes {
       handle
+      seo: field(key: "seo") {
+        reference {
+          ... on Metaobject {
+            title: field(key: "title") {
+              value
+            }
+            description: field(key: "description") {
+              value
+            }
+            image: field(key: "image") {
+              reference {
+                ... on MediaImage {
+                  image {
+                    url
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       content: field(key: "content") {
         references(first: 30) {
           nodes {
