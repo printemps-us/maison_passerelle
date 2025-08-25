@@ -7,6 +7,7 @@ import {Image, getSeoMeta} from '@shopify/hydrogen';
 import ContactForm from '~/components/ContactForm';
 import {createStaticDataLoader} from '~/components/functions/loadStaticData';
 import FooterComponent from '~/components/FooterComponent';
+import SmoothScroll from '~/components/SmoothScroll';
 import ContactUsMobile from '~/components/ContactUsMobile';
 export const loader = createStaticDataLoader(CONTACT_QUERY);
 
@@ -19,7 +20,7 @@ function ContactUs() {
   }
 
   return (
-    <>
+    <SmoothScroll>
       <div>
         <div className="bg-white-2 w-full py-[60px] flex-col flex items-center gap-2 border-b-1 border-b-white-4">
           <span className="label-desktop text-black-3">
@@ -111,7 +112,7 @@ function ContactUs() {
         </div>
         <FooterComponent></FooterComponent>
       </div>
-    </>
+    </SmoothScroll>
   );
 }
 
