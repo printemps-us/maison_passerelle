@@ -27,19 +27,6 @@ function CommunityMobile({staticData}) {
               link={item.link?.value}
             />
           ))}
-        </div>
-      </div>
-
-      {/* Filler Image */}
-      <div className="w-full h-[200px] overflow-hidden">
-        <Image
-          data={staticData.filler_image?.reference.image}
-          className="w-full h-full object-cover"
-          sizes="100vw"
-        />
-      </div>
-      <div className="bg-white pb-2 mt-10">
-        <div className="flex gap-4 w-full overflow-x-auto hide-scrollbar px-4 pb-8">
           {staticData.rooms_list_2.references.nodes.map((item, index) => (
             <RoomCardMobile
               key={item.id}
@@ -51,6 +38,15 @@ function CommunityMobile({staticData}) {
             />
           ))}
         </div>
+      </div>
+
+      {/* Filler Image */}
+      <div className="w-full h-[200px] overflow-hidden">
+        <Image
+          data={staticData.filler_image?.reference.image}
+          className="w-full h-full object-cover"
+          sizes="100vw"
+        />
       </div>
       {/* Guest Section */}
       <div className="bg-white-2 py-8 px-4">
