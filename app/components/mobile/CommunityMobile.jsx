@@ -9,13 +9,25 @@ function CommunityMobile({staticData}) {
     <div className="w-full">
       {/* Hero Section */}
       <div className="flex flex-col justify-center items-center py-0 px-6 bg-white">
-        <h1 className="h1-mobile text-center">{staticData.press_header?.value}</h1>
+        <h1 className="h1-mobile text-center">
+          {staticData.press_header?.value}
+        </h1>
       </div>
 
       {/* Rooms Section */}
       <div className="bg-white pb-2">
         <div className="flex gap-4 w-full overflow-x-auto hide-scrollbar px-4 pb-8">
           {staticData.rooms_list_1.references.nodes.map((item, index) => (
+            <RoomCardMobile
+              key={item.id}
+              header={item.header.value}
+              sub={item.sub.value}
+              button_text={item.button_text.value}
+              image={item.image.reference.image}
+              link={item.link?.value}
+            />
+          ))}
+          {staticData.rooms_list_2.references.nodes.map((item, index) => (
             <RoomCardMobile
               key={item.id}
               header={item.header.value}
@@ -36,7 +48,6 @@ function CommunityMobile({staticData}) {
           sizes="100vw"
         />
       </div>
-
       {/* Guest Section */}
       <div className="bg-white-2 py-8 px-4">
         <div className="flex flex-col items-center gap-6 mb-4">

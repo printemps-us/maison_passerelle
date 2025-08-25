@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Image} from '@shopify/hydrogen';
+import IG from '~/assets/MaisonIG.png';
 function FooterComponent({instagram = false}) {
   const [state, setState] = useState({
     isWaiting: false,
@@ -33,7 +34,7 @@ function FooterComponent({instagram = false}) {
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
   );
   return (
-    <div className="footer-container">
+    <div className="footer-container relative">
       <div className="above-footer bg-[#AF4145]">
         {instagram && (
           <a
@@ -53,7 +54,7 @@ function FooterComponent({instagram = false}) {
           sign up for our newsletter
         </p>
       </div>
-      <div className="footer-area">
+      <div className="footer-area h-[50px] overflow-hidden">
         <p
           className="moderat-bold"
           style={{fontSize: '14px', color: 'black', marginRight: '8px'}}
@@ -93,6 +94,15 @@ function FooterComponent({instagram = false}) {
             </p>
           </button>
         )}
+        <div className="">
+          <a
+            href="https://urlgeni.us/instagram/maisonpasserellenyc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image src={IG} alt="Instagram Logo" width={50} />
+          </a>
+        </div>
       </div>
     </div>
   );

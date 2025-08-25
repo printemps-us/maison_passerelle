@@ -11,6 +11,7 @@ import StoreInfo from '~/components/StoreInfo';
 import RoomCard from '~/components/RoomCard';
 import useIsMobile from '~/components/functions/isMobile';
 import HomePageMobile from '~/components/mobile/HomePageMobile';
+import SmoothScroll from '~/components/SmoothScroll';
 
 /**
  * @param {LoaderFunctionArgs} args
@@ -39,7 +40,7 @@ export default function Homepage() {
 
   // Desktop version
   return (
-    <div>
+    <SmoothScroll>
       <RestaurantModal
         setOpenModal={setModalOpen}
         openModal={modalOpen}
@@ -66,6 +67,7 @@ export default function Homepage() {
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
           TUESDAY - SATURDAY, 5:00PM - 10:00PM
         </p>
+
 
         <div className="mt-16  h-auto w-full flex max-[835px]:flex-col gap-3 justify-center items-center">
           <AnimatedButton
@@ -179,7 +181,7 @@ export default function Homepage() {
       </div>
 
       <FooterComponent></FooterComponent>
-    </div>
+    </SmoothScroll>
   );
 }
 

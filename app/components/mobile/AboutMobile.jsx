@@ -49,8 +49,13 @@ function AboutMobile({staticData}) {
         <PersonSectionMobile
           name={staticData.chef_section.reference.header.value}
           section={staticData.chef_section.reference.section.value}
-          mainImg={staticData.chef_section.reference.filler_image_2.reference.image}
-          content={staticData.chef_section.reference.executive_content_options.references.nodes}
+          mainImg={
+            staticData.chef_section.reference.filler_image_2.reference.image
+          }
+          content={
+            staticData.chef_section.reference.executive_content_options
+              .references.nodes
+          }
         />
       </div>
 
@@ -59,9 +64,9 @@ function AboutMobile({staticData}) {
 
       {/* Second Tradition Section */}
       <TraditionSectionMobile
-        header={staticData.tradition_header.value}
-        content={staticData.tradition_content.value}
-        image={staticData.tradition_image.reference}
+        header={staticData.content_block_2_header.value}
+        content={staticData.content_block_2_content.value}
+        image={staticData.content_block_2_image.reference}
         imageFirst={true}
       />
 
@@ -70,10 +75,21 @@ function AboutMobile({staticData}) {
         <PersonSectionMobile
           name={staticData.architect_section.reference.header.value}
           section={staticData.architect_section.reference.section.value}
-          filler1={staticData.architect_section.reference.filler_image_1.reference.image}
-          filler2={staticData.architect_section.reference.filler_image_2.reference.image}
-          mainImg={staticData.architect_section.reference.main_image.reference.image}
-          content={staticData.architect_section.reference.executive_content_options.references.nodes}
+          filler1={
+            staticData.architect_section.reference.filler_image_1.reference
+              .image
+          }
+          filler2={
+            staticData.architect_section.reference.filler_image_2.reference
+              .image
+          }
+          mainImg={
+            staticData.architect_section.reference.main_image.reference.image
+          }
+          content={
+            staticData.architect_section.reference.executive_content_options
+              .references.nodes
+          }
         />
       </div>
 

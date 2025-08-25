@@ -27,10 +27,6 @@ body {
   --color-light: #fff;
 }
 
-img {
-  border-radius: 4px;
-}
-
 .h3-desktop {
   font-size: 28px;
   font-weight: 800;
