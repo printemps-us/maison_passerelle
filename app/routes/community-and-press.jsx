@@ -15,6 +15,7 @@ import FriendTile from '~/components/FriendTile';
 import RoomCard from '~/components/RoomCard';
 import useIsMobile from '~/components/functions/isMobile';
 import CommunityMobile from '~/components/mobile/CommunityMobile';
+import SmoothScroll from '~/components/SmoothScroll';
 
 // Add custom styles for horizontal scrolling
 const scrollStyles = `
@@ -80,7 +81,7 @@ function Press() {
   //     };
   //   }, []);
   return (
-    <div>
+    <SmoothScroll>
       <style>{scrollStyles}</style>
       {/* <div className="py-24">
         <p className="h2-desktop text-center">
@@ -204,7 +205,7 @@ function Press() {
         </div>
       </div>
       <FooterComponent></FooterComponent>
-    </div>
+    </SmoothScroll>
   );
 }
 

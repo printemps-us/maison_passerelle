@@ -11,6 +11,7 @@ import StoreInfo from '~/components/StoreInfo';
 import RoomCard from '~/components/RoomCard';
 import useIsMobile from '~/components/functions/isMobile';
 import HomePageMobile from '~/components/mobile/HomePageMobile';
+import SmoothScroll from '~/components/SmoothScroll';
 
 /**
  * @param {LoaderFunctionArgs} args
@@ -39,7 +40,7 @@ export default function Homepage() {
 
   // Desktop version
   return (
-    <div>
+    <SmoothScroll>
       <RestaurantModal
         setOpenModal={setModalOpen}
         openModal={modalOpen}
@@ -180,7 +181,7 @@ export default function Homepage() {
       </div>
 
       <FooterComponent></FooterComponent>
-    </div>
+    </SmoothScroll>
   );
 }
 

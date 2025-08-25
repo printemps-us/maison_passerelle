@@ -9,6 +9,7 @@ import FooterComponent from '~/components/FooterComponent';
 import useIsMobile from '~/components/functions/isMobile';
 import AboutMobile from '~/components/mobile/AboutMobile';
 import MediaComponent from '~/components/MediaComponent';
+import SmoothScroll from '~/components/SmoothScroll';
 export const loader = createStaticDataLoader(ABOUT_QUERY);
 
 export const meta = ({data}) => {
@@ -54,7 +55,7 @@ function About() {
 
   // Desktop version continues...
   return (
-    <div>
+    <SmoothScroll>
       <div className="overflow-hidden w-full h-[360px]">
         <Image
           data={staticData.hero_image.reference.image}
@@ -131,7 +132,7 @@ function About() {
       <QuoteBlock small data={staticData.architect_quote.reference}></QuoteBlock>
       <div className='h-12'></div>
       <FooterComponent></FooterComponent>
-    </div>
+    </SmoothScroll>
   );
 }
 
