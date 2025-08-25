@@ -5,13 +5,13 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
   useLoaderData,
   useRouteLoaderData,
   useLocation,
   useRouteError,
   isRouteErrorResponse,
 } from '@remix-run/react';
+import {CustomScrollRestoration} from '~/components/CustomScrollRestoration';
 import {Suspense, useEffect} from 'react';
 import {ShopifyProvider, CartProvider} from '@shopify/hydrogen-react';
 import {getShopAnalytics, Analytics, Script, useNonce} from '@shopify/hydrogen';
@@ -195,7 +195,7 @@ export function Layout({children}) {
         ) : (
           children
         )}
-        <ScrollRestoration nonce={nonce} />
+        <CustomScrollRestoration />
         <Script src="/bloomreach.js" />
         <Script src="/googleAnalytics.js" />
         <Script
