@@ -58,14 +58,22 @@ export default function Homepage() {
           sizes="(min-width: 35em) 60vw, 70vw"
           alt="Maison Passerelle Logo"
         ></Image>
+
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
           ONE WALL STREET, NEW YORK, NEW YORK
         </p>
+        <div className='mt-4'></div>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
-          SUNDAY - MONDAY, 5:00PM - 9:00PM
+          LUNCH:
         </p>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
-          TUESDAY - SATURDAY, 5:00PM - 10:00PM
+          MONDAY - FRIDAY, 11AM - 2PM
+        </p>
+        <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
+          DINNER:
+        </p>
+        <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
+          MONDAY - SATURDAY, 5PM - 1PM
         </p>
 
 
