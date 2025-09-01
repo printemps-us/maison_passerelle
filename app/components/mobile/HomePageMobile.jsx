@@ -35,18 +35,24 @@ function HomePageMobile({staticData}) {
         >
           ONE WALL STREET, NEW YORK, NEW YORK
         </p>
-        <div>
+        <div className='mt-8'>
           <p
             className="moderat-bold text-center text-sm"
             style={{color: '#e8d09b'}}
           >
-            SUNDAY - MONDAY
+            LUNCH:
           </p>
           <p
             className="moderat-bold text-center text-sm"
             style={{color: '#e8d09b'}}
           >
-            5:00PM - 9:00PM
+            MONDAY - FRIDAY
+          </p>
+          <p
+            className="moderat-bold text-center text-sm"
+            style={{color: '#e8d09b'}}
+          >
+            11am - 2pm
           </p>
         </div>
         <div>
@@ -54,13 +60,19 @@ function HomePageMobile({staticData}) {
             className="moderat-bold text-center text-sm"
             style={{color: '#e8d09b'}}
           >
-            TUESDAY - SATURDAY
+            DINNER:
           </p>
           <p
             className="moderat-bold text-center text-sm"
             style={{color: '#e8d09b'}}
           >
-            5:00PM - 10:00PM
+            MONDAY - SUNDAY
+          </p>
+          <p
+            className="moderat-bold text-center text-sm"
+            style={{color: '#e8d09b'}}
+          >
+            5PM - 10PM
           </p>
         </div>
 
