@@ -4,10 +4,10 @@ import AnimatedButton from '../AnimatedButton';
 import RestaurantModal from '../RestaurantModal';
 import RoomCard from '../RoomCard';
 import FooterMobile from './FooterMobile';
-
+import MenuModal from '../MenuModal';
 function HomePageMobile({staticData}) {
   const [modalOpen, setModalOpen] = useState(false);
-
+  const [menuModalOpen, setMenuModalOpen] = useState(false);
   return (
     <div>
       <RestaurantModal
@@ -17,7 +17,10 @@ function HomePageMobile({staticData}) {
         link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
         api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
       />
-
+      <MenuModal
+        setOpenModal={setMenuModalOpen}
+        openModal={menuModalOpen}
+      ></MenuModal>
       {/* Hero Section */}
       <div className="bg-[#AF4145] flex flex-col items-center gap-2 py-16 px-4">
         <Image
@@ -35,7 +38,7 @@ function HomePageMobile({staticData}) {
         >
           ONE WALL STREET, NEW YORK, NEW YORK
         </p>
-        <div className='mt-8'>
+        <div className="mt-8">
           <p
             className="moderat-bold text-center text-sm"
             style={{color: '#e8d09b'}}
@@ -95,7 +98,7 @@ function HomePageMobile({staticData}) {
             textColor={'black'}
             border="#e8d09b"
             hoverBorder={'#e8d09b'}
-            clickURL={'/menu'}
+            onClick={() => setMenuModalOpen(true)}
             h="48px"
             w="100%"
           />

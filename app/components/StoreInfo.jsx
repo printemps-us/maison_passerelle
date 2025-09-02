@@ -36,7 +36,7 @@ function StoreInfo({data, bgColor = 'white'}) {
               {item.contact.value}
             </a>
           ) : (
-            <span className="text-black-op70 p-small-regular-desktop">
+            <span className="text-black-op70 p-small-regular-desktop text-center">
               <FormattedText text={item.contact.value} />
             </span>
           )}

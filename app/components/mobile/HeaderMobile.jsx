@@ -230,10 +230,10 @@ function HeaderMobile({data, pathname}) {
               <div className="border-b border-[#e8d09b] border-opacity-20">
                 <button
                   onClick={() => toggleAccordion('about')}
-                  className="w-full flex justify-between items-center text-[#e8d09b] moderat-bold text-lg py-6 touch-manipulation"
+                  className="w-full flex justify-between items-center text-[#e8d09b] py-6 touch-manipulation"
                   aria-expanded={activeAccordion === 'about'}
                 >
-                  <span>ABOUT</span>
+                  <span className='moderat-bold text-lg' style={{textRendering: 'geometricPrecision'}}>ABOUT</span>
                   <img
                     src={activeAccordion === 'about' ? Minus : Plus}
                     alt={activeAccordion === 'about' ? 'Collapse' : 'Expand'}
@@ -247,7 +247,7 @@ function HeaderMobile({data, pathname}) {
 
                 {activeAccordion === 'about' && (
                   <div className="pb-4 space-y-3 animate-fadeIn">
-                    {data?.links?.references.nodes.map((item, index) => (
+                    {data[0]?.links?.references.nodes.map((item, index) => (
                       <Link
                         key={`${item?.text?.value}_mobile`}
                         to={item?.url?.value}
@@ -268,13 +268,39 @@ function HeaderMobile({data, pathname}) {
                 LOCATION
               </Link>
               {/* Menu Link */}
-              <Link
-                to="/menu"
-                className="block border-b border-[#e8d09b] border-opacity-20 text-[#e8d09b] moderat-bold text-lg py-6 mb-1 border-opacity-20 touch-manipulation"
-                onClick={handleMenuLinkClick}
-              >
-                MENU
-              </Link>
+              <div className="border-b border-[#e8d09b] border-opacity-20">
+                <button
+                  onClick={() => toggleAccordion('menu')}
+                  className="w-full flex justify-between items-center text-[#e8d09b] moderat-bold text-lg py-6 touch-manipulation"
+                  aria-expanded={activeAccordion === 'menu'}
+                >
+                  <span style={{textRendering: 'geometricPrecision'}}>menu</span>
+                  <img
+                    src={activeAccordion === 'menu' ? Minus : Plus}
+                    alt={activeAccordion === 'menu' ? 'Collapse' : 'Expand'}
+                    className="w-4 h-4"
+                    style={{
+                      filter:
+                        'brightness(0) saturate(100%) invert(91%) sepia(13%) saturate(638%) hue-rotate(7deg) brightness(96%) contrast(92%)',
+                    }}
+                  />
+                </button>
+
+                {activeAccordion === 'menu' && (
+                  <div className="pb-4 space-y-3 animate-fadeIn">
+                    {data[1]?.links?.references.nodes.map((item, index) => (
+                      <Link
+                        key={`${item?.text?.value}_mobile`}
+                        to={item?.url?.value}
+                        className="block text-[#e8d09b] text-opacity-80 text-base pl-4 py-3 hover:text-opacity-100 transition-opacity touch-manipulation"
+                        onClick={handleMenuLinkClick}
+                      >
+                        {item?.text?.value}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
               <Link
                 to="/contact-us"
                 className="block text-[#e8d09b] moderat-bold text-lg py-6 mb-1 border-opacity-20 touch-manipulation"
