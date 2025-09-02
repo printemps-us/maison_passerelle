@@ -9,17 +9,6 @@ function MenuModal({
   api_key,
   isMobile = false,
 }) {
-  const handleClick = () => {
-    if (window.resyWidget) {
-      resyWidget.openModal({
-        venueId: venue_id,
-        apiKey: api_key,
-        replace: 'true',
-      });
-    } else {
-      console.error('Resy widget is not available.');
-    }
-  };
   return (
     <>
       {openModal && (
@@ -31,7 +20,6 @@ function MenuModal({
                   className="cursor-pointer"
                   onClick={() => {
                     setOpenModal(false);
-                    console.log('trigger')
                   }}
                 >
                   <img src={Close} alt="close icon" width={20} height={20} />
