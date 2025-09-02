@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import AnimatedButton from './AnimatedButton';
 import Close from '~/assets/CloseIcon.svg';
-function RestaurantModal({
+function MenuModal({
   setOpenModal,
   openModal,
   venue_id,
@@ -31,6 +31,7 @@ function RestaurantModal({
                   className="cursor-pointer"
                   onClick={() => {
                     setOpenModal(false);
+                    console.log('trigger')
                   }}
                 >
                   <img src={Close} alt="close icon" width={20} height={20} />
@@ -41,36 +42,26 @@ function RestaurantModal({
                   isMobile ? 'h3-mobile' : 'h3-desktop'
                 } text-center`}
               >
-                How do you want<br></br> to book?
+                View Our Menus
               </h3>
             </div>
-            <p
-              className={`${
-                isMobile ? 'p-small-regular-mobile' : 'p-small-regular-desktop'
-              } text-black-2 text-center`}
-            >
-              Stay here to book in your browser, or switch to the<br></br> Resy
-              app if you have it installed.
-            </p>
-
             <div className="flex flex-col gap-2">
               <AnimatedButton
-                text={'Book on this Site'}
+                text={'Lunch Menu'}
                 bgColor={'black'}
                 hoverColor={'black'}
                 border="black"
-                onClick={handleClick}
+                clickURL={'/menu/lunch'}
                 h={isMobile ? '42px' : '42px'}
                 w={isMobile ? '225px' : '339px'}
               />
               <AnimatedButton
-                text={'Open In The Resy App'}
+                text={'Dinner Menu'}
                 bgColor={'white'}
                 hoverColor={'#e8d09b'}
                 h={isMobile ? '42px' : '42px'}
                 w={isMobile ? '225px' : '339px'}
-                onClick={() => window.open(link)}
-                tilted={true}
+                clickURL={'/menu/dinner'}
               />
             </div>
           </div>
@@ -80,4 +71,4 @@ function RestaurantModal({
   );
 }
 
-export default RestaurantModal;
+export default MenuModal;

@@ -12,6 +12,7 @@ import RoomCard from '~/components/RoomCard';
 import useIsMobile from '~/components/functions/isMobile';
 import HomePageMobile from '~/components/mobile/HomePageMobile';
 import SmoothScroll from '~/components/SmoothScroll';
+import MenuModal from '~/components/MenuModal';
 
 /**
  * @param {LoaderFunctionArgs} args
@@ -28,6 +29,7 @@ export const meta = ({data}) => {
 
 export default function Homepage() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [menuModalOpen, setMenuModalOpen] = useState(false);
 
   /** @type {LoaderReturnData} */
   const {staticData, isMobile} = useLoaderData();
@@ -48,6 +50,7 @@ export default function Homepage() {
         link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
         api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
       ></RestaurantModal>
+      <MenuModal setOpenModal={setMenuModalOpen} openModal={menuModalOpen}></MenuModal>
       <div className="bg-[#AF4145] flex flex-col items-center gap-2 py-[100px]">
         <Image
           className="logo"
@@ -62,7 +65,7 @@ export default function Homepage() {
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
           ONE WALL STREET, NEW YORK, NEW YORK
         </p>
-        <div className='mt-4'></div>
+        <div className="mt-4"></div>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
           LUNCH:
         </p>
@@ -75,7 +78,6 @@ export default function Homepage() {
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
           MONDAY - SATURDAY, 5PM - 1PM
         </p>
-
 
         <div className="mt-16  h-auto w-full flex max-[835px]:flex-col gap-3 justify-center items-center">
           <AnimatedButton
@@ -96,7 +98,7 @@ export default function Homepage() {
             textColor={'black'}
             border="#e8d09b"
             hoverBorder={'#e8d09b'}
-            clickURL={'/menu'}
+            onClick={() => setMenuModalOpen(true)}
             h="42px"
             w="90%"
           />

@@ -13,6 +13,13 @@ function HeaderDropDown({
   handleMouseEnter,
 }) {
   const megaRef = useRef(null);
+  function getIndex(){
+    if(isHover == 'about'){
+      return 0
+    } else {
+      return 1
+    }
+  }
   useEffect(() => {
     gsap.killTweensOf(hoverRef.current, {height: true});
     if (isHover) {
@@ -51,8 +58,8 @@ function HeaderDropDown({
         onMouseLeave={handleMouseLeave}
       >
         <div className="flex flex-col gap-2 w-[180px] h-[230px] p-small-regular-desktop">
-          <p className="label-desktop">{headerData?.title?.value}</p>
-          {headerData?.links?.references.nodes.map((item) => {
+          <p className="label-desktop">{headerData[getIndex()]?.title?.value}</p>
+          {headerData[getIndex()]?.links?.references.nodes.map((item) => {
             const url = item?.url?.value;
             const isExternal =
               url &&
@@ -82,7 +89,7 @@ function HeaderDropDown({
           })}
         </div>
 
-        {headerData?.image_links?.references.nodes.map((item, index) => (
+        {headerData[getIndex()]?.image_links?.references.nodes.map((item, index) => (
           <Link
             key={`${item?.header?.value}_header_image`}
             className="flex flex-col items-center rounded-xl cursor-pointer"

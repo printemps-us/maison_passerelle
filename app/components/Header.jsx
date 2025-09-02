@@ -2,26 +2,22 @@ import React, {useState, useRef, useEffect} from 'react';
 import {Image} from '@shopify/hydrogen';
 import RestaurantModal from './RestaurantModal';
 import {Link} from '@remix-run/react';
-import {data, useLoaderData, defer} from '@remix-run/react';
 import AnimatedButton from './AnimatedButton';
 import HeaderDropDown from './HeaderDropDown';
 import Carrot from '~/assets/Carrot';
 import {useLocation} from '@remix-run/react';
-import Homepage from '~/routes/_index';
 import useIsMobile from './functions/isMobile';
 import HeaderMobile from './mobile/HeaderMobile';
 
 function HeaderComponent({data, isMobile, pathname}) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [isHover, setIsHover] = useState(false);
+  const [isHover, setIsHover] = useState(''); // '' | 'about' | 'menu'
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const [showDetails, setShowDetails] = useState(() => {
-    // On homepage, show only if already scrolled
     if (typeof window !== 'undefined' && isHomePage) {
       return window.scrollY > 200;
     }
-    // On any other page, always show
     return true;
   });
 
@@ -29,7 +25,6 @@ function HeaderComponent({data, isMobile, pathname}) {
   const dropdownRef = useRef(null);
   let leaveTimeout = null;
 
-  // Use the server-side mobile detection
   const isMobileActive = useIsMobile(isMobile);
 
   useEffect(() => {
@@ -47,30 +42,17 @@ function HeaderComponent({data, isMobile, pathname}) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
-  const handleMouseLeave = (e) => {
-    if (e.relatedTarget instanceof Window) {
-      setIsHover(false);
-      // Add your hover close logic here
-    } else if (
-      e.relatedTarget &&
-      dropdownRef.current &&
-      dropdownRef.current?.contains(e.relatedTarget) &&
-      !hoverRef.current.contains(e.relatedTarget)
-    ) {
-      // If the mouse is moving into the specific div, do nothing.
-      return;
-    }
+  const handleMouseLeave = () => {
     leaveTimeout = setTimeout(() => {
-      setIsHover(false);
+      setIsHover('');
     }, 200);
   };
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (section) => {
     clearTimeout(leaveTimeout);
-    setIsHover(true);
+    setIsHover(section); // 'about' or 'menu'
   };
 
-  // If mobile, render the mobile header
   if (isMobileActive) {
     return (
       <>
@@ -85,7 +67,7 @@ function HeaderComponent({data, isMobile, pathname}) {
       </>
     );
   }
-  // Desktop header
+
   return (
     <>
       <RestaurantModal
@@ -94,7 +76,7 @@ function HeaderComponent({data, isMobile, pathname}) {
         venue_id={'87094'}
         link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
         api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
-      ></RestaurantModal>
+      />
       <div className="w-full bg-[#AF4145] flex justify-between sticky top-0 h-[100px] z-100">
         <div
           className={`p-4 transition-all duration-500 ease-in-out flex flex-col justify-center  ${
@@ -104,7 +86,7 @@ function HeaderComponent({data, isMobile, pathname}) {
           <Link to="/">
             <Image
               src="https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MaisonPasser.svg?v=1737053887"
-              width={250} // ✅ number, not '50px'
+              width={250}
               sizes="(min-width: 35em) 250px, 500px"
               alt="Maison Passerelle Logo"
             />
@@ -116,34 +98,86 @@ function HeaderComponent({data, isMobile, pathname}) {
             </p>
           </div>
         </div>
+
         <div className="flex gap-12 items-center px-4">
+          {/* ABOUT */}
           <div
-            className="text-[#e8d09b] moderat-bold cursor-pointer h-full flex items-center gap-1"
-            onMouseEnter={handleMouseEnter}
+            className="text-[#e8d09b] moderat-bold cursor-pointer h-full flex items-center gap-1 relative"
+            onMouseEnter={() => handleMouseEnter('about')}
             onMouseLeave={handleMouseLeave}
             ref={hoverRef}
           >
             <span>ABOUT</span>
-            <Carrot rotated={isHover} />
+            <Carrot rotated={isHover === 'about'} />
+            {isHover === 'about' && (
+              <div
+                ref={dropdownRef}
+                className="absolute top-full mt-2 bg-white shadow-lg rounded-md py-2 w-40 z-50"
+              >
+                <Link
+                  to="/about/history"
+                  className="block px-4 py-2 text-sm text-[#AF4145] hover:bg-gray-100"
+                >
+                  History
+                </Link>
+                <Link
+                  to="/about/team"
+                  className="block px-4 py-2 text-sm text-[#AF4145] hover:bg-gray-100"
+                >
+                  Team
+                </Link>
+              </div>
+            )}
           </div>
+
+          {/* LOCATION */}
           <Link
             to="/location"
             className="text-[#e8d09b] moderat-bold cursor-pointer"
           >
             LOCATION
           </Link>
-          <Link
-            to="/menu"
-            className="text-[#e8d09b] moderat-bold cursor-pointer"
+
+          {/* MENU */}
+          <div
+            className="text-[#e8d09b] moderat-bold cursor-pointer h-full flex items-center gap-1 relative"
+            onMouseEnter={() => handleMouseEnter('menu')}
+            onMouseLeave={handleMouseLeave}
+            ref={hoverRef}
           >
-            MENU
-          </Link>
+            <span>MENU</span>
+            <Carrot rotated={isHover === 'menu'} />
+
+            {isHover === 'menu' && (
+              <div
+                ref={dropdownRef}
+                className="absolute top-full mt-2 bg-white shadow-lg rounded-md py-2 w-40 z-50"
+              >
+                <Link
+                  to="/menu/lunch"
+                  className="block px-4 py-2 text-sm text-[#AF4145] hover:bg-gray-100"
+                >
+                  Lunch
+                </Link>
+                <Link
+                  to="/menu/dinner"
+                  className="block px-4 py-2 text-sm text-[#AF4145] hover:bg-gray-100"
+                >
+                  Dinner
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* CONTACT */}
           <Link
             to="/contact-us"
             className="text-[#e8d09b] moderat-bold cursor-pointer"
           >
             CONTACT US
           </Link>
+
+          {/* RESERVE BUTTON */}
           <AnimatedButton
             text="RESERVE A TABLE"
             onClick={() => setModalOpen(true)}
@@ -155,12 +189,14 @@ function HeaderComponent({data, isMobile, pathname}) {
             h="40px"
           />
         </div>
+
+        {/* Shared dropdown handler (if you want to centralize About/Menu) */}
         <HeaderDropDown
           isHover={isHover}
           handleMouseLeave={handleMouseLeave}
           dropdownRef={dropdownRef}
           hoverRef={hoverRef}
-          hoverValue="menu"
+          hoverValue={isHover}
           headerData={data}
           handleMouseEnter={handleMouseEnter}
         />
