@@ -16,6 +16,7 @@ function HomePageMobile({staticData}) {
         venue_id={'87094'}
         link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
         api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
+        isMobile={true}
       />
       <MenuModal
         setOpenModal={setMenuModalOpen}
