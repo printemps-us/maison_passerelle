@@ -233,7 +233,12 @@ function HeaderMobile({data, pathname}) {
                   className="w-full flex justify-between items-center text-[#e8d09b] py-6 touch-manipulation"
                   aria-expanded={activeAccordion === 'about'}
                 >
-                  <span className='moderat-bold text-lg' style={{textRendering: 'geometricPrecision'}}>ABOUT</span>
+                  <span
+                    className="moderat-bold text-lg"
+                    style={{textRendering: 'geometricPrecision'}}
+                  >
+                    ABOUT
+                  </span>
                   <img
                     src={activeAccordion === 'about' ? Minus : Plus}
                     alt={activeAccordion === 'about' ? 'Collapse' : 'Expand'}
@@ -274,7 +279,9 @@ function HeaderMobile({data, pathname}) {
                   className="w-full flex justify-between items-center text-[#e8d09b] moderat-bold text-lg py-6 touch-manipulation"
                   aria-expanded={activeAccordion === 'menu'}
                 >
-                  <span style={{textRendering: 'geometricPrecision'}}>menu</span>
+                  <span style={{textRendering: 'geometricPrecision'}}>
+                    menu
+                  </span>
                   <img
                     src={activeAccordion === 'menu' ? Minus : Plus}
                     alt={activeAccordion === 'menu' ? 'Collapse' : 'Expand'}

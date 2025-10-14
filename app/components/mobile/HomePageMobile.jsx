@@ -20,6 +20,7 @@ function HomePageMobile({staticData}) {
       <MenuModal
         setOpenModal={setMenuModalOpen}
         openModal={menuModalOpen}
+        isMobile={true}
       ></MenuModal>
       {/* Hero Section */}
       <div className="bg-[#AF4145] flex flex-col items-center gap-2 py-16 px-4">
