@@ -109,25 +109,6 @@ function HeaderComponent({data, isMobile, pathname}) {
           >
             <span>ABOUT</span>
             <Carrot rotated={isHover === 'about'} />
-            {isHover === 'about' && (
-              <div
-                ref={dropdownRef}
-                className="absolute top-full mt-2 bg-white shadow-lg rounded-md py-2 w-40 z-50"
-              >
-                <Link
-                  to="/about/history"
-                  className="block px-4 py-2 text-sm text-[#AF4145] hover:bg-gray-100"
-                >
-                  History
-                </Link>
-                <Link
-                  to="/about/team"
-                  className="block px-4 py-2 text-sm text-[#AF4145] hover:bg-gray-100"
-                >
-                  Team
-                </Link>
-              </div>
-            )}
           </div>
 
           {/* LOCATION */}
@@ -147,26 +128,6 @@ function HeaderComponent({data, isMobile, pathname}) {
           >
             <span>MENU</span>
             <Carrot rotated={isHover === 'menu'} />
-
-            {isHover === 'menu' && (
-              <div
-                ref={dropdownRef}
-                className="absolute top-full mt-2 bg-white shadow-lg rounded-md py-2 w-40 z-50"
-              >
-                <Link
-                  to="/menu/lunch"
-                  className="block px-4 py-2 text-sm text-[#AF4145] hover:bg-gray-100"
-                >
-                  Lunch
-                </Link>
-                <Link
-                  to="/menu/dinner"
-                  className="block px-4 py-2 text-sm text-[#AF4145] hover:bg-gray-100"
-                >
-                  Dinner
-                </Link>
-              </div>
-            )}
           </div>
 
           {/* CONTACT */}
@@ -189,7 +150,6 @@ function HeaderComponent({data, isMobile, pathname}) {
             h="40px"
           />
         </div>
-
         {/* Shared dropdown handler (if you want to centralize About/Menu) */}
         <HeaderDropDown
           isHover={isHover}
