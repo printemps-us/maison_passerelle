@@ -44,7 +44,7 @@ function MenuModal({
                 w={isMobile ? '225px' : '339px'}
               />
               <AnimatedButton
-                text={'Dinner Menu'}
+                text={'Prix Fixe Dinner Menu'}
                 bgColor={'white'}
                 hoverColor={'#e8d09b'}
                 h={isMobile ? '42px' : '42px'}

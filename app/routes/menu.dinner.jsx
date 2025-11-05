@@ -228,6 +228,11 @@ function menu() {
           backgroundColor: '#e8d09b',
         }}
       >
+        <div className="text-center">
+          <h3 className={`h3-desktop pb-3`}>Prix Fixe - $135</h3>
+          <div className="h-4"></div>
+          <h2 className={`h5-desktop `}>Wine pairing - $95</h2>
+        </div>
         {organizedMenuItems.map((section, section_index) => (
           <div
             key={`${section?.title?.value}_title_${section_index}`}
@@ -264,9 +269,11 @@ function menu() {
                           ),
                         )}
                     </div>
-                    <p className="p-small-bold-desktop text-center">
-                      ${item?.price?.value}
-                    </p>
+                    {item?.price?.value && (
+                      <p className="p-small-bold-desktop text-center">
+                        ${item?.price?.value}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
