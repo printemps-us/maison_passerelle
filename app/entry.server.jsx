@@ -50,10 +50,7 @@ export default async function handleRequest(
       'https://widgets.resy.com', // Add this line to allow the Resy script
       // Include other allowed domains for script loading
     ],
-    mediaSrc: [
-      "'self'",
-      'https://maisonpasserellenyc.myshopify.com'
-    ], 
+    mediaSrc: ["'self'", 'https://maisonpasserellenyc.myshopify.com'],
     frameSrc: [
       "'self'",
       'https://cdn.shopify.com',
@@ -68,6 +65,7 @@ export default async function handleRequest(
       'https://a.klaviyo.com',
       'https://www.google-analytics.com',
       'https://formspree.io/',
+      'https://analytics.google.com',
     ],
   });
 
