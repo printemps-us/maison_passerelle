@@ -40,6 +40,7 @@ function HeaderComponent({data, isMobile, pathname, popupData}) {
       setShowNewsletter(true);
     }, 5000);
     return () => clearTimeout(timer);
+    
   }, []);
 
   useEffect(() => {
