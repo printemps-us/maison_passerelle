@@ -17,7 +17,9 @@ function Popup({data, onClose, isMobile}) {
   );
 
   // Optionally, auto-close if form never loads after N seconds
-
+  useEffect(() => {
+    sessionStorage.setItem('hasSeenPopup', 'true');
+  }, []);
   const [hasOpened, setHasOpened] = useState(false);
   useEffect(() => {
     if (height === 0) {
