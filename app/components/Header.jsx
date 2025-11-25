@@ -8,9 +8,11 @@ import Carrot from '~/assets/Carrot';
 import {useLocation} from '@remix-run/react';
 import useIsMobile from './functions/isMobile';
 import HeaderMobile from './mobile/HeaderMobile';
-
-function HeaderComponent({data, isMobile, pathname}) {
+import Popup from './Popup';
+function HeaderComponent({data, isMobile, pathname, popupData}) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [showNewsletter, setShowNewsletter] = useState(false);
+
   const [isHover, setIsHover] = useState(''); // '' | 'about' | 'menu'
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -26,6 +28,20 @@ function HeaderComponent({data, isMobile, pathname}) {
   let leaveTimeout = null;
 
   const isMobileActive = useIsMobile(isMobile);
+  const [seen, setSeen] = useState(false);
+
+  useEffect(() => {
+    // safe - only runs in browser
+    const hasSeen = sessionStorage.getItem('hasSeenPopup');
+    if (hasSeen) {
+      setSeen(true);
+    }
+    const timer = setTimeout(() => {
+      setShowNewsletter(true);
+    }, 5000);
+    return () => clearTimeout(timer);
+    
+  }, []);
 
   useEffect(() => {
     if (location.pathname !== '/') {
@@ -63,6 +79,13 @@ function HeaderComponent({data, isMobile, pathname}) {
           link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
           api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
         />
+        {!seen && showNewsletter && popupData.show.value == 'true' && (
+          <Popup
+            data={popupData}
+            onClose={() => setShowNewsletter(false)}
+            isMobile={true}
+          />
+        )}
         <HeaderMobile data={data} pathname={pathname} />
       </>
     );
@@ -77,6 +100,9 @@ function HeaderComponent({data, isMobile, pathname}) {
         link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
         api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
       />
+      {!seen && showNewsletter && popupData.show.value == 'true' && (
+        <Popup data={popupData} onClose={() => setShowNewsletter(false)} />
+      )}
       <div className="w-full bg-[#AF4145] flex justify-between sticky top-0 h-[100px] z-100">
         <div
           className={`p-4 transition-all duration-500 ease-in-out flex flex-col justify-center  ${
