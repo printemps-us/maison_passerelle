@@ -79,7 +79,7 @@ function HeaderComponent({data, isMobile, pathname, popupData}) {
           link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
           api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
         />
-        {!seen && showNewsletter && popupData.show.value == 'true' && (
+        {!seen && showNewsletter && popupData?.show?.value == 'true' && (
           <Popup
             data={popupData}
             onClose={() => setShowNewsletter(false)}
@@ -100,7 +100,7 @@ function HeaderComponent({data, isMobile, pathname, popupData}) {
         link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
         api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
       />
-      {!seen && showNewsletter && popupData.show.value == 'true' && (
+      {!seen && showNewsletter && popupData?.show?.value == 'true' && (
         <Popup data={popupData} onClose={() => setShowNewsletter(false)} />
       )}
       <div className="w-full bg-[#AF4145] flex justify-between sticky top-0 h-[100px] z-100">
