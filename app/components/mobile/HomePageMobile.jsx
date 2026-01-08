@@ -51,7 +51,7 @@ function HomePageMobile({staticData}) {
             className="moderat-bold text-center text-sm"
             style={{color: '#e8d09b'}}
           >
-            MONDAY - FRIDAY
+            MONDAY - SUNDAY
           </p>
           <p
             className="moderat-bold text-center text-sm"
