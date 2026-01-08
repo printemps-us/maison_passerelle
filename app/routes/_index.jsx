@@ -70,7 +70,7 @@ export default function Homepage() {
           LUNCH:
         </p>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
-          MONDAY - FRIDAY, 11AM - 2PM
+          MONDAY - SUNDAY, 11AM - 2PM
         </p>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
           DINNER:
