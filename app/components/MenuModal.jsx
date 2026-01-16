@@ -45,11 +45,30 @@ function MenuModal({
               />
               <AnimatedButton
                 text={'Dinner Menu'}
-                bgColor={'white'}
-                hoverColor={'#e8d09b'}
+                bgColor={'black'}
+                hoverColor={'black'}
+                border="black"
                 h={isMobile ? '42px' : '42px'}
                 w={isMobile ? '225px' : '339px'}
                 clickURL={'/menu/dinner'}
+              />
+              <AnimatedButton
+                text={'Restaurant Week Lunch'}
+                bgColor={'black'}
+                hoverColor={'black'}
+                border="black"
+                clickURL={'/menu/restaurant-week-lunch'}
+                h={isMobile ? '42px' : '42px'}
+                w={isMobile ? '225px' : '339px'}
+              />
+              <AnimatedButton
+                text={'Restaurant Week Dinner'}
+                bgColor={'black'}
+                hoverColor={'black'}
+                border="black"
+                h={isMobile ? '42px' : '42px'}
+                w={isMobile ? '225px' : '339px'}
+                clickURL={'/menu/restaurant-week-dinner'}
               />
             </div>
           </div>

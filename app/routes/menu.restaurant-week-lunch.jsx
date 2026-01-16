@@ -167,7 +167,7 @@ function menu() {
   const nodesWithLinks =
     data?.staticData.content?.references?.nodes?.filter(
       (node) => node?.link?.value,
-    )?.length + 1 || 0;
+    )?.length || 0;
   return (
     <SmoothScroll>
       <div
@@ -219,34 +219,6 @@ function menu() {
             )}
           </>
         ))}
-        <a
-          className="text-center w-[100px] flex flex-col gap-3 cursor-pointer items-center link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`https://cdn.shopify.com/s/files/1/0636/5164/3554/files/NEW_WINE_MENU_10.28.25.pdf?v=1762910223`}
-        >
-          <div
-            className={` border-[#000000] h-[75px] w-[75px] p-0.5 rounded-full room`}
-          >
-            <div className=" rounded-full w-full h-full overflow-hidden ">
-              <Image
-                className="h-full w-full object-cover"
-                src={
-                  'https://cdn.shopify.com/s/files/1/0636/5164/3554/files/F_BMenuItems_ByTheBottle.png?v=1763001263'
-                }
-                alt={'wine icon'}
-                style={{
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                }}
-                sizes="(min-width: 2em) 5em, 10em"
-              ></Image>
-            </div>
-          </div>
-          <span className={`${'p-small-regular-desktop'} text-black-2`}>
-            Wine List
-          </span>
-        </a>
       </div>
 
       <div
@@ -257,13 +229,34 @@ function menu() {
         }}
       >
         <div className="text-center">
-          <h3 className={`h3-desktop pb-3`}>Prix Fixe - $135</h3>
-          <div className="h-4"></div>
-          <h2 className={`h5-desktop `}>Wine pairing - $95</h2>
-          <div className="h-3"></div>
-          <h2 className={`p-standard-bold-desktop`}>
-            *A La Carte available upon request
+          <h3 className={`${isMobileActive ? 'h3-mobile' : 'h3-desktop'} pb-3`}>
+            NYC RESTAURANT WEEK WINTER 2026
+          </h3>
+          <h2
+            className={`${
+              isMobileActive
+                ? 'p-small-regular-desktop'
+                : 'p-standard-medium-desktop'
+            } italic`}
+          >
+            Jan 20th - Feb 12th, Monday-Friday & Sunday
           </h2>
+          <div className="h-8"> </div>
+          <h2 className={`${isMobileActive ? 'h5-mobile' : 'h5-desktop'}`}>
+            Lunch Prix Fixe - 2 courses - $45*
+          </h2>
+          <div className="h-4"></div>
+          <h2
+            className={`${
+              isMobileActive
+                ? 'p-small-regular-desktop'
+                : 'p-standard-medium-desktop'
+            } italic`}
+          >
+            PLEASE CHOOSE ONE COURSE FROM EACH SECTION
+          </h2>
+          <div className="h-8"></div>
+          <div className="italic">*taxes and gratuity not included</div>
         </div>
         {organizedMenuItems.map((section, section_index) => (
           <div
@@ -301,11 +294,9 @@ function menu() {
                           ),
                         )}
                     </div>
-                    {item?.price?.value && (
-                      <p className="p-small-bold-desktop text-center">
-                        ${item?.price?.value}
-                      </p>
-                    )}
+                    <p className="p-small-bold-desktop text-center">
+                      ${item?.price?.value}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -327,7 +318,7 @@ function menu() {
 export default menu;
 
 const MENU_QUERY = `query StaticPageContent {
-  metaobjects(type: "menu", first: 10) {
+  metaobjects(type: "restaurant_week_lunch_menu", first: 10) {
     nodes {
       handle
       seo: field(key: "seo") {

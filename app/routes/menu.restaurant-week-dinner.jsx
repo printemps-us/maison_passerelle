@@ -164,10 +164,11 @@ function menu() {
     }
   }, [location]);
   // Empty dependency array since we want this to run once on mount
-  const nodesWithLinks =
+  let nodesWithLinks =
     data?.staticData.content?.references?.nodes?.filter(
       (node) => node?.link?.value,
     )?.length + 1 || 0;
+
   return (
     <SmoothScroll>
       <div
@@ -250,21 +251,43 @@ function menu() {
       </div>
 
       <div
-        className="flex flex-col items-center gap-[120px] pt-[120px] pb-[200px]"
+        className="flex flex-col items-center gap-[120px] pt-[100px] pb-[200px]"
         style={{
           color: 'black',
           backgroundColor: '#e8d09b',
         }}
       >
         <div className="text-center">
-          <h3 className={`h3-desktop pb-3`}>Prix Fixe - $135</h3>
-          <div className="h-4"></div>
-          <h2 className={`h5-desktop `}>Wine pairing - $95</h2>
-          <div className="h-3"></div>
-          <h2 className={`p-standard-bold-desktop`}>
-            *A La Carte available upon request
+          <h3 className={`${isMobileActive ? 'h3-mobile' : 'h3-desktop'} pb-3`}>
+            NYC RESTAURANT WEEK WINTER 2026
+          </h3>
+          <h2
+            className={`${
+              isMobileActive
+                ? 'p-small-regular-desktop'
+                : 'p-standard-medium-desktop'
+            } italic`}
+          >
+            Jan 20th - Feb 12th, Monday-Friday & Sunday
           </h2>
+          <div className="h-8"> </div>
+          <h2 className={`${isMobileActive ? 'h5-mobile' : 'h5-desktop'}`}>
+            Dinner Prix Fixe - 3 courses - $60*
+          </h2>
+          <div className="h-4"></div>
+          <h2
+            className={`${
+              isMobileActive
+                ? 'p-small-regular-desktop'
+                : 'p-standard-medium-desktop'
+            } italic`}
+          >
+            PLEASE CHOOSE ONE COURSE FROM EACH SECTION
+          </h2>
+          <div className="h-8"></div>
+          <div className="italic">*taxes and gratuity not included</div>
         </div>
+
         {organizedMenuItems.map((section, section_index) => (
           <div
             key={`${section?.title?.value}_title_${section_index}`}
@@ -327,7 +350,7 @@ function menu() {
 export default menu;
 
 const MENU_QUERY = `query StaticPageContent {
-  metaobjects(type: "menu", first: 10) {
+  metaobjects(type: "restaurant_week_dinner_menu", first: 10) {
     nodes {
       handle
       seo: field(key: "seo") {
