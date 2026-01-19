@@ -167,7 +167,7 @@ function menu() {
   let nodesWithLinks =
     data?.staticData.content?.references?.nodes?.filter(
       (node) => node?.link?.value,
-    )?.length + 1 || 0;
+    )?.length || 0;
 
   return (
     <SmoothScroll>
@@ -220,34 +220,6 @@ function menu() {
             )}
           </>
         ))}
-        <a
-          className="text-center w-[100px] flex flex-col gap-3 cursor-pointer items-center link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`https://cdn.shopify.com/s/files/1/0636/5164/3554/files/NEW_WINE_MENU_10.28.25.pdf?v=1762910223`}
-        >
-          <div
-            className={` border-[#000000] h-[75px] w-[75px] p-0.5 rounded-full room`}
-          >
-            <div className=" rounded-full w-full h-full overflow-hidden ">
-              <Image
-                className="h-full w-full object-cover"
-                src={
-                  'https://cdn.shopify.com/s/files/1/0636/5164/3554/files/F_BMenuItems_ByTheBottle.png?v=1763001263'
-                }
-                alt={'wine icon'}
-                style={{
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                }}
-                sizes="(min-width: 2em) 5em, 10em"
-              ></Image>
-            </div>
-          </div>
-          <span className={`${'p-small-regular-desktop'} text-black-2`}>
-            Wine List
-          </span>
-        </a>
       </div>
 
       <div
