@@ -259,7 +259,7 @@ function menu() {
         <div className="text-center">
           <h3 className={`h3-desktop pb-3`}>Prix Fixe - $135</h3>
           <div className="h-4"></div>
-          <h2 className={`h5-desktop `}>Wine pairing - $95</h2>
+          <h2 className={`h5-desktop `}>Wine pairing - $85</h2>
           <div className="h-3"></div>
           <h2 className={`p-standard-bold-desktop`}>
             *A La Carte available upon request
