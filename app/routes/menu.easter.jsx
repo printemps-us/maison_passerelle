@@ -239,7 +239,7 @@ function menu() {
                 : 'h3-desktop'
             } pb-10`}
           >
-            Easter Sunday Brunch
+            Easter Sunday Lunch
           </h3>
           <div className="max-w-[600px] ">
             <h3
