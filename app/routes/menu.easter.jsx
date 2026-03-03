@@ -224,7 +224,7 @@ function menu() {
 
       <div
         className={`flex flex-col items-center gap-[120px] ${
-          isMobileActive ? 'pt-[30px]' : 'pt-[100px]'
+          isMobileActive ? 'pt-[50px]' : 'pt-[80px]'
         } pb-[200px]`}
         style={{
           color: 'black',
@@ -232,6 +232,15 @@ function menu() {
         }}
       >
         <div className="text-center px-6">
+          <h3
+            className={`${
+              isMobileActive
+                ? 'h3-mobile'
+                : 'h3-desktop'
+            } pb-10`}
+          >
+            Easter Sunday Brunch
+          </h3>
           <div className="max-w-[600px] ">
             <h3
               className={`${
