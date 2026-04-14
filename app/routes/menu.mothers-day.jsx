@@ -233,13 +233,9 @@ function menu() {
       >
         <div className="text-center px-6">
           <h3
-            className={`${
-              isMobileActive
-                ? 'h3-mobile'
-                : 'h3-desktop'
-            } pb-10`}
+            className={`text-center ${isMobileActive ? 'h3-mobile' : 'h3-desktop'} pb-10`}
           >
-            Easter Sunday Lunch
+            Mother's Day Celebration
           </h3>
           <div className="max-w-[600px] ">
             <h3
@@ -249,12 +245,18 @@ function menu() {
                   : 'p-standard-medium-desktop'
               } pb-6`}
             >
-              Celebrate Easter Sunday at Maison Passerelle with a prix fixe
-              inspired by the flavors of the season. Begin with Cream of Leek
-              Soup or Asparagus Salad, followed by your choice of Slow Cooked
-              Salmon with soft herb sauce or Roasted Lamb Saddle with ginger and
-              mint yogurt. Sides for the table and a Coconut Passion Fruit
-              Pavlova complete this bright, spring-forward menu.
+              Celebrate Mother’s Day with a refined spring lunch at Maison
+              Passerelle, located within Printemps New York. Chef Gregory
+              Gourdet presents a seasonal three course menu highlighting the
+              freshness and vibrancy of the season. Thoughtfully composed dishes
+              include marinated beets with passion fruit and fennel, white
+              asparagus soup with peekytoe crab, seared hake with preserved
+              lemon and ginger scallion relish, and spice roasted chicken with
+              harissa jus. To complement the experience, guests may enjoy
+              seasonal sides such as spring vegetables with épices butter and
+              roasted spring mushrooms with herbs. The meal concludes with a
+              roasted strawberry pavlova with torched meringue and spiced
+              hibiscus sorbet.
             </h3>
 
             <h2
@@ -264,13 +266,13 @@ function menu() {
                   : 'p-standard-medium-desktop'
               } italic`}
             >
-              Join us for an elegant afternoon of seasonal cooking and warm
-              hospitality in the heart of downtown.
+              We invite guests to linger and continue the celebration throughout
+              Printemps New York.
             </h2>
           </div>
           <div className="h-8"> </div>
           <h2 className={`${isMobileActive ? 'h5-mobile' : 'h5-desktop'}`}>
-            $75 per guest | Sunday, April 5 | 11am - 3pm
+            $85 per guest | Sunday, May 10 | 11am - 3pm
           </h2>
           <div className="h-4"></div>
           <h2

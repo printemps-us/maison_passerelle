@@ -53,11 +53,11 @@ function MenuModal({
                 clickURL={'/menu/dinner'}
               />
                <AnimatedButton
-                text={'Easter Menu'}
+                text={"Mother's Day Menu"}
                 bgColor={'black'}
                 hoverColor={'black'}
                 border="black"
-                clickURL={'/menu/easter'}
+                clickURL={'/menu/mothers-day'}
                 h={isMobile ? '42px' : '42px'}
                 w={isMobile ? '225px' : '339px'}
               />
