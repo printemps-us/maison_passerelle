@@ -350,7 +350,7 @@ function menu() {
 export default menu;
 
 const MENU_QUERY = `query StaticPageContent {
-  metaobjects(type: "easter_menu", first: 10) {
+  metaobjects(type: "mothers_day_menu", first: 10) {
     nodes {
       handle
       seo: field(key: "seo") {
