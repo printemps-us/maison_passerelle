@@ -70,13 +70,13 @@ export default function Homepage() {
           LUNCH:
         </p>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
-          TUESDAY - SUNDAY, 11AM - 2PM
+          MONDAY - SUNDAY, 11AM - 2PM
         </p>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
           DINNER:
         </p>
         <p className="moderat-bold text-center" style={{color: '#e8d09b'}}>
-          TUESDAY - SUNDAY, 5PM - 10PM
+          MONDAY - SUNDAY, 5PM - 10PM
         </p>
 
         <div className="mt-16  h-auto w-full flex max-[835px]:flex-col gap-3 justify-center items-center">
