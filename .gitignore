@@ -36,3 +36,12 @@ Thumbs.db
 /.confi
 
 .shopify
+
+# Local history snapshots (VS Code Local History extensions)
+.history/
+
+# Timestamped snapshot files
+*_20*.js
+*_20*.jsx
+*_20*.ts
+*_20*.tsx
