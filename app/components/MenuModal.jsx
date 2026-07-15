@@ -8,6 +8,8 @@ function MenuModal({
   link,
   api_key,
   isMobile = false,
+  restaurantWeekLunchPdf,
+  restaurantWeekDinnerPdf,
 }) {
   return (
     <>
@@ -52,23 +54,32 @@ function MenuModal({
                 w={isMobile ? '225px' : '339px'}
                 clickURL={'/menu/dinner'}
               />
-               {/* <AnimatedButton
-                text={"Mother's Day Menu"}
+              <AnimatedButton
+                text={'Restaurant Week Lunch'}
                 bgColor={'black'}
                 hoverColor={'black'}
                 border="black"
-                clickURL={'/menu/mothers-day'}
                 h={isMobile ? '42px' : '42px'}
                 w={isMobile ? '225px' : '339px'}
-              /> */}
-              {/*<AnimatedButton
+                clickURL={restaurantWeekLunchPdf}
+              />
+              <AnimatedButton
                 text={'Restaurant Week Dinner'}
                 bgColor={'black'}
                 hoverColor={'black'}
                 border="black"
                 h={isMobile ? '42px' : '42px'}
                 w={isMobile ? '225px' : '339px'}
-                clickURL={'/menu/restaurant-week-dinner'}
+                clickURL={restaurantWeekDinnerPdf}
+              />
+               {/* <AnimatedButton
+                text={'Easter Menu'}
+                bgColor={'black'}
+                hoverColor={'black'}
+                border="black"
+                clickURL={'/menu/easter'}
+                h={isMobile ? '42px' : '42px'}
+                w={isMobile ? '225px' : '339px'}
               /> */}
             </div>
           </div>

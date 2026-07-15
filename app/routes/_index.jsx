@@ -50,7 +50,12 @@ export default function Homepage() {
         link={'https://resy.com/cities/new-york-ny/venues/maison-passerelle'}
         api_key={'bJMvYfY5EA6goX7ncWUkx9PMjXdA5v66'}
       ></RestaurantModal>
-      <MenuModal setOpenModal={setMenuModalOpen} openModal={menuModalOpen}></MenuModal>
+      <MenuModal
+        setOpenModal={setMenuModalOpen}
+        openModal={menuModalOpen}
+        restaurantWeekLunchPdf={staticData.restaurant_week_lunch_button?.reference?.url}
+        restaurantWeekDinnerPdf={staticData.restaurant_week_dinner_button?.reference?.url}
+      ></MenuModal>
       <div className="bg-[#AF4145] flex flex-col items-center gap-2 py-[100px]">
         <Image
           className="logo"
