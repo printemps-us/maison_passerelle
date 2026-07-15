@@ -59,6 +59,20 @@ query StaticPageContent {
           }
         }
       }
+      restaurant_week_lunch_button: field(key: "restaurant_week_lunch_button") {
+        reference {
+          ... on GenericFile {
+            url
+          }
+        }
+      }
+      restaurant_week_dinner_button: field(key: "restaurant_week_dinner_button") {
+        reference {
+          ... on GenericFile {
+            url
+          }
+        }
+      }
       find_us_button: field(key: "find_us_button") {
         reference {
           ... on Metaobject {

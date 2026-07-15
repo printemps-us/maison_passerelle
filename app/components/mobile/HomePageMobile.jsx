@@ -22,6 +22,8 @@ function HomePageMobile({staticData}) {
         setOpenModal={setMenuModalOpen}
         openModal={menuModalOpen}
         isMobile={true}
+        restaurantWeekLunchPdf={staticData.restaurant_week_lunch_button?.reference?.url}
+        restaurantWeekDinnerPdf={staticData.restaurant_week_dinner_button?.reference?.url}
       ></MenuModal>
       {/* Hero Section */}
       <div className="bg-[#AF4145] flex flex-col items-center gap-2 py-16 px-4">
