@@ -1,3 +1,17 @@
+// restaurant_week_lunch_button: field(key: "restaurant_week_lunch_button") {
+//         reference {
+//           ... on GenericFile {
+//             url
+//           }
+//         }
+//       }
+//       restaurant_week_dinner_button: field(key: "restaurant_week_dinner_button") {
+//         reference {
+//           ... on GenericFile {
+//             url
+//           }
+//         }
+//       }
 export const HOME_QUERY = `
 query StaticPageContent {
   metaobjects(type: "home_page", first: 10) {
@@ -56,20 +70,6 @@ query StaticPageContent {
               url
               altText
             }
-          }
-        }
-      }
-      restaurant_week_lunch_button: field(key: "restaurant_week_lunch_button") {
-        reference {
-          ... on GenericFile {
-            url
-          }
-        }
-      }
-      restaurant_week_dinner_button: field(key: "restaurant_week_dinner_button") {
-        reference {
-          ... on GenericFile {
-            url
           }
         }
       }

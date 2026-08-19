@@ -223,7 +223,7 @@ function menu() {
           className="text-center w-[100px] flex flex-col gap-3 cursor-pointer items-center link"
           target="_blank"
           rel="noopener noreferrer"
-          href={`https://cdn.shopify.com/s/files/1/0636/5164/3554/files/NEW_WINE_MENU_10.28.25.pdf?v=1762910223`}
+          href={`https://cdn.shopify.com/s/files/1/0636/5164/3554/files/WINE_MENU_08.17.26.pdf?v=1787124736`}
         >
           <div
             className={` border-[#000000] h-[75px] w-[75px] p-0.5 rounded-full room`}

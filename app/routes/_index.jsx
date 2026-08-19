@@ -53,8 +53,8 @@ export default function Homepage() {
       <MenuModal
         setOpenModal={setMenuModalOpen}
         openModal={menuModalOpen}
-        restaurantWeekLunchPdf={staticData.restaurant_week_lunch_button?.reference?.url}
-        restaurantWeekDinnerPdf={staticData.restaurant_week_dinner_button?.reference?.url}
+        // restaurantWeekLunchPdf={staticData.restaurant_week_lunch_button?.reference?.url}
+        // restaurantWeekDinnerPdf={staticData.restaurant_week_dinner_button?.reference?.url}
       ></MenuModal>
       <div className="bg-[#AF4145] flex flex-col items-center gap-2 py-[100px]">
         <Image
