@@ -247,6 +247,34 @@ function menu() {
             Wine List
           </span>
         </a>
+        <a
+          className="text-center w-[100px] flex flex-col gap-3 cursor-pointer items-center link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`https://cdn.shopify.com/s/files/1/0636/5164/3554/files/MP_MENU_BARDinner_aLa_-05.19.26_LVH.pdf?v=1779300148`}
+        >
+          <div
+            className={` border-[#000000] h-[75px] w-[75px] p-0.5 rounded-full room`}
+          >
+            <div className=" rounded-full w-full h-full overflow-hidden ">
+              <Image
+                className="h-full w-full object-cover"
+                src={
+                  'https://cdn.shopify.com/s/files/1/0636/5164/3554/files/F_BMenuItems_MP_FromtheSea.png?v=1748362468'
+                }
+                alt={'À la carte icon'}
+                style={{
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+                sizes="(min-width: 2em) 5em, 10em"
+              ></Image>
+            </div>
+          </div>
+          <span className={`${'p-small-regular-desktop'} text-black-2`}>
+            À la carte
+          </span>
+        </a>
       </div>
 
       <div
@@ -257,8 +285,11 @@ function menu() {
         }}
       >
         <div className="text-center">
-          <h3 className={`h3-desktop pb-3`}>Prix Fixe - $135</h3>
-          <div className="h-4"></div>
+          <h3 className={`h3-desktop pb-3`}>Prix Fixe - $145</h3>
+          <h2 className={`p-standard-bold-desktop`}>
+            Your choice of one starter, one main, one dessert
+          </h2>
+          <div className="h-8"></div>
           <h2 className={`h5-desktop `}>Wine pairing - $85</h2>
           <div className="h-3"></div>
           <h2 className={`p-standard-bold-desktop`}>
