@@ -228,6 +228,18 @@ function menu() {
           backgroundColor: '#e8d09b',
         }}
       >
+        <div className="text-center">
+          <h3 className={`h3-desktop pb-3`}>Prix Fixe - $45</h3>
+          <h2 className={`p-standard-bold-desktop`}>
+            Your choice of starter, main, and dessert
+          </h2>
+          <div className="h-8"></div>
+          <h2 className={`h5-desktop `}>Wine Pairing - $40</h2>
+          <div className="h-3"></div>
+          <h2 className={`p-standard-bold-desktop`}>
+            Two 3oz pours paired with savory
+          </h2>
+        </div>
         {organizedMenuItems.map((section, section_index) => (
           <div
             key={`${section?.title?.value}_title_${section_index}`}

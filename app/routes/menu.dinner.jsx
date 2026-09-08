@@ -167,7 +167,7 @@ function menu() {
   const nodesWithLinks =
     data?.staticData.content?.references?.nodes?.filter(
       (node) => node?.link?.value,
-    )?.length + 1 || 0;
+    )?.length + 2 || 0;
   return (
     <SmoothScroll>
       <div
@@ -223,6 +223,34 @@ function menu() {
           className="text-center w-[100px] flex flex-col gap-3 cursor-pointer items-center link"
           target="_blank"
           rel="noopener noreferrer"
+          href={`https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MP_-_Drinks_-_8.24.26_-_DK.pdf?v=1788867064`}
+        >
+          <div
+            className={` border-[#000000] h-[75px] w-[75px] p-0.5 rounded-full room`}
+          >
+            <div className=" rounded-full w-full h-full overflow-hidden ">
+              <Image
+                className="h-full w-full object-cover"
+                src={
+                  'https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MP_Menu_Icon_Spirits.png?v=1788867065'
+                }
+                alt={'spirits icon'}
+                style={{
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+                sizes="(min-width: 2em) 5em, 10em"
+              ></Image>
+            </div>
+          </div>
+          <span className={`${'p-small-regular-desktop'} text-black-2`}>
+            Spirits List
+          </span>
+        </a>
+        <a
+          className="text-center w-[100px] flex flex-col gap-3 cursor-pointer items-center link"
+          target="_blank"
+          rel="noopener noreferrer"
           href={`https://cdn.shopify.com/s/files/1/0636/5164/3554/files/WINE_MENU_08.17.26.pdf?v=1787124736`}
         >
           <div
@@ -251,7 +279,7 @@ function menu() {
           className="text-center w-[100px] flex flex-col gap-3 cursor-pointer items-center link"
           target="_blank"
           rel="noopener noreferrer"
-          href={`https://cdn.shopify.com/s/files/1/0636/5164/3554/files/MP_MENU_BARDinner_aLa_-05.19.26_LVH.pdf?v=1779300148`}
+          href={`https://cdn.shopify.com/s/files/1/0581/1011/5943/files/MP_DINNER_09.01.26_JC.LVH.pdf?v=1788867064`}
         >
           <div
             className={` border-[#000000] h-[75px] w-[75px] p-0.5 rounded-full room`}
@@ -285,12 +313,14 @@ function menu() {
         }}
       >
         <div className="text-center">
-          <h3 className={`h3-desktop pb-3`}>Prix Fixe - $145</h3>
+          <h3 className={`h3-desktop pb-3`}>Prix Fixe - $90</h3>
           <h2 className={`p-standard-bold-desktop`}>
             Your choice of one starter, one main, one dessert
           </h2>
           <div className="h-8"></div>
-          <h2 className={`h5-desktop `}>Wine pairing - $85</h2>
+          <h2 className={`h5-desktop `}>Wine pairing - $54</h2>
+          <div className="h-3"></div>
+          <h2 className={`h5-desktop `}>Spirit-Free Pairing - $48</h2>
           <div className="h-3"></div>
           <h2 className={`p-standard-bold-desktop`}>
             *A La Carte available upon request
